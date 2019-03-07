@@ -1,0 +1,1 @@
+# msc-ng-node-mongo
