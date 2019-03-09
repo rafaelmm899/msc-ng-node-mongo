@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.login-segment{
+    margin-top: 10%;
+}
+
+.login-form{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+}
+
+.btn-login{
+    width: 100%;
+}
+
+body {
+    background: #5e6e7b !important;
+}

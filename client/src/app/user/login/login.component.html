@@ -1,0 +1,20 @@
+
+		<div class="login-segment">
+			<div class="col-md-12">
+				<div class="col-md-offset-8 col-md-4 login-form">
+					<form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
+						<p>
+							<label for="email">Email</label>
+							<input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" required />
+						</p>
+						<p>
+							<label for="password">Password</label>
+							<input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" required />
+						</p>
+						<p>
+							<input type="submit" class="btn btn-success btn-login" value="Log In" >
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
