@@ -7,7 +7,7 @@ var userController = require('../controllers/user');
 
 var api = express.Router();
 
-api.get('/login', userController.login);
+api.post('/login', userController.login);
 api.post('/user/create', [authenticated.ensureAuth],userController.create);
 
 module.exports = api;

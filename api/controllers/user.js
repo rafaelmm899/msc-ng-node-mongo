@@ -105,7 +105,7 @@ function login(req, res){
                                     }
                                 } else {
                                     res.status(200).send({
-                                        message : 'Username does not exist'
+                                        message : 'Incorrect user or password'
                                     });
                                 }
                             }
