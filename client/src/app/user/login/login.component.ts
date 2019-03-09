@@ -27,22 +27,26 @@ export class LoginComponent implements OnInit {
       	this._userService.login(this.user).subscribe(
 			response =>{
 			
-				if(!response.user){
+				if(response.message){
 					this.message = response.message;
 				}else{
+					
 					this._userService.getToken(this.user).subscribe(
-					resp =>{
-						this.token = resp.token;
-						if(this.token.length <= 0){
-							this.message = resp.message;
-						}else{
-							localStorage.setItem('token',this.token);
-							this.message = 'User successfully logged in';
+						resp =>{
+							this.token = resp.token;
+							if(this.token.length <= 0){
+								this.message = resp.message;
+							}else{
+								this.user = response.user;
+								localStorage.setItem('token',this.token);
+								localStorage.setItem('currentUser', JSON.stringify(this.user));
+								this.message = 'User successfully logged in';
+							}
+						},
+						err => {
+							
 						}
-					},
-					err => {
-						
-					})
+					)
 				}
 			},
 			error => {

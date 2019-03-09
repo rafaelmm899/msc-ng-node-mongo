@@ -22,10 +22,6 @@ export class UserService {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
         return this._http.post(this.url+'login', params ,{headers : headers}).pipe(map(user => {
-            
-            if (user) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-            }
 
             return user;
         }));
