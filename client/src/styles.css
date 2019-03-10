@@ -31,7 +31,7 @@ body {
         margin-left: -225px;
         border: none;
         border-radius: 0;
-        border-top: 1px rgba(0,0,0,.5) solid;
+        border-right: 1px rgba(0,0,0,.5) solid;
         overflow-y: auto;
         background-color: #286090;
         bottom: 0;
