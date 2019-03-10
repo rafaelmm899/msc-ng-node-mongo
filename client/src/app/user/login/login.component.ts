@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, Route, ActivatedRoute } from '@angular/router';
 
 import { User } from '../../models/user';
 import { UserService } from '../user.service';
@@ -15,7 +16,10 @@ export class LoginComponent implements OnInit {
 	public token;
 
 	constructor(
-		private _userService : UserService
+		private _userService : UserService,
+		private _route : ActivatedRoute,
+		private _router : Router
+
 	) { 
 		this.user = new User('','','','','','','');
 	}
@@ -40,17 +44,18 @@ export class LoginComponent implements OnInit {
 								this.user = response.user;
 								localStorage.setItem('token',this.token);
 								localStorage.setItem('currentUser', JSON.stringify(this.user));
-								this.message = 'User successfully logged in';
+								
+								this._router.navigate(['/dashboard']);
 							}
 						},
 						err => {
-							
+							this.message = 'Error in the request, try again';
 						}
 					)
 				}
 			},
 			error => {
-			console.log(error)
+				this.message = 'Error in the request, try again';
 			}
       	)
   	}
