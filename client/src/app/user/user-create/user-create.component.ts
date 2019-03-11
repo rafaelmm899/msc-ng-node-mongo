@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from 'src/app/models/user';
+import { GLOBAL } from 'src/global';
 
 
 @Component({
@@ -12,11 +13,13 @@ import { User } from 'src/app/models/user';
 export class UserCreateComponent implements OnInit {
 	public message: String;
 	public user : User;
+	public url: String;
 
 	constructor(
 		private _userService: UserService
 	) { 
 		this.user = new User('','','','','','','ROLE_USER');
+		this.url = GLOBAL.url;
 	}
 
 	ngOnInit() {
@@ -29,7 +32,7 @@ export class UserCreateComponent implements OnInit {
 					this.message = response.message;
 				}else{
 					this.user = response.user;
-					this.message = "usuario creado"
+					this.message = 'The user has been created successfully, please log in';
 				}
 			},
 			error => {
