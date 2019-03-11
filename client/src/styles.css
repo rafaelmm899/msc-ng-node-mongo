@@ -4,18 +4,21 @@ body {
 }
 /* FIN GENERAL STYLE */
 
-/* LOGIN COMPONENT STYLE */
-.login-segment{
+/* APP COMPONENT STYLE */
+.app-wrapper{
     margin-top: 10%;
 }
 
-.login-form{
+.app-form-segment{
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 14px;
 }
 
-.btn-login{
+/* */
+
+/* LOGIN COMPONENT STYLE */
+.btn-login, .btn-create-account{
     width: 100%;
 }
 

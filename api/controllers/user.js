@@ -24,6 +24,8 @@ function create(req, res){
     var user = new User();
     var params = req.body;
 
+    //console.log(req.rawHeaders);
+
     if(params){
         if(params.name && params.lastname && params.password && params.role && params.email){
             user.name = params.name;

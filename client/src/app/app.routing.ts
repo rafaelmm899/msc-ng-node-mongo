@@ -3,8 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './user/login/login.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
+
 
 const appRoutes : Routes = [
+    { path : '', component: UserCreateComponent },
+    { path : 'login', component : LoginComponent }
     
 ]
 
