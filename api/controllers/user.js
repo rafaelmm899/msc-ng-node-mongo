@@ -3,6 +3,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../service/jwt');
+const moongoosePaginate = require('mongoose-paginate');
 
 function checkUserExist(user) {
     var res = false;
@@ -123,7 +124,31 @@ function login(req, res){
     }
 }
 
+function getUsers(req, res){
+    let itemPerPage = 10;
+    let idUser = null;
+    let currentPage = (req.params.page) ? req.params.page : 1;
+
+    if(req.body._id){
+        idUser = req.body._id;
+    }
+
+    //User.find({ _id: { $ne: idUser } }, (error, users) => {
+    User.paginate(User.find({ _id: { $ne: idUser } }), { page: 1, limit: 10 }, function(err, users, total) {
+
+        if (!users) {
+            res.status(500).send({ message : "Error in the request" });
+        } else {
+            res.status(200).send({
+                items : 0,
+                users : users
+            });
+        }
+    })
+}
+
 module.exports = {
     login,
-    create
+    create,
+    getUsers
 }

@@ -1,3 +1,25 @@
-<p>
-  user-list works!
-</p>
+<div class="row">
+	<div class="col-md-12 col-sm-8">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>lastname</th>
+					<th>email</th>
+					<th>role</th>
+					<th colspan="2"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of users">
+					<td>{{ user.name }}</td>
+					<td>{{ user.lastname }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.role }}</td>
+					<td><a class="btn btn-warning">Edit</a></td>
+					<td><a class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

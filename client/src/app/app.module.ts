@@ -9,12 +9,14 @@ import { LoginComponent } from './user/login/login.component';
 
 import { AppRouting } from './app.routing';
 import { UserCreateComponent } from './user/user-create/user-create.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     AppComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

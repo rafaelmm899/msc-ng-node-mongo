@@ -11,6 +11,7 @@ import { User } from '../models/user';
 export class UserService {
     public url: string;
     public token;
+    public user: User;
 
     constructor(
         private _http: HttpClient
@@ -55,6 +56,19 @@ export class UserService {
         return this._http.post(this.url+'user/create_user', params, { headers : headers }).pipe(map(user => {
 
             return user;
+        }));
+    }
+
+    getUsers(page):Observable<any>{
+        let params = localStorage.getItem("currentUser");
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : this.getTokenInLocalStorage()
+        });
+
+        return this._http.post(this.url+'user/list/'+page, params, { headers :headers }).pipe(map(users => {
+
+            return users;
         }));
     }
 

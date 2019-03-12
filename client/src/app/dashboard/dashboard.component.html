@@ -5,7 +5,7 @@
 			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav side-nav">
-					<li class="side-nav-header">
+					<li class="nav-section title-app">
 						<div class="nav-title">
 							<span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
 							Music!
@@ -26,14 +26,14 @@
 							MENU 1
 						</a>
 					</li>
-					<li>
-						<a href="#" data-toggle="collapse" data-target="#submenu-1">
-							MENU 1
-						</a>
+					<li class="nav-section">
+						<div class="nav-section-title">
+							Admin Panel
+						</div>
 					</li>
 					<li>
-						<a href="#" data-toggle="collapse" data-target="#submenu-1">
-							MENU 1
+						<a [routerLink]="['/dashboard/user-list']">
+							Users
 						</a>
 					</li>
 				</ul>

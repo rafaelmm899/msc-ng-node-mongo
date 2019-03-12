@@ -21,5 +21,7 @@ export class AppComponent implements DoCheck {
 		}else{
 			this.identity = false;
 		}
+
+		
 	}
 }
