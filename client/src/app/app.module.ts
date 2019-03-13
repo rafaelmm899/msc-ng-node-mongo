@@ -10,13 +10,15 @@ import { LoginComponent } from './user/login/login.component';
 import { AppRouting } from './app.routing';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     AppComponent,
     UserCreateComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

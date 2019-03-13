@@ -1,0 +1,29 @@
+<div class="col-md-8">
+    <form #editUser="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <label for="name">Name</label>
+            <input type="text" #name="ngModel" [(ngModel)]="user.name" name="name" class="form-control" />
+        </p>
+        <p>
+            <label for="lastname">Lastname</label>
+            <input type="text" #lastname="ngModel" [(ngModel)]="user.lastname" name="lastname" class="form-control" />
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" />
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" />
+        </p>
+        <p>
+            <input type="submit" class="btn btn-success" value="Edit">
+            <input type="button" class="btn btn-warning" value="Cancel">
+        </p>
+        <div *ngIf="message">
+            <div class="alert alert-danger" role="alert">
+                <strong>Alert!</strong> {{ message }} 
+            </div>
+        </div>
+    </form>
+</div>

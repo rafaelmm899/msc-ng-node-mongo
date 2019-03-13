@@ -72,4 +72,15 @@ export class UserService {
         }));
     }
 
+    getUser(idUser: string): Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : this.getTokenInLocalStorage()
+        });
+
+        return this._http.get(this.url+'user/'+idUser,{ headers : headers } ).pipe(map(user => {
+            return user;
+        }));
+    }
+
 }

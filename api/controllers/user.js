@@ -147,8 +147,31 @@ function getUsers(req, res){
     })
 }
 
+function getUser(req, res){
+    let userId = req.params.id;
+
+    User.findById(userId,(error, user) => {
+        if(error){
+            res.status(500).send({
+                message : "Error in the request"
+            })
+        }else{
+            if(!user){
+                res.status(200).send({
+                    message : "No record found"
+                })  
+            }else{
+                res.status(200).send({
+                    user
+                })
+            }
+        }
+    })
+}
+
 module.exports = {
     login,
     create,
-    getUsers
+    getUsers,
+    getUser
 }
