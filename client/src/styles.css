@@ -76,6 +76,11 @@ body {
         color: lemonchiffon;
         font-size: 24px;
     }
+
+    .navbar-top{
+        background-color: #fff;
+        border: 1px solid #ddd !important;
+    }
     
 }
 /* FIN DASHBOARD COMPONENT STYLE */
