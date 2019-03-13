@@ -19,7 +19,7 @@ export class UserEditComponent implements OnInit {
     constructor(
         private _userService: UserService,
         private _route: ActivatedRoute,
-        //private _router: Route 
+        private _router: Router 
     ) {
         this.user = new User('','','','','','','');
         this.url = GLOBAL.url;
@@ -39,7 +39,6 @@ export class UserEditComponent implements OnInit {
 
                     }else{
                         this.user = response.user;
-                        this.user.password = '';
                     }
                 },
                 error => {
@@ -47,5 +46,26 @@ export class UserEditComponent implements OnInit {
                 }
             )
         }) 
+    }
+
+    onSubmit(){
+        this._route.params.forEach((params : Params) => {
+            let id = params['id'];
+            
+
+            this._userService.updateUser(id, this.user).subscribe(
+                response => {
+                    if(!response.user){
+                        this.message = response.message;
+                    }else{
+                        this._router.navigate(['dashboard/user-list']);
+                    }
+                },
+                error =>{
+
+                }
+            )
+        
+        })
     }
 }

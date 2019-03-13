@@ -13,12 +13,15 @@
             <input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" />
         </p>
         <p>
-            <label for="password">Password</label>
-            <input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" />
+            <label for="email">Role</label>
+            <select class="form-control" #role="ngModel" [(ngModel)]="user.role" name="role">
+                <option value="ROLE_ADMIN" [selected] = "user.role == 'ROLE_ADMIN'">Administrator</option>
+                <option value="ROLE_USER" [selected] = "user.role == 'ROLE_USER'">User</option>
+            </select>
         </p>
         <p>
             <input type="submit" class="btn btn-success" value="Edit">
-            <input type="button" class="btn btn-warning" value="Cancel">
+            <a class="btn btn-warning" [routerLink]="['/dashboard/user-list']">Cancel</a>
         </p>
         <div *ngIf="message">
             <div class="alert alert-danger" role="alert">

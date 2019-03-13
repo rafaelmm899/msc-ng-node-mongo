@@ -169,9 +169,34 @@ function getUser(req, res){
     })
 }
 
+function updateUser(req, res) {
+    let idUser = req.params.id;
+    let user = req.body;
+
+    User.findByIdAndUpdate(idUser, user, (error, userUpdated) => {
+        if (error) {
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        } else {
+            if (!userUpdated) {
+                res.status(200).send({
+                    message : 'The user could not be updated '
+                }) 
+            } else {
+                res.status(200).send({
+                    user : userUpdated
+                }) 
+            }
+        }
+    })
+
+}
+
 module.exports = {
     login,
     create,
     getUsers,
-    getUser
+    getUser,
+    updateUser
 }
