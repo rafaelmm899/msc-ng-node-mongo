@@ -190,7 +190,28 @@ function updateUser(req, res) {
             }
         }
     })
+}
 
+function deleteUser(req, res) {
+    let idUser = req.body.id;
+
+    User.findOneAndDelete(idUser,(error, userRemove) => {
+        if(error){
+            res.status(500).send({
+                message : "Error in the request"
+            })
+        }else{
+            if(!userRemove){
+                res.status(200).send({
+                    message : "The user could not be deleted"
+                })
+            }else{
+                res.status(200).send({
+                    user : userRemove
+                })
+            }
+        }
+    })
 }
 
 module.exports = {
@@ -198,5 +219,6 @@ module.exports = {
     create,
     getUsers,
     getUser,
-    updateUser
+    updateUser,
+    deleteUser
 }

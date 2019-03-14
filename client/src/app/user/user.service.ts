@@ -95,4 +95,14 @@ export class UserService {
         }));
     }
 
+    deleteUser(idUser: string): Observable<any>{
+        
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : this.getTokenInLocalStorage()
+        });
+
+        return this._http.delete(this.url+'user/delete/'+idUser, { headers : headers });
+    }
+
 }

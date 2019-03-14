@@ -12,6 +12,10 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 
+/* ngx-bootstrap */
+import { ModalModule } from 'ngx-bootstrap';
+import { AlertModule } from 'ngx-bootstrap';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -25,7 +29,9 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
     FormsModule,
     HttpClientModule,
     AppRouting,
-    DashboardModule
+    DashboardModule,
+    ModalModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

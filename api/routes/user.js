@@ -13,5 +13,6 @@ api.post('/user/create_user', userController.create);
 api.post('/user/list/:page?',[authenticated.ensureAuth],userController.getUsers );
 api.get('/user/:id',authenticated.ensureAuth,userController.getUser);
 api.put('/user/update/:id', authenticated.ensureAuth,userController.updateUser);
+api.delete('/user/delete/:id', authenticated.ensureAuth, userController.deleteUser);
 
 module.exports = api;
