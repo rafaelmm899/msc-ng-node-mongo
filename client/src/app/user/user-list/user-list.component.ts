@@ -17,7 +17,7 @@ export class UserListComponent implements OnInit {
 	public prePage;
 	public idUserToDelete: string;
 	public alerts: any[];
-	modalRef: BsModalRef;
+	public modalRef: BsModalRef;
 
   	constructor(
 		private _userService: UserService,

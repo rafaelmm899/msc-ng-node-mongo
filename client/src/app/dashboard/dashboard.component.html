@@ -1,48 +1,75 @@
-<div class="col-md-2 col-sm-3">
-	<div class="wrapper">
-		<nav class="navbar" role="navigation">
-			
-			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav side-nav">
-					<li class="nav-section title-app">
-						<div class="nav-title">
-							<span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-							Music!
-						</div>
-					</li>
-					<li>
-						<a href="#" data-toggle="collapse" data-target="#submenu-1">
-							MENU 1
-						</a>
-					</li>
-					<li>
-						<a href="#" data-toggle="collapse" data-target="#submenu-1">
-							MENU 1
-						</a>
-					</li>
-					<li>
-						<a href="#" data-toggle="collapse" data-target="#submenu-1">
-							MENU 1
-						</a>
-					</li>
-					<li class="nav-section">
-						<div class="nav-section-title">
-							Admin Panel
-						</div>
-					</li>
-					<li>
-						<a [routerLink]="['/dashboard/user-list']">
-							Users
-						</a>
-					</li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</nav>
+<nav class="side-navbar sidebar">
+	<div class="navbar-wrapper">
+		<div class="navbar-header">	
+			<a href="" class="project-logo-link">
+				<div class="project-icon-content">
+					<i class="feather icon-trending-up"></i>
+				</div>
+				<span class="project-title">Music</span>
+			</a>
+		</div>
+		<div class="navbar-content">
+			<ul class="nav inner-nav">
+				<li class="nav-item menu-caption">
+					<label>Navigation</label>
+				</li>
+				<li class="nav-item item-menu">
+					<a href="#" class="nav-link">
+						<span class="nav-item-text">Menu 1</span>
+					</a>
+				</li>
+				<li class="nav-item item-menu">
+					<a href="#" class="nav-link">
+						<span class="nav-item-text">Menu 1</span>
+					</a>
+				</li>
+				<li class="nav-item item-menu">
+					<a href="#" class="nav-link">
+						<span class="nav-item-text">Menu 1</span>
+					</a>
+				</li>
+				<li class="nav-item menu-caption">
+					<label>Admin Panel</label>
+				</li>
+				<li class="nav-item item-menu">
+					<a class="nav-link" [routerLink]="['/dashboard/user-list']">
+						Users
+					</a>
+				</li>
+			</ul>
+		</div>
 	</div>
-</div>
-<div class="col-md-10 col-sm-9">
+</nav>
+<header class="navbar top-header navbar-expand-lg navbar-light">
+	<div class="collapse navbar-collapse">
+		<div class="mr-auto">
+			
+		</div>
+		<div class="ml-auto">
+			<div dropdown class="dropdown">
+						<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown"><i class="fa fa-cog"></i></a>
+
+						<div *dropdownMenu class="dropdown-menu dropdown-menu-right profile-notification show" role="menu" aria-labelledby="basic-link">
+							<div class="pro-head">
+								<img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+								<span>John Doe</span>
+							</div>
+							<ul class="pro-body">
+								<li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>
+								<li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+								<li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
+								<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
+							</ul>
+						</div>
+			</div>
+		</div>
+	</div>
+</header>
+		
+		
+	
+	
+<!--<div class="col-md-10 col-sm-9">
 	<nav class="navbar navbar-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -53,4 +80,4 @@
 		</div>
 	</nav>
 	<router-outlet></router-outlet>
-</div>
+</div>-->

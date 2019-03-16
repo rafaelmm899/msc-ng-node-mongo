@@ -13,8 +13,9 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 
 /* ngx-bootstrap */
-import { ModalModule } from 'ngx-bootstrap';
-import { AlertModule } from 'ngx-bootstrap';
+import { ModalModule, AlertModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
+
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AlertModule } from 'ngx-bootstrap';
     AppRouting,
     DashboardModule,
     ModalModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
