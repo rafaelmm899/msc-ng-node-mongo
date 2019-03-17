@@ -1,7 +1,7 @@
 <div class="row user-edit-component">
-    <div class="col-md-12">
+    
         <div class="col-md-8">
-            <form #editUser="ngForm" (ngSubmit)="onSubmit()">
+            <form #editUser="ngForm" (ngSubmit)="onSubmit()" *ngIf="user">
                 <p>
                     <label for="name">Name</label>
                     <input type="text" #name="ngModel" [(ngModel)]="user.name" name="name" class="form-control" />
@@ -32,6 +32,16 @@
                 </div>
             </form>
         </div>
-    </div>
+        <div class="col-md-4">
+            <label>Profile picture</label>
+            <div class="thumbnail-profile">
+                <img class="picture-profile" src="assets/images/default-user-image.png" alt="...">
+                <button type="button" class="btn btn-default btn-xs pull-right">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    
 </div>
         

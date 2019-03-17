@@ -1,26 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user';
+import { UserService } from '../user/user.service';
+import { GLOBAL } from 'src/global';
 
 
  
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  	selector: 'app-dashboard',
+  	templateUrl: './dashboard.component.html',
+	styleUrls: ['./dashboard.component.css'],
+	providers: [UserService]
+
 })
 export class DashboardComponent implements OnInit {
 
 	public items: string[];
+	public userLogged;
+	public url;
 
-	constructor() {  
-		this.items = [
-			'The first choice!',
-			'And another choice for you.',
-			'but wait! A third!'
-		];
+	constructor(
+		private _userService: UserService
+	) {  
+		this.userLogged = _userService.getUserLogged();
+		this.url = GLOBAL.url;
 	}
 
 	ngOnInit() {
+		console.log(this.userLogged);
 	}
 
 	onHidden(): void {

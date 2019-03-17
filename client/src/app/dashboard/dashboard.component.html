@@ -47,11 +47,15 @@
 		</div>
 		<div class="ml-auto">
 			<div dropdown class="dropdown">
-				<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown"><i class="fa fa-cog"></i></a>
+				<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">
+					<img src="assets/images/default-user-image.png" class="img-radius" alt="User-Profile-Image">
+					<span>{{ userLogged.name +' '+userLogged.lastname }}</span>
+					<i class="fa fa-cog"></i>
+				</a>
 
 				<div *dropdownMenu class="dropdown-menu dropdown-menu-right profile-notification show" role="menu" aria-labelledby="basic-link">
 					<ul class="pro-body">
-						<li><a href="javascript:" class="dropdown-item"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a [routerLink]="['/dashboard/profile']" class="dropdown-item"><i class="fa fa-user"></i> Profile</a></li>
 					</ul>
 				</div>
 			</div>

@@ -244,7 +244,7 @@ body {
         line-height: 1.4;
         overflow: hidden;
         box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.25);
-        color: #f8f9fa;
+        background-color: #f8f9fa;
     }
 
     .dropdown .profile-notification .pro-head {
@@ -255,9 +255,13 @@ body {
         background: #04a9f5;
     }
 
-    .dropdown .profile-notification .pro-head img {
+    .ml-auto .dropdown .dropdown-toggle img {
         width: 40px;
         margin-right: 10px;
+    }
+
+    .ml-auto .dropdown .dropdown-toggle i {
+        margin-left: 10px;
     }
     
     .img-radius {
@@ -284,7 +288,7 @@ body {
         content: "\63";
         font-family: "pct";
         position: absolute;
-        left: -15px;
+        left: 120px;
         top: 60px;
         z-index: 1001;
         font-size: 40px;
@@ -331,5 +335,19 @@ body {
     background-color: #fff;
     padding: 1%;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+}
+
+.thumbnail-profile{
+    border: 1px solid #ced4da;
+    padding: 20px;
+    border-radius: 0.25rem;
+}
+
+.picture-profile{
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  
 }
 /* FIN USER edit COMPONENT */

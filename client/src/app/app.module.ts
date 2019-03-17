@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login/login.component';
 
 import { AppRouting } from './app.routing';
+
+/* user */
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
 
 /* ngx-bootstrap */
-import { ModalModule, AlertModule } from 'ngx-bootstrap';
+import { ModalModule, AlertModule, ButtonsModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
+
 
 
 @NgModule({
@@ -23,7 +27,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
     AppComponent,
     UserCreateComponent,
     UserListComponent,
-    UserEditComponent
+    UserEditComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
     DashboardModule,
     ModalModule.forRoot(),
     AlertModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ButtonsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

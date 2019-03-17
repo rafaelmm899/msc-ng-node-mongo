@@ -37,6 +37,10 @@ export class UserService {
         return this._http.post(this.url+'login', params ,{headers : headers}).pipe(map(res => res));
     }
 
+    getUserLogged(){
+        return JSON.parse(localStorage.getItem("currentUser"));
+    }
+
     getTokenInLocalStorage(){
         let token = localStorage.getItem("token");
 
