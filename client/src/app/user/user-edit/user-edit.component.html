@@ -1,32 +1,37 @@
-<div class="col-md-8">
-    <form #editUser="ngForm" (ngSubmit)="onSubmit()">
-        <p>
-            <label for="name">Name</label>
-            <input type="text" #name="ngModel" [(ngModel)]="user.name" name="name" class="form-control" />
-        </p>
-        <p>
-            <label for="lastname">Lastname</label>
-            <input type="text" #lastname="ngModel" [(ngModel)]="user.lastname" name="lastname" class="form-control" />
-        </p>
-        <p>
-            <label for="email">Email</label>
-            <input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" />
-        </p>
-        <p>
-            <label for="email">Role</label>
-            <select class="form-control" #role="ngModel" [(ngModel)]="user.role" name="role">
-                <option value="ROLE_ADMIN" [selected] = "user.role == 'ROLE_ADMIN'">Administrator</option>
-                <option value="ROLE_USER" [selected] = "user.role == 'ROLE_USER'">User</option>
-            </select>
-        </p>
-        <p>
-            <input type="submit" class="btn btn-success" value="Edit">
-            <a class="btn btn-warning" [routerLink]="['/dashboard/user-list']">Cancel</a>
-        </p>
-        <div *ngIf="message">
-            <div class="alert alert-danger" role="alert">
-                <strong>Alert!</strong> {{ message }} 
-            </div>
+<div class="row user-edit-component">
+    <div class="col-md-12">
+        <div class="col-md-8">
+            <form #editUser="ngForm" (ngSubmit)="onSubmit()">
+                <p>
+                    <label for="name">Name</label>
+                    <input type="text" #name="ngModel" [(ngModel)]="user.name" name="name" class="form-control" />
+                </p>
+                <p>
+                    <label for="lastname">Lastname</label>
+                    <input type="text" #lastname="ngModel" [(ngModel)]="user.lastname" name="lastname" class="form-control" />
+                </p>
+                <p>
+                    <label for="email">Email</label>
+                    <input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" />
+                </p>
+                <p>
+                    <label for="email">Role</label>
+                    <select class="form-control" #role="ngModel" [(ngModel)]="user.role" name="role">
+                        <option value="ROLE_ADMIN" [selected] = "user.role == 'ROLE_ADMIN'">Administrator</option>
+                        <option value="ROLE_USER" [selected] = "user.role == 'ROLE_USER'">User</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="submit" class="btn btn-success" value="Edit">
+                    <a class="btn btn-warning" [routerLink]="['/dashboard/user-list']">Cancel</a>
+                </p>
+                <div *ngIf="message">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Alert!</strong> {{ message }} 
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
+        

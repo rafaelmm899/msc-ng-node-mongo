@@ -1,39 +1,44 @@
-<ng-template #template>
-	<div class="modal-body text-center">
-	  	<p>You are sure you want to delete this user?</p>
-	  	<button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
-	  	<button type="button" class="btn btn-primary" (click)="decline()" >No</button>
-	</div>
-</ng-template>
-<div class="row">
-	<div class="col-md-12 col-sm-8">
-		<div *ngFor="let alert of alerts">
-			<alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+<div class="row user-list-component">
+	<div class="col-md-12">
+		
+		<ng-template #template>
+			<div class="modal-body text-center">
+				<p>You are sure you want to delete this user?</p>
+				<button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+				<button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+			</div>
+		</ng-template>
+		<div class="row">
+			<div class="col-md-12 col-sm-8">
+				<div *ngFor="let alert of alerts">
+					<alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12 col-sm-8">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>lastname</th>
-					<th>email</th>
-					<th>role</th>
-					<th colspan="2"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let user of users">
-					<td>{{ user.name }}</td>
-					<td>{{ user.lastname }}</td>
-					<td>{{ user.email }}</td>
-					<td>{{ user.role }}</td>
-					<td><a [routerLink]="['/dashboard/user-edit/'+user._id]" class="btn btn-warning">Edit</a></td>
-					<td><a class="btn btn-danger" (click)="openModal(template, user._id)">Delete</a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-8">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>lastname</th>
+							<th>email</th>
+							<th>role</th>
+							<th colspan="2"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let user of users">
+							<td>{{ user.name }}</td>
+							<td>{{ user.lastname }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.role }}</td>
+							<td><a [routerLink]="['/dashboard/user-edit/'+user._id]" class="btn btn-warning">Edit</a></td>
+							<td><a class="btn btn-danger" (click)="openModal(template, user._id)">Delete</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
 </div>

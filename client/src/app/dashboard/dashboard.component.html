@@ -47,37 +47,28 @@
 		</div>
 		<div class="ml-auto">
 			<div dropdown class="dropdown">
-						<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown"><i class="fa fa-cog"></i></a>
+				<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown"><i class="fa fa-cog"></i></a>
 
-						<div *dropdownMenu class="dropdown-menu dropdown-menu-right profile-notification show" role="menu" aria-labelledby="basic-link">
-							<div class="pro-head">
-								<img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-								<span>John Doe</span>
-							</div>
-							<ul class="pro-body">
-								<li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>
-								<li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-								<li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-								<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-							</ul>
-						</div>
+				<div *dropdownMenu class="dropdown-menu dropdown-menu-right profile-notification show" role="menu" aria-labelledby="basic-link">
+					<ul class="pro-body">
+						<li><a href="javascript:" class="dropdown-item"><i class="fa fa-user"></i> Profile</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 </header>
 		
-		
-	
-	
-<!--<div class="col-md-10 col-sm-9">
-	<nav class="navbar navbar-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">
-					User
-				</a>
+<div class="main-container">
+	<div class="container-wrapper">
+		<div class="content">
+			<div class="container-inner">
+				<div class="main-body">
+					<div class="page-wrapper">
+						<router-outlet></router-outlet>
+					</div>
+				</div>
 			</div>
 		</div>
-	</nav>
-	<router-outlet></router-outlet>
-</div>-->
+	</div>
+</div>	
