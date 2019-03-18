@@ -1,4 +1,4 @@
-@import "~bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
 
 @font-face {
@@ -27,6 +27,11 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     src: url("/assets/SourceSansPro-Regular.otf") format("opentype");
 }
+
+.hidden{
+    display: none;
+}
+
 /* FIN GENERAL STYLE */
 
 /* APP COMPONENT STYLE */
@@ -309,7 +314,7 @@ body {
         float: unset;
         right: 0;
         margin-left: 264px;
-        min-height: 100vh;
+        /*min-height: 100vh;*/
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
     }

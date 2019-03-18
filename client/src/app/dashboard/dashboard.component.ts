@@ -18,16 +18,24 @@ export class DashboardComponent implements OnInit {
 	public items: string[];
 	public userLogged;
 	public url;
+	public profileImage;
 
 	constructor(
 		private _userService: UserService
 	) {  
 		this.userLogged = _userService.getUserLogged();
 		this.url = GLOBAL.url;
+		this.profileImage = 'assets/images/default-user-image.png'
 	}
 
 	ngOnInit() {
-		console.log(this.userLogged);
+		this.checkImageUser();
+	}
+
+	checkImageUser(){
+		if(this.userLogged.image){
+			this.profileImage = this.url+'user/get_image_profile/'+this.userLogged.image;
+		}
 	}
 
 	onHidden(): void {

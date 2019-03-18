@@ -48,7 +48,7 @@
 		<div class="ml-auto">
 			<div dropdown class="dropdown">
 				<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">
-					<img src="assets/images/default-user-image.png" class="img-radius" alt="User-Profile-Image">
+					<img src="{{ profileImage }}" class="img-radius" alt="User-Profile-Image">
 					<span>{{ userLogged.name +' '+userLogged.lastname }}</span>
 					<i class="fa fa-cog"></i>
 				</a>

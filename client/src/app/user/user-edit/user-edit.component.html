@@ -1,5 +1,12 @@
-<div class="row user-edit-component">
-    
+<div class="user-edit-component">
+    <div class="row">
+        <div class="col-md-12">
+            <div *ngFor="let alert of alerts">
+                <alert [type]="alert.type"><span [innerHtml]="alert.msg"></span></alert>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-8">
             <form #editUser="ngForm" (ngSubmit)="onSubmit()" *ngIf="user">
                 <p>
@@ -21,27 +28,25 @@
                         <option value="ROLE_USER" [selected] = "user.role == 'ROLE_USER'">User</option>
                     </select>
                 </p>
+                <p class="hidden">
+                    <input type="file" id="inputImageUser" (change)="fileChangeEvent($event)" />
+                </p>
                 <p>
                     <input type="submit" class="btn btn-success" value="Edit">
                     <a class="btn btn-warning" [routerLink]="['/dashboard/user-list']">Cancel</a>
                 </p>
-                <div *ngIf="message">
-                    <div class="alert alert-danger" role="alert">
-                        <strong>Alert!</strong> {{ message }} 
-                    </div>
-                </div>
             </form>
         </div>
         <div class="col-md-4">
             <label>Profile picture</label>
             <div class="thumbnail-profile">
                 <img class="picture-profile" src="assets/images/default-user-image.png" alt="...">
-                <button type="button" class="btn btn-default btn-xs pull-right">
+                <button type="button" class="btn btn-default btn-xs pull-right" (click)="selectImage()">
                     <i class="fa fa-edit"></i>
                 </button>
                 <div class="clearfix"></div>
             </div>
         </div>
-    
+    </div>
 </div>
         
