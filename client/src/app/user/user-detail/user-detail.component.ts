@@ -66,9 +66,23 @@ export class UserDetailComponent implements OnInit{
         document.getElementById("inputImageUser").click();
     }
 
+    changeImg(data: any){
+        if(data.file){
+            this.userImg = this.url+'user/get_image_profile/'+data.file+'/true';
+        }
+    }
+
     fileChangeEvent(fileInput: any){
+        console.log("algo");
         this.filesToUpload = <Array<File>>fileInput.target.files;
-        console.log(this.filesToUpload);
+        this._uploadService.makeFileRequest(this.url+'user/upload_tmp/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
+            (result) => {
+                this.changeImg(result);
+            },
+            (error) =>{
+                console.log(error);
+            }
+        )
     }
 
     onSubmit(){

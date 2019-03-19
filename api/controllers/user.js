@@ -216,6 +216,47 @@ function deleteUser(req, res) {
     })
 }
 
+function tmpUpload(req, res){
+    var filename = 'file not uploaded';
+    var userId = req.params.id;
+    if(req.files){
+        let filePath = req.files.image.path;
+        let fileSplit = filePath.split('\\');
+        filename = fileSplit[3];
+
+        let extSplit = filename.split('\.');
+        let fileExt = extSplit[1];
+        if(fileExt == 'png' || fileExt == 'jpg'){
+            var pathFiles = './uploads/users/tmp/'+filename;
+            var fileRename = userId+'.'+fileExt;
+            var rename = './uploads/users/tmp/'+fileRename;
+
+            if (fs.existsSync(rename)) {
+                fs.unlink(rename, function (err) {
+                    if (err) throw err;
+                    console.log('successfully deleted');
+                });
+            }
+            
+            fs.rename(pathFiles,rename,function (err) {
+                if (err){
+                    console.log(err);
+                } else{
+                    res.status(200).send({
+                        file : fileRename
+                    })
+                }
+            });
+            
+            
+        }else{
+            res.status(200).send({
+                message : 'The file extension you want to upload is not valid'
+            })
+        }
+    }
+}
+
 function uploadImage(req, res){
     var userId = req.params.id;
     var filename = 'file not uploaded';
@@ -250,7 +291,13 @@ function uploadImage(req, res){
 
 function getImageProfile(req, res) {
     var image = req.params.imageFile;
+    var tmp = req.params.tmpFile; 
     var pathFiles = './uploads/users/'+image;
+
+    if(tmp){
+        pathFiles = './uploads/users/tmp/'+image;
+    }
+
     fs.exists(pathFiles,function (exist) {
         if(exist){
             res.sendFile(path.resolve(pathFiles));
@@ -270,5 +317,6 @@ module.exports = {
     updateUser,
     deleteUser,
     uploadImage,
-    getImageProfile
+    getImageProfile,
+    tmpUpload
 }
