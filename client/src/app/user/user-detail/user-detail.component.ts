@@ -22,6 +22,7 @@ export class UserDetailComponent implements OnInit{
     public token;
     public url;
     public alerts: any[];
+    public userImg: string;
 
     constructor(
         private _userService: UserService,
@@ -33,6 +34,7 @@ export class UserDetailComponent implements OnInit{
         this.url = GLOBAL.url;
         this.token = this._userService.getTokenInLocalStorage();
         this.userLogged = this._userService.getUserLogged();
+        this.userImg = 'assets/images/default-user-image.png';
     }
     
     ngOnInit(){
@@ -49,6 +51,9 @@ export class UserDetailComponent implements OnInit{
 
                 }else{
                     this.user = response.user;
+                    if(this.user.image){
+                        this.userImg = this.url+'user/get_image_profile/'+this.user.image; 
+                    }
                 }
             },
             error => {
