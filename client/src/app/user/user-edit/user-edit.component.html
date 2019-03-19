@@ -40,7 +40,7 @@
         <div class="col-md-4">
             <label>Profile picture</label>
             <div class="thumbnail-profile">
-                <img class="picture-profile" src="{{ userImg }}" alt="...">
+                <img class="picture-profile" [src]="userImg" alt="...">
                 <button type="button" class="btn btn-default btn-xs pull-right" (click)="selectImage()">
                     <i class="fa fa-edit"></i>
                 </button>

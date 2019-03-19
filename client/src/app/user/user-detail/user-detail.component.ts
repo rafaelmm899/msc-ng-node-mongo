@@ -22,7 +22,7 @@ export class UserDetailComponent implements OnInit{
     public token;
     public url;
     public alerts: any[];
-    public userImg: string;
+    public userImg: any;
 
     constructor(
         private _userService: UserService,
@@ -72,17 +72,35 @@ export class UserDetailComponent implements OnInit{
         }
     }
 
+    preview(files) {
+        if (files.length === 0)
+          return;
+     
+        var mimeType = files[0].type;
+        if (mimeType.match(/image\/*/) == null) {
+          this.message = "Only images are supported.";
+          return;
+        }
+     
+        var reader = new FileReader();
+        this.userImg = files;
+        reader.readAsDataURL(files[0]); 
+        reader.onload = (_event) => { 
+            this.userImg = reader.result; 
+        }
+    }
+
     fileChangeEvent(fileInput: any){
-        console.log("algo");
         this.filesToUpload = <Array<File>>fileInput.target.files;
-        this._uploadService.makeFileRequest(this.url+'user/upload_tmp/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
+        this.preview(fileInput.target.files);
+        /*this._uploadService.makeFileRequest(this.url+'user/upload_tmp/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
             (result) => {
                 this.changeImg(result);
             },
             (error) =>{
                 console.log(error);
             }
-        )
+        )*/
     }
 
     onSubmit(){
@@ -92,27 +110,29 @@ export class UserDetailComponent implements OnInit{
                     this.message = response.message;
                 }else{
                     //this._router.navigate(['dashboard/user-list']);
-                    this._uploadService.makeFileRequest(this.url+'user/upload_image/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
-                        (result) => {
-                            this.alerts = [
-                                {
-                                    type: 'success',
-                                    msg: `<strong>Well done!</strong> Profile successfully edited`
-                                }
-                            ];
+                    if(this.filesToUpload){
+                        this._uploadService.makeFileRequest(this.url+'user/upload_image/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
+                            (result) => {
+                                this.alerts = [
+                                    {
+                                        type: 'success',
+                                        msg: `<strong>Well done!</strong> Profile successfully edited`
+                                    }
+                                ];
 
-                            //this.message = 'Profile successfully edited';
-                        },
-                        (error) =>{
-                            console.log(error);
-                            this.alerts = [
-                                {
-                                    type: 'danger',
-                                    msg: `<strong>Error!</strong> Error uploading the file`
-                                }
-                            ];
-                        }
-                    )
+                                //this.message = 'Profile successfully edited';
+                            },
+                            (error) =>{
+                                console.log(error);
+                                this.alerts = [
+                                    {
+                                        type: 'danger',
+                                        msg: `<strong>Error!</strong> Error uploading the file`
+                                    }
+                                ];
+                            }
+                        )
+                    }
                 }
             },
             error =>{
