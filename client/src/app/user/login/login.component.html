@@ -1,28 +1,63 @@
 <div class="app-wrapper" *ngIf="!identity">
 	<div class="col-md-12">
 		<div class="col-md-offset-8 col-md-4 app-form-segment">
-			<form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
-				<p>
-					<label for="email">Email</label>
-					<input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" required />
-				</p>
-				<p>
-					<label for="password">Password</label>
-					<input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" required />
-				</p>
-				<p>
-					<input type="submit" class="btn btn-success btn-login" value="Log In" >
-				</p>
-				<div *ngIf="message">
-					<div class="alert alert-danger" role="alert">
-						<strong>Alert!</strong> {{ message }} 
+			<div *ngIf="loginForm">
+				<form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
+					<p>
+						<label for="email">Email</label>
+						<input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" required />
+					</p>
+					<p>
+						<label for="password">Password</label>
+						<input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" required />
+					</p>
+					<p>
+						<input type="submit" class="btn btn-success btn-login" value="Log In" >
+					</p>
+					<div *ngIf="message">
+						<div class="alert alert-danger" role="alert">
+							<strong>Alert!</strong> {{ message }} 
+						</div>
 					</div>
-				</div>
-				<p>
-					<a [routerLink]="['/']">Create new account</a>
-				</p>
-			</form>
+					<p>
+						<a (click)="showCreateForm()">Create new account</a>
+					</p>
+				</form>
+			</div>
+			<div *ngIf="!loginForm">
+				<form #createUser="ngForm" (ngSubmit)="addUser()">
+					<p>
+						<label for="name">Name</label>
+						<input type="text" #name="ngModel" [(ngModel)]="userToCreate.name" name="name" class="form-control" />
+					</p>
+					<p>
+						<label for="lastname">Lastname</label>
+						<input type="text" #lastname="ngModel" [(ngModel)]="userToCreate.lastname" name="lastname" class="form-control" />
+					</p>
+					<p>
+						<label for="email">Email</label>
+						<input type="text" #email="ngModel" [(ngModel)]="userToCreate.email" name="email" class="form-control" />
+					</p>
+					<p>
+						<label for="password">Password</label>
+						<input type="password" #password="ngModel" [(ngModel)]="userToCreate.password" name="password" class="form-control" />
+					</p>
+					<p>
+						<input type="submit" class="btn btn-success btn-create-account" value="Create account">
+					</p>
+					<div *ngIf="message">
+						<div class="alert alert-danger" role="alert">
+							<strong>Alert!</strong> {{ message }} 
+						</div>
+					</div>
+					<p>
+						<a (click)="showLoginForm()">I already have an account</a>
+					</p>
+						
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
-			
+
+

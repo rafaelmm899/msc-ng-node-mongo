@@ -12,8 +12,10 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 	public user: User;
+	public userToCreate: User;
 	public message: String;
 	public token;
+	public loginForm: boolean;
 
 	constructor(
 		private _userService : UserService,
@@ -22,6 +24,8 @@ export class LoginComponent implements OnInit {
 
 	) { 
 		this.user = new User('','','','','','','');
+		this.userToCreate = new User('','','','','','','ROLE_USER');
+		this.loginForm = false;
 	}
 
 	ngOnInit() {
@@ -58,6 +62,30 @@ export class LoginComponent implements OnInit {
 				this.message = 'Error in the request, try again';
 			}
       	)
-  	}
+	}
+	  
+	showCreateForm(){
+		this.loginForm = false;
+	}
+
+	showLoginForm(){
+		this.loginForm = true;
+	}
+
+	addUser() {
+		this._userService.newUser(this.userToCreate).subscribe(
+			response => {
+				if(!response.user){
+					this.message = response.message;
+				}else{
+					this.userToCreate = response.user;
+					this.message = 'The user has been created successfully, please log in';
+				}
+			},
+			error => {
+				this.message = 'Error in the request, try again';
+			}
+		)	
+	}
 
 }

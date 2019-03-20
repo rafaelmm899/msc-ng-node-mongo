@@ -17,8 +17,7 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 
 /* ngx-bootstrap */
 import { ModalModule, AlertModule, ButtonsModule } from 'ngx-bootstrap';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 @NgModule({

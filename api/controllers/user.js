@@ -74,7 +74,7 @@ function create(req, res){
             })
         }else{
             res.status(200).send({
-                message : ''
+                message : 'All fields are required'
             });
         }
     }

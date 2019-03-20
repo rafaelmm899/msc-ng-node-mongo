@@ -6,6 +6,7 @@ import { HomeComponent } from '../home/home.component';
 import { UserListComponent } from '../user/user-list/user-list.component';
 import { UserEditComponent } from '../user/user-edit/user-edit.component';
 import { UserDetailComponent } from '../user/user-detail/user-detail.component';
+import { UserCreateComponent } from '../user/user-create/user-create.component';
 
 
 const dashboardRoutes : Routes = [{
@@ -15,7 +16,8 @@ const dashboardRoutes : Routes = [{
 		{ path : 'home',component : HomeComponent },
 		{ path: 'user-list', component : UserListComponent },
 		{ path: 'user-edit/:id', component: UserEditComponent },
-		{ path: 'profile', component: UserDetailComponent }
+		{ path: 'profile', component: UserDetailComponent },
+		{ path: 'user-create', component : UserCreateComponent }
 	]
 	
 }]

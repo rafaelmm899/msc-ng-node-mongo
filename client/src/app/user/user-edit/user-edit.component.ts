@@ -19,6 +19,7 @@ export class UserEditComponent implements OnInit {
     public userImg: any;
     public filesToUpload : Array<File>;
     public token;
+    public buttonTitle: string;
 
     constructor(
         private _userService: UserService,
@@ -30,6 +31,7 @@ export class UserEditComponent implements OnInit {
         this.url = GLOBAL.url;
         this.userImg = 'assets/images/default-user-image.png';
         this.token = this._userService.getTokenInLocalStorage();
+        this.buttonTitle = 'Edit';
     }
 
     ngOnInit(){
@@ -121,6 +123,8 @@ export class UserEditComponent implements OnInit {
                                     console.log(error);
                                 }
                             )
+                        }else{
+                            this._router.navigate(['dashboard/user-list']);
                         }
                         
                     }

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { GLOBAL } from '../../global';
 import { User } from '../models/user';
+import { MessageService } from "../messages/message.service";
 
 @Injectable()
 
@@ -14,7 +15,8 @@ export class UserService {
     public user: User;
 
     constructor(
-        private _http: HttpClient
+        private _http: HttpClient,
+        private messageService: MessageService
     ) { 
         this.url = GLOBAL.url;
     }

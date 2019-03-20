@@ -1,4 +1,4 @@
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
 
 @font-face {
@@ -30,6 +30,11 @@ body {
 
 .hidden{
     display: none;
+}
+
+.component-title {
+    font-size: 18px;
+
 }
 
 /* FIN GENERAL STYLE */
@@ -332,6 +337,8 @@ body {
     background-color: #fff;
     padding: 1%;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border: 1px solid #ddd;
+    border-radius: 10px;
 }
 /* FIN USER LIST COMPONENT */
 
@@ -340,6 +347,8 @@ body {
     background-color: #fff;
     padding: 1%;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border: 1px solid #ddd;
+    border-radius: 10px;
 }
 
 .thumbnail-profile{
@@ -356,3 +365,9 @@ body {
   
 }
 /* FIN USER edit COMPONENT */
+/* USER CREATE COMPONENT */
+
+.btn-create{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

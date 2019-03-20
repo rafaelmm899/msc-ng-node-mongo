@@ -8,7 +8,8 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
 
 
 const appRoutes : Routes = [
-    { path : '', component: UserCreateComponent },
+    { path : '', redirectTo: 'create', pathMatch: 'full'  },
+    { path : 'create' , component: LoginComponent   },
     { path : 'login', component : LoginComponent }
     
 ]

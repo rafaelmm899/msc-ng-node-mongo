@@ -28,11 +28,15 @@
                         <option value="ROLE_USER" [selected] = "user.role == 'ROLE_USER'">User</option>
                     </select>
                 </p>
+                <p *ngIf="buttonTitle == 'Create'">
+                    <label for="password">Password</label>
+                    <input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" />
+                </p>
                 <p class="hidden">
                     <input type="file" id="inputImageUser" (change)="fileChangeEvent($event)" />
                 </p>
                 <p>
-                    <input type="submit" class="btn btn-success" value="Edit">
+                    <input type="submit" class="btn btn-success" value="{{ buttonTitle }}">
                     <a class="btn btn-warning" [routerLink]="['/dashboard/user-list']">Cancel</a>
                 </p>
             </form>

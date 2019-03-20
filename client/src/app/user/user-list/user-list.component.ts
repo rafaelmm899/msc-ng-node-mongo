@@ -4,12 +4,13 @@ import { UserService } from '../user.service';
 import { Route, Router, Params, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertComponent } from 'ngx-bootstrap/alert/alert.component'
+import { MessageService } from 'src/app/messages/message.service';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
-  providers : [UserService]
+  providers : [UserService, MessageService]
 })
 export class UserListComponent implements OnInit {
 	public users : User[];
@@ -23,7 +24,8 @@ export class UserListComponent implements OnInit {
 		private _userService: UserService,
 		private _route: ActivatedRoute,
 		private _router: Router,
-		private modalService: BsModalService
+		private modalService: BsModalService,
+		private _messageService: MessageService
 	) {
 		this.idUserToDelete = null;
 		this.alerts = [];
@@ -31,7 +33,7 @@ export class UserListComponent implements OnInit {
 
 	ngOnInit() {
 		this.getUsers();
-		console.log(this.alerts);
+		this._messageService.add("User created successfully");
 	}
 
 	getUsers(){
