@@ -20,6 +20,7 @@ export class UserCreateComponent implements OnInit {
 	public buttonTitle: string;
 	public filesToUpload : Array<File>;
 	public token: string;
+	public title: string;
 
 	constructor(
 		private _userService: UserService,
@@ -33,6 +34,7 @@ export class UserCreateComponent implements OnInit {
 		this.userImg = 'assets/images/default-user-image.png';
 		this.buttonTitle = 'Create';
 		this.token = _userService.getTokenInLocalStorage();
+		this.title = 'Create User';
 	}
 
 	ngOnInit() {
@@ -68,14 +70,14 @@ export class UserCreateComponent implements OnInit {
     }
 
 	onSubmit() {
-		console.log(this.user);
+		
 		this._userService.newUser(this.user).subscribe(
 			response => {
 				if(!response.user){
 					this.message = response.message;
 				}else{
 					this.user = response.user;
-					this._messageService.add("User created successfully");
+					this._messageService.sendMessage("User created successfullys", "success");
 					
 					if(this.filesToUpload){
 						this._uploadService.makeFileRequest(this.url+'user/upload_image/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
@@ -92,9 +94,9 @@ export class UserCreateComponent implements OnInit {
 				}
 			},
 			error => {
-				this.message = 'Error in the request, try again';
+				this._messageService.sendMessage('Error in the request, try again', "danger");
 			}
-		)	
+		)
 	}
 
 }

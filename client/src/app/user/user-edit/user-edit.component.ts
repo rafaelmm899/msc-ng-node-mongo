@@ -4,7 +4,7 @@ import { UserService } from '../user.service';
 import { Route, Router, ActivatedRoute, Params } from "@angular/router";
 import { GLOBAL } from 'src/global';
 import { UploadService } from 'src/app/services/upload.service';
-
+import { MessageService } from 'src/app/messages/message.service';
 
 @Component({
     selector :'user-edit',
@@ -15,23 +15,25 @@ import { UploadService } from 'src/app/services/upload.service';
 export class UserEditComponent implements OnInit {
     public user : User;
     public url : String;
-    public message : String;
     public userImg: any;
     public filesToUpload : Array<File>;
     public token;
     public buttonTitle: string;
+    public title: string;
 
     constructor(
         private _userService: UserService,
         private _route: ActivatedRoute,
         private _router: Router,
-        private _uploadService: UploadService
+        private _uploadService: UploadService,
+        private _messageService: MessageService
     ) {
         this.user = new User('','','','','','','');
         this.url = GLOBAL.url;
         this.userImg = 'assets/images/default-user-image.png';
         this.token = this._userService.getTokenInLocalStorage();
         this.buttonTitle = 'Edit';
+        this.title = 'Edit User';
     }
 
     ngOnInit(){
@@ -77,7 +79,7 @@ export class UserEditComponent implements OnInit {
      
         var mimeType = files[0].type;
         if (mimeType.match(/image\/*/) == null) {
-          this.message = "Only images are supported.";
+          this._messageService.sendMessage("Only images are supported.", "danger");
           return;
         }
      
@@ -111,7 +113,7 @@ export class UserEditComponent implements OnInit {
             this._userService.updateUser(id, this.user).subscribe(
                 response => {
                     if(!response.user){
-                        this.message = response.message;
+                        this._messageService.sendMessage("User edited successfullys", "success");
                     }else{
 
                         if(this.filesToUpload){

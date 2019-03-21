@@ -17,7 +17,7 @@ export class UserListComponent implements OnInit {
 	public nextPage;
 	public prePage;
 	public idUserToDelete: string;
-	public alerts: any[];
+	
 	public modalRef: BsModalRef;
 
   	constructor(
@@ -28,12 +28,11 @@ export class UserListComponent implements OnInit {
 		private _messageService: MessageService
 	) {
 		this.idUserToDelete = null;
-		this.alerts = [];
+		
 	}
 
 	ngOnInit() {
 		this.getUsers();
-		this._messageService.add("User created successfully");
 	}
 
 	getUsers(){
@@ -74,9 +73,9 @@ export class UserListComponent implements OnInit {
 			this._userService.deleteUser(this.idUserToDelete).subscribe(
 				response => {
 					if(!response.user){
-						this.showMessage(response.message, 'danger');
+						this._messageService.sendMessage(response.message, "danger");
 					}else{
-						this.showMessage('User successfully removed', 'success');
+						this._messageService.sendMessage('User successfully removed', "success");
 						this.getUsers();
 					}
 				},
@@ -93,16 +92,6 @@ export class UserListComponent implements OnInit {
 		this.modalRef.hide();
 	}
 
-	showMessage(message:string, type : string): void {
-		this.alerts.push({
-		  	type: type,
-		  	msg: message,
-		  	timeout: 5000
-		});
-	}
-	 
-	onClosed(dismissedAlert: AlertComponent): void {
-		this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
-	}
+	
 
 }

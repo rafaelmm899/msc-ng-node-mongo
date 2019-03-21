@@ -11,8 +11,7 @@ import { MessagesComponent } from '../messages/messages.component';
 @NgModule({
     declarations : [
         DashboardComponent,
-        HomeComponent,
-        MessagesComponent
+        HomeComponent
     ],
     imports : [
         Dashboard,

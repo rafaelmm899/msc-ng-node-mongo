@@ -24,6 +24,7 @@ export class UserDetailComponent implements OnInit{
     public alerts: any[];
     public userImg: any;
     public buttonTitle: string;
+    public title:string;
 
     constructor(
         private _userService: UserService,
@@ -37,6 +38,7 @@ export class UserDetailComponent implements OnInit{
         this.userLogged = this._userService.getUserLogged();
         this.userImg = 'assets/images/default-user-image.png';
         this.buttonTitle = 'Edit';
+        this.title = 'User';
     }
     
     ngOnInit(){
