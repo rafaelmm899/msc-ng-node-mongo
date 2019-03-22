@@ -15,10 +15,16 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 
+/* Artist */
+import { ArtistListComponent } from './artist/artist-list/artist-list.component';
+
+/* Message */
+import { MessagesComponent } from './messages/messages.component';
+
 /* ngx-bootstrap */
 import { ModalModule, AlertModule, ButtonsModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { MessagesComponent } from './messages/messages.component';
+
 
 
 @NgModule({
@@ -29,7 +35,8 @@ import { MessagesComponent } from './messages/messages.component';
     UserListComponent,
     UserEditComponent,
     MessagesComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    ArtistListComponent
   ],
   imports: [
     BrowserModule,
