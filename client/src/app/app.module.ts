@@ -17,6 +17,7 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 
 /* Artist */
 import { ArtistListComponent } from './artist/artist-list/artist-list.component';
+import { ArtistCreateComponent } from "./artist/artist-create/artist-create.component";
 
 /* Message */
 import { MessagesComponent } from './messages/messages.component';
@@ -36,7 +37,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     UserEditComponent,
     MessagesComponent,
     UserDetailComponent,
-    ArtistListComponent
+    ArtistListComponent,
+    ArtistCreateComponent
   ],
   imports: [
     BrowserModule,

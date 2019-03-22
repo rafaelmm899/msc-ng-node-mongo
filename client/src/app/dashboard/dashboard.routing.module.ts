@@ -8,6 +8,7 @@ import { UserEditComponent } from '../user/user-edit/user-edit.component';
 import { UserDetailComponent } from '../user/user-detail/user-detail.component';
 import { UserCreateComponent } from '../user/user-create/user-create.component';
 import { ArtistListComponent } from '../artist/artist-list/artist-list.component';
+import { ArtistCreateComponent } from '../artist/artist-create/artist-create.component';
 
 
 const dashboardRoutes : Routes = [{
@@ -19,7 +20,8 @@ const dashboardRoutes : Routes = [{
 		{ path: 'user-edit/:id', component: UserEditComponent },
 		{ path: 'profile', component: UserDetailComponent },
 		{ path: 'user-create', component : UserCreateComponent },
-		{ path: 'artists', component:ArtistListComponent  }
+		{ path: 'artists', component:ArtistListComponent  },
+		{ path : 'artist-create', component: ArtistCreateComponent }
 	]
 	
 }]

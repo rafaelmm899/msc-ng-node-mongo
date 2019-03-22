@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders }    from '@angular/common/http';
 import { GLOBAL } from 'src/global';
 import { Observable } from 'rxjs';
+import { Artist } from '../models/artist';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,16 @@ export class ArtistService {
         })
 
         return this._http.get(this.url+'artists/'+page, { headers: headers });
+    }
+
+    saveArtist(token:string, artist : Artist):Observable<any>{
+        let params = JSON.stringify(artist);
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+
+        return this._http.post(this.url+'saveArtist', params,{ headers: headers });
     }
 
 }

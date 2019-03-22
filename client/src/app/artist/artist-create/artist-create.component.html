@@ -1,0 +1,39 @@
+<app-messages></app-messages>
+<div class="component">
+    <div class="page-header">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <form #createArtist="ngForm" (ngSubmit)="onSubmit()" *ngIf="artist">
+                <p>
+                    <label for="name">Name</label>
+                    <input type="text" #name="ngModel" [(ngModel)]="artist.name" name="name" class="form-control" />
+                </p>
+                <p>
+                    <label for="description">Description</label>
+                    <input type="text" #description="ngModel" [(ngModel)]="artist.description" name="description" class="form-control" />
+                </p>
+                
+                <p class="hidden">
+                    <input type="file" id="inputImageUser" (change)="fileChangeEvent($event)" />
+                </p>
+                <p>
+                    <input type="submit" class="btn btn-success" value="{{ title }}">
+                    <a class="btn btn-warning" [routerLink]="['/dashboard/artist']">Cancel</a>
+                </p>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <label>Profile picture</label>
+            <div class="thumbnail-profile">
+                <img class="picture-profile" [src]="artistImg" alt="...">
+                <button type="button" class="btn btn-default btn-xs pull-right" (click)="selectImage()">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+        
