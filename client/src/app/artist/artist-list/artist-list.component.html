@@ -28,15 +28,16 @@
 							<tr>
 								<th>Name</th>
 								<th>description</th>
-								<th colspan="2"></th>
+								<th colspan="3"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr *ngFor="let artist of artists">
 								<td>{{ artist.name }}</td>
 								<td>{{ artist.description }}</td>
-								<td><a [routerLink]="['/dashboard/artist-edit/'+artist._id]" class="btn btn-warning">Edit</a></td>
+								<td><a [routerLink]="['/dashboard/artist/'+artist._id]" class="btn btn-warning">Edit</a></td>
 								<td><a class="btn btn-danger" (click)="openModal(template, artist._id)">Delete</a></td>
+								<td><a class="btn btn-info">Albums</a></td>
 							</tr>
 						</tbody>
 					</table>

@@ -35,7 +35,28 @@ function saveArtist(req, res) {
             message : 'All fields are required'
         })
     }
-    
+}
+
+function getArtist(req, res) {
+    var artistId = req.params.id;
+
+    Artist.findById(artistId,(error, artist) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!artist){
+                res.status(404).send({
+                    message : 'Artist no founded'
+                })
+            }else{
+                res.status(200).send({
+                    artist
+                })
+            }
+        }
+    })
 }
 
 function getArtists(req, res) {
@@ -109,9 +130,34 @@ function getImage(req, res) {
     } )
 }
 
+function updateArtist(req, res){
+    let idArtist = req.params.id;
+    let artist = req.body;
+
+    Artist.findByIdAndUpdate(idArtist,artist,(error, artistUpdated) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!artistUpdated){
+                res.status(404).send({
+                    message : 'The artist could not be updated '
+                })
+            }else{
+                res.status(200).send({
+                    artist:artistUpdated
+                })
+            }
+        }
+    })
+}
+
 module.exports = {
     getArtists,
     saveArtist,
     getImage,
-    uploadImage
+    uploadImage,
+    getArtist,
+    updateArtist
 }

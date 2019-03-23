@@ -182,7 +182,7 @@ function updateUser(req, res) {
             })
         } else {
             if (!userUpdated) {
-                res.status(200).send({
+                res.status(404).send({
                     message : 'The user could not be updated '
                 }) 
             } else {

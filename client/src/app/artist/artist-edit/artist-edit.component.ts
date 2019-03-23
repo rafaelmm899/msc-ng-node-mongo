@@ -1,45 +1,44 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Router, Params, ActivatedRoute } from "@angular/router";
 
-import { ArtistService } from "../artist.service";
-import { User } from "../../models/user";
 import { Artist } from "../../models/artist";
+import { ArtistService } from '../artist.service';
 import { MessageService } from '../../messages/message.service';
-import { UserService } from "../../user/user.service";
+import { UserService } from '../../user/user.service';
 import { UploadService } from '../../services/upload.service';
 import { GLOBAL } from 'src/global';
 
 @Component({
-    selector : 'artist-create',
-    templateUrl : './artist-create.component.html',
-    providers: [ArtistService, MessageService, UserService, UploadService]
+    selector : 'artist-edit',
+    templateUrl : '../artist-create/artist-create.component.html',
+    providers : [ ArtistService, MessageService, UserService, UploadService ]
 })
 
-export class ArtistCreateComponent implements OnInit {
-    public artist : Artist;
-    public token : string;
-    public title: string;
+export class ArtistEditComponent implements OnInit{
+    public token:string;
+    public artist: Artist;
+    public title:string;
     public artistImg: any;
     public filesToUpload: Array<File>;
-    public url: string;
+    public url;
 
     constructor(
         private _artistService: ArtistService,
-        private _userService: UserService,
         private _messageService: MessageService,
-        private _uploadService: UploadService,
+        private _userService: UserService,
         private _route: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private _uploadService: UploadService
     ){
-        this.title = 'Create Artist';
+        this.token = _userService.getTokenInLocalStorage();
         this.artist = new Artist('','','','');
-        this.token = this._userService.getTokenInLocalStorage();
+        this.title = 'Edit artist';
         this.artistImg = 'assets/images/default-user-image.png';
         this.url = GLOBAL.url;
     }
 
     ngOnInit(){
-
+        this.getArtist();
     }
 
     preview(files) {
@@ -69,12 +68,29 @@ export class ArtistCreateComponent implements OnInit {
         document.getElementById("inputImage").click();
     }
 
+    getArtist(){
+        this._route.params.forEach((param : Params) => {
+            let id = param['id'];
+            this._artistService.getArtist(this.token, id).subscribe(
+                response => {
+                    if(response.artist){
+                        this.artist = response.artist;
+                        if(this.artist.image){
+                            this.artistImg = this.url+'getImageArtist/'+this.artist.image;
+                        }
+                    }
+                },
+                error => {
+                    console.log(error);
+                }
+            )
+        })
+    }
+
     onSubmit(){
-        this._artistService.saveArtist(this.token, this.artist).subscribe(
-            response => {
-                if(!response.artist){
-                    this._messageService.sendMessage(response.message, 'danger');
-                }else{
+        this._artistService.updateArtist(this.token,this.artist._id,this.artist).subscribe(
+            response =>{
+                if(response.artist){
                     this.artist = response.artist
                     if(this.filesToUpload){
                         this._uploadService.makeFileRequest(this.url+'uploadArtistImg/'+this.artist._id,[],this.filesToUpload,this.token,'image').then(
@@ -88,10 +104,12 @@ export class ArtistCreateComponent implements OnInit {
                     }else{
                         this._router.navigate(['dashboard/artists']);
                     }
-                    this._messageService.sendMessage('Artist created successfully', 'success');
+                    this._messageService.sendMessage('Artist successfully updated','success');
+                }else{
+                    this._messageService.sendMessage(response.message,'danger');
                 }
             },
-            error => {
+            error =>{
                 console.log(error);
             }
         )

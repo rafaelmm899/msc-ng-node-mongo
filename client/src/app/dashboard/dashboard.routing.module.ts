@@ -9,6 +9,7 @@ import { UserDetailComponent } from '../user/user-detail/user-detail.component';
 import { UserCreateComponent } from '../user/user-create/user-create.component';
 import { ArtistListComponent } from '../artist/artist-list/artist-list.component';
 import { ArtistCreateComponent } from '../artist/artist-create/artist-create.component';
+import { ArtistEditComponent } from '../artist/artist-edit/artist-edit.component';
 
 
 const dashboardRoutes : Routes = [{
@@ -21,6 +22,7 @@ const dashboardRoutes : Routes = [{
 		{ path: 'profile', component: UserDetailComponent },
 		{ path: 'user-create', component : UserCreateComponent },
 		{ path: 'artists', component:ArtistListComponent  },
+		{ path: 'artist/:id', component:ArtistEditComponent  },
 		{ path : 'artist-create', component: ArtistCreateComponent }
 	]
 	

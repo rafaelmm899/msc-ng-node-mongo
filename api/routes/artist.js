@@ -10,7 +10,10 @@ var artistController = require('../controllers/artist');
 var api = express.Router();
 
 api.get('/artists/:page?', authenticated.ensureAuth ,artistController.getArtists);
+api.get('/artist/:id', authenticated.ensureAuth, artistController.getArtist);
+api.get('/getImageArtist/:imageFile',artistController.getImage);
 api.post('/saveArtist', authenticated.ensureAuth, artistController.saveArtist );
 api.post('/uploadArtistImg/:id', [authenticated.ensureAuth, md_upload], artistController.uploadImage);
+api.put('/updateArtist/:id', authenticated.ensureAuth, artistController.updateArtist);
 
 module.exports = api;
