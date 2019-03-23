@@ -15,5 +15,6 @@ api.get('/getImageArtist/:imageFile',artistController.getImage);
 api.post('/saveArtist', authenticated.ensureAuth, artistController.saveArtist );
 api.post('/uploadArtistImg/:id', [authenticated.ensureAuth, md_upload], artistController.uploadImage);
 api.put('/updateArtist/:id', authenticated.ensureAuth, artistController.updateArtist);
+api.delete('/deleteArtist/:id', authenticated.ensureAuth, artistController.deleteArtist);
 
 module.exports = api;

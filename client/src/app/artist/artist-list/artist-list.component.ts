@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { Route, Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Artist } from "../../models/artist";
 import { ArtistService } from "../artist.service";
 import { UserService } from '../../user/user.service';
 import { MessageService } from "../../messages/message.service";
+
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
     selector : 'artist-list',
@@ -17,21 +19,54 @@ export class ArtistListComponent implements OnInit {
     public token;
     public nextPage;
     public prePage;
-
+    public idArtistToDelete:string;
+    public modalRef: BsModalRef;
 
     constructor(
         private _artistService: ArtistService,
         private _userService: UserService,
         private _route: ActivatedRoute,
         private _router: Router,
-        private _messageService: MessageService
+        private _messageService: MessageService,
+        private modalService: BsModalService,
     ){
+        this.idArtistToDelete = null;
         this.token = this._userService.getTokenInLocalStorage();
     }
 
     ngOnInit(){
         this.getArtist();
     }
+
+    openModal(template: TemplateRef<any>, idArtist: string) {
+		this.idArtistToDelete = idArtist;
+		this.modalRef = this.modalService.show(template);
+    }
+
+    confirm(){
+        if(this.idArtistToDelete){
+            this._artistService.deleteArtist(this.token, this.idArtistToDelete).subscribe(
+                response => {
+                    if(response.artist){
+                        this._messageService.sendMessage("Artist successfully removed","success");
+                    }else{
+                        this._messageService.sendMessage(response.message,"danger");
+                    }
+                    this.getArtist();
+                    
+                },
+                error => {
+                    console.log(error);
+                }
+            )
+        }
+        this.modalRef.hide();
+    }
+    
+    decline(){
+		this.idArtistToDelete = null;
+		this.modalRef.hide();
+	}
 
     getArtist(){
         this._route.params.forEach((param : Params) => {

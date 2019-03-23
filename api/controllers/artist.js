@@ -153,11 +153,33 @@ function updateArtist(req, res){
     })
 }
 
+function deleteArtist(req, res) {
+    let idArtist = req.params.id;
+    Artist.findByIdAndRemove(idArtist,(error, artistRemoved)=> {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!artistRemoved){
+                res.status(404).send({
+                    message : 'The artist could not be removed '
+                })
+            }else{
+                res.status(200).send({
+                    artist:artistRemoved
+                })
+            }
+        }
+    })
+}
+
 module.exports = {
     getArtists,
     saveArtist,
     getImage,
     uploadImage,
     getArtist,
-    updateArtist
+    updateArtist,
+    deleteArtist
 }

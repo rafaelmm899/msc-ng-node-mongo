@@ -17,6 +17,15 @@ export class ArtistService {
         this.url = GLOBAL.url;
     }
 
+    deleteArtist(token:string, id:string):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+
+        return this._http.delete(this.url+'deleteArtist/'+id,{ headers: headers });
+    }
+
     getArtists(token: string, page: string) :Observable<any>{ 
         let headers = new HttpHeaders({
             'Content-Type' : 'application/json',
