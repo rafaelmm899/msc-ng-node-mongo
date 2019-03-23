@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { catchError,map,tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { GLOBAL } from 'src/global';
+import { MessageService } from "../messages/message.service";
 
 @Injectable()
 
@@ -10,7 +11,8 @@ export class UploadService{
     public url: string;
     
     constructor(
-        private _http: HttpClient
+        private _http: HttpClient,
+        private _messageService: MessageService
     ){
         this.url = GLOBAL.url;    
     }
