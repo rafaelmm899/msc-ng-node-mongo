@@ -37,7 +37,7 @@
 								<td>{{ artist.description }}</td>
 								<td><a [routerLink]="['/dashboard/artist/'+artist._id]" class="btn btn-warning">Edit</a></td>
 								<td><a class="btn btn-danger" (click)="openModal(template, artist._id)">Delete</a></td>
-								<td><a class="btn btn-info">Albums</a></td>
+								<td><a class="btn btn-info" [routerLink]="['/dashboard/albums/'+artist._id]" >Albums</a></td>
 							</tr>
 						</tbody>
 					</table>

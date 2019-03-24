@@ -10,6 +10,8 @@ import { UserCreateComponent } from '../user/user-create/user-create.component';
 import { ArtistListComponent } from '../artist/artist-list/artist-list.component';
 import { ArtistCreateComponent } from '../artist/artist-create/artist-create.component';
 import { ArtistEditComponent } from '../artist/artist-edit/artist-edit.component';
+import { AlbumListComponent } from '../album/album-list/album-list.component';
+import { AlbumCreateComponent } from '../album/album-create/album-create.component';
 
 
 const dashboardRoutes : Routes = [{
@@ -23,7 +25,9 @@ const dashboardRoutes : Routes = [{
 		{ path: 'user-create', component : UserCreateComponent },
 		{ path: 'artists', component:ArtistListComponent  },
 		{ path: 'artist/:id', component:ArtistEditComponent  },
-		{ path : 'artist-create', component: ArtistCreateComponent }
+		{ path: 'artist-create', component: ArtistCreateComponent },
+		{ path: 'albums/:id', component: AlbumListComponent },
+		{ path: 'album-create/:idArtist', component: AlbumCreateComponent }
 	]
 	
 }]

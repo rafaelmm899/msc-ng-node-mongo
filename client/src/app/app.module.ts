@@ -20,6 +20,10 @@ import { ArtistListComponent } from './artist/artist-list/artist-list.component'
 import { ArtistCreateComponent } from "./artist/artist-create/artist-create.component";
 import { ArtistEditComponent } from './artist/artist-edit/artist-edit.component';
 
+/* Album */
+import { AlbumListComponent } from "./album/album-list/album-list.component";
+import { AlbumCreateComponent } from "./album/album-create/album-create.component";
+
 /* Message */
 import { MessagesComponent } from './messages/messages.component';
 
@@ -40,7 +44,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     UserDetailComponent,
     ArtistListComponent,
     ArtistCreateComponent,
-    ArtistEditComponent
+    ArtistEditComponent,
+    AlbumListComponent,
+    AlbumCreateComponent
   ],
   imports: [
     BrowserModule,
