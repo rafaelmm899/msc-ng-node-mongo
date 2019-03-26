@@ -40,6 +40,27 @@ function saveAlbum(req, res){
     }
 }
 
+function getAlbum(req, res) {
+    let albumId = req.params.id;
+    Album.findById(albumId,(error, album)=> {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!album){
+                res.status(200).send({
+                    message : 'Album not found'
+                })
+            }else{
+                res.status(200).send({
+                    album
+                })
+            }
+        }
+    })
+}
+
 function getAlbums(req, res) {
     var page = (req.params.page)?req.params.page:1;
     var artistId = req.params.id;
@@ -101,7 +122,7 @@ function uploadImage(req, res){
 
 function getImage(req, res) {
     var image = req.params.imageFile;
-    var pathFiles = './uploads/artists/'+image;
+    var pathFiles = './uploads/albums/'+image;
 
     fs.exists(pathFiles,function (exist) {
         if(exist){
@@ -114,9 +135,34 @@ function getImage(req, res) {
     } )
 }
 
+function updateAlbum(req, res) {
+    let idAlbum = req.params.id;
+    let album = req.body;
+
+    Album.findByIdAndUpdate(idAlbum,album, (error, albumUpdated) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!albumUpdated){
+                res.status(404).send({
+                    message : 'The album could not be updated'
+                })
+            }else{
+                res.status(200).send({
+                    album : albumUpdated
+                })
+            }
+        }
+    })
+}
+
 module.exports = {
     saveAlbum,
     getAlbums,
     uploadImage,
-    getImage
+    getImage,
+    getAlbum,
+    updateAlbum
 }

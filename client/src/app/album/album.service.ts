@@ -34,4 +34,23 @@ export class AlbumService {
         return this._http.post(this.url+'album',album,{ headers : headers });
     }
 
+    getAlbum(token:string, albumId: string):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+
+        return this._http.get(this.url+'album/'+albumId,{ headers:headers });
+    }
+
+    updateAlbum(token:string, albumId: String, album:Album):Observable<any>{
+        let param = JSON.stringify(album);
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+
+        return this._http.put(this.url+'update_album/'+albumId,param,{headers : headers});
+    }
+
 }

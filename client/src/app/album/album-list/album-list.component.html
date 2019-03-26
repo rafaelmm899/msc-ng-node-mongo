@@ -37,7 +37,7 @@
 								<td>{{ album.title }}</td>
                                 <td>{{ album.description }}</td>
                                 <td>{{ album.year }}</td>
-								<td><a [routerLink]="['/dashboard/album/'+album._id]" class="btn btn-warning">Edit</a></td>
+								<td><a [routerLink]="['/dashboard/album-edit/'+album._id]" class="btn btn-warning">Edit</a></td>
 								<td><a class="btn btn-danger" (click)="openModal(template, album._id)">Delete</a></td>
 								<td><a class="btn btn-info" >Songs</a></td>
 							</tr>
