@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,TemplateRef } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
 import { Album } from "../../models/album";
@@ -6,6 +6,7 @@ import { User } from "../../models/user";
 import { UserService } from "../../user/user.service";
 import { AlbumService } from "../album.service";
 import { MessageService } from "../../messages/message.service";
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'album-list',
@@ -20,15 +21,19 @@ export class AlbumListComponent implements OnInit {
     public nextPage;
     public prePage;
     public artistId: string;
+    public idAlbumToDelete: string;
+    public modalRef: BsModalRef;
 
     constructor(
         private _userService: UserService,
         private _albumService: AlbumService,
         private _router: Router,
         private _route : ActivatedRoute,
-        private _messageService: MessageService
+        private _messageService: MessageService,
+        private modalService: BsModalService
     ){
         this.token = _userService.getTokenInLocalStorage();
+        this.idAlbumToDelete = null;
     }
 
     ngOnInit(){
@@ -64,6 +69,35 @@ export class AlbumListComponent implements OnInit {
             )
 
         })
+    }
+
+    openModal(template: TemplateRef<any>, idAlbum: string) {
+		this.idAlbumToDelete = idAlbum;
+		this.modalRef = this.modalService.show(template);
+    }
+
+    confirm(){
+        if(this.idAlbumToDelete){
+            this._albumService.deleteAlbum(this.token,this.idAlbumToDelete).subscribe(
+                response => {
+                    if(!response.album){
+                        this._messageService.sendMessage(response.message, 'danger');
+                    }else{
+                        this._messageService.sendMessage('The album has been removed correctly', 'success');
+                    }
+                    this.getAlbums();
+                },
+                error => {
+                    console.log(error);
+                }
+            )
+            this.modalRef.hide();
+        }
+    }
+
+    decline(){
+        this.idAlbumToDelete = null;
+        this.modalRef.hide();
     }
 
 }

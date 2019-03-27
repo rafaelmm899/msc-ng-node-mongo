@@ -158,11 +158,33 @@ function updateAlbum(req, res) {
     })
 }
 
+function deleteAlbum(req, res) {
+    let albumId = req.params.id;
+    Album.findByIdAndRemove(albumId,(error, albumRemoved) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!albumRemoved){
+                res.status(404).send({
+                    message : 'The album could not be remooved'
+                })
+            }else{
+                res.status(200).send({
+                    album : albumRemoved
+                })
+            }
+        }
+    })
+}
+
 module.exports = {
     saveAlbum,
     getAlbums,
     uploadImage,
     getImage,
     getAlbum,
-    updateAlbum
+    updateAlbum,
+    deleteAlbum
 }

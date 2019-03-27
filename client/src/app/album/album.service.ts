@@ -53,4 +53,12 @@ export class AlbumService {
         return this._http.put(this.url+'update_album/'+albumId,param,{headers : headers});
     }
 
+    deleteAlbum(token:string, albumId: string):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+        return this._http.delete(this.url+'delete_album/'+albumId,{ headers : headers });
+    }
+
 }
