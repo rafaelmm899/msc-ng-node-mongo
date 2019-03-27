@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 var userRoutes = require('./routes/user');
 var artistRouter = require('./routes/artist');
 var albumRouter = require('./routes/album');
+var songRouter = require('./routes/song');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}));
@@ -22,5 +23,5 @@ app.use((req, res, next) => {
 app.use('/api', userRoutes);
 app.use('/api', artistRouter);
 app.use('/api', albumRouter);
-
+app.use('/api', songRouter);
 module.exports = app;

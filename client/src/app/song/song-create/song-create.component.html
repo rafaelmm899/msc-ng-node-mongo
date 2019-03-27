@@ -1,0 +1,43 @@
+<app-messages></app-messages>
+<div class="component">
+    <div class="page-header">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <form #createSong="ngForm" (ngSubmit)="onSubmit()" *ngIf="song">
+                <p>
+                    <label for="name">Name</label>
+                    <input type="text" title="ngModel" [(ngModel)]="song.name" name="name" class="form-control" />
+                </p>
+                <p>
+                    <label for="number">Number</label>
+                    <input type="number" #number="ngModel" [(ngModel)]="song.number" name="number" class="form-control" />
+                </p>
+                <p>
+                    <label for="duration">Duration</label>
+                    <input type="text" #duration="ngModel" [(ngModel)]="song.duration" name="duration" class="form-control" />
+                </p>
+                <p>
+                    <label for="gender">Gender</label>
+                    <select class="form-control" #gender="ngModel" [(ngModel)]="song.gender" name="gender">
+                        <option value="ROCK" [selected] = "song.gender == 'ROCK'">Rock</option>
+                        <option value="POP" [selected] = "song.gender == 'POP'">Pop</option>
+                        <option value="JAZZ" [selected] = "song.gender == 'JAZZ'">Jazz</option>
+                        <option value="ELECTRONIC" [selected] = "song.gender == 'ELECTRONIC'">Electronic</option>
+                        <option value="REGGUE" [selected] = "song.gender == 'REGGUE'">Reggue</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="file">File</label>
+                    <input type="file" id="inputImage" />
+                </p>
+                <p>
+                    <input type="submit" class="btn btn-success" value="{{ title }}">
+                    <a class="btn btn-warning" [routerLink]="['/dashboard/albums/'+artistId]">Cancel</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+        

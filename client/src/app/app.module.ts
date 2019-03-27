@@ -25,6 +25,10 @@ import { AlbumListComponent } from "./album/album-list/album-list.component";
 import { AlbumCreateComponent } from "./album/album-create/album-create.component";
 import { AlbumEditComponent } from "./album/album-edit/album-edit.component";
 
+/* songs */
+import { SongCreateComponent } from "./song/song-create/song-create.component";
+import { SongListComponent } from "./song/song-list/song-list.component";
+
 /* Message */
 import { MessagesComponent } from './messages/messages.component';
 
@@ -48,7 +52,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ArtistEditComponent,
     AlbumListComponent,
     AlbumCreateComponent,
-    AlbumEditComponent
+    AlbumEditComponent,
+    SongCreateComponent,
+    SongListComponent
   ],
   imports: [
     BrowserModule,
