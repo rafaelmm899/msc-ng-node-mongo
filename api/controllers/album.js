@@ -168,7 +168,7 @@ function deleteAlbum(req, res) {
         }else{
             if(!albumRemoved){
                 res.status(404).send({
-                    message : 'The album could not be remooved'
+                    message : 'The album could not be removed'
                 })
             }else{
                 res.status(200).send({

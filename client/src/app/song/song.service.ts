@@ -50,4 +50,12 @@ export class SongService {
         return this._http.put(this.url+'update_song/'+songId,param,{ headers: headers });
     }
 
+    delete(token: string,songId: string):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+        return this._http.delete(this.url+'delete_song/'+songId,{headers : headers });
+    }
+
 }

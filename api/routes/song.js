@@ -14,6 +14,6 @@ api.post('/upload_song/:id', [authenticated.ensureAuth, md_upload], songControll
 api.get('/get_song/:id', authenticated.ensureAuth, songController.getFile);
 api.get('/song/:id',authenticated.ensureAuth,songController.getSong);
 api.put('/update_song/:id', authenticated.ensureAuth,songController.update);
-
+api.delete('/delete_song/:id', authenticated.ensureAuth,songController.deleteSong);
 
 module.exports = api;

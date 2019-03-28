@@ -1,4 +1,4 @@
-import { Component,OnInit } from "@angular/core";
+import { Component,OnInit, TemplateRef } from "@angular/core";
 import { Route,ActivatedRoute, Router, Params } from "@angular/router";
 
 import { Song } from "../../models/song";
@@ -7,6 +7,7 @@ import { UserService } from "../../user/user.service";
 import { UploadService } from "../../services/upload.service";
 import { MessageService } from "../../messages/message.service";
 import { SongService } from "../song.service";
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
     selector :'song-list',
@@ -20,6 +21,8 @@ export class SongListComponent implements OnInit{
     public nextPage:any;
     public prePage: any;
     public songs: Song[];
+    public modalRef: BsModalRef;
+    public idSongToDelete:string;
 
     constructor(
         private _userService: UserService,
@@ -27,7 +30,8 @@ export class SongListComponent implements OnInit{
         private _messageService: MessageService,
         private _songService: SongService,
         private _route: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private modalService: BsModalService
     ){
         this.token = this._userService.getTokenInLocalStorage()
         this.albumId = this._route.snapshot.params.albumId;
@@ -35,6 +39,7 @@ export class SongListComponent implements OnInit{
 
     ngOnInit(){
         this.getSongs();
+        this.idSongToDelete = null;
     }
 
     getSongs(){
@@ -64,5 +69,38 @@ export class SongListComponent implements OnInit{
                 }
             )
         })
+    }
+
+    openModal(template: TemplateRef<any>, idSong: string) {
+		this.idSongToDelete = idSong;
+		this.modalRef = this.modalService.show(template);
+    }
+
+    confirm(){
+        if(this.idSongToDelete){
+            this._songService.delete(this.token,this.idSongToDelete).subscribe(
+                response => {
+                    if(!response.song){
+                        this._messageService.sendMessage(response.message, 'danger');
+                    }else{
+                        this._messageService.sendMessage('Song deleted successfully', 'success');
+                        this.getSongs();
+                        this.idSongToDelete = null;
+                    }
+                },
+                error => {
+                    if(error.error.message){
+                        this._messageService.sendMessage(error.error.message, 'danger');
+                    }
+                    console.log(error);
+                }
+            )
+        }
+        this.modalRef.hide();
+    }
+
+    decline(){
+        this.idSongToDelete = null;
+        this.modalRef.hide();
     }
 }

@@ -157,11 +157,35 @@ function update(req, res) {
     })
 }
 
+function deleteSong(req, res) {
+    let songId = req.params.id;
+    Song.findByIdAndRemove(songId, (error, songRemoved) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            
+            if(!songRemoved){
+                res.status(404).send({
+                    message : 'The song could not be eliminated'
+                })
+            }else{
+                res.status(200).send({
+                    song : songRemoved
+                })
+            }
+        }
+    })
+}
+
+
 module.exports = {
     save,
     getSongs,
     uploadFile,
     getFile,
     getSong,
-    update
+    update,
+    deleteSong
 }
