@@ -33,4 +33,21 @@ export class SongService {
         return this._http.get(this.url+'songs/'+albumId+'/'+page, { headers: headers });
     }
 
+    getSong(token:string, songId: string):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+        return this._http.get(this.url+'song/'+songId, { headers: headers });
+    }
+
+    upload(token: string, song:Song, songId:String):Observable<any>{
+        let param = JSON.stringify(song);
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+        return this._http.put(this.url+'update_song/'+songId,param,{ headers: headers });
+    }
+
 }

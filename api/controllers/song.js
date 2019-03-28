@@ -66,7 +66,102 @@ function getSongs(req, res) {
     })
 }
 
+function uploadFile(req, res) {
+    var songId = req.params.id;
+    var filename = 'file no uploaded';
+
+    if(req.files){
+        let filePath = req.files.file.path;
+        let fileSplit = filePath.split('\\');
+        filename = fileSplit[2];
+
+        let extSplit = filename.split('\.');
+        let fileExt = extSplit[1];
+
+        if(fileExt == 'mp3'){
+            Song.findByIdAndUpdate(songId, {file : filename}, (error, songUpdated) => {
+                if (error) {
+                    res.status(500).send({
+                        message : 'Error in the request'
+                    })
+                } else {
+                    res.status(200).send({
+                        song : songUpdated
+                    }) 
+                }
+            })
+        }else{
+            res.status(200).send({
+                message : 'The file extension you want to upload is not valid'
+            })
+        }
+    }
+}
+
+function getFile(req, res){
+    var file = req.params.file;
+    var pathFiles = './uploads/songs/'+file;
+
+    fs.exists(pathFiles,function (exist) {
+        if(exist){
+            res.sendFile(path.resolve(pathFiles));
+        }else{
+            res.status(200).send({
+                message :'The file does not exist'
+            });
+        }
+    } )
+}
+
+function getSong(req, res) {
+    let songId = req.params.id;
+    
+    Song.findById(songId,(error, song) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!song){
+                res.status(404).send({
+                    message : 'Song not found'
+                })
+            }else{
+                res.status(200).send({
+                    song
+                })
+            }
+        }
+    })
+}
+
+function update(req, res) {
+    let songId = req.params.id;
+    let song = req.body;
+    Song.findByIdAndUpdate(songId,song,(error, songUpdated) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!songUpdated){
+                res.status(404).send({
+                    message : 'The song could not be updated'
+                })
+            }else{
+                res.status(200).send({
+                    song: songUpdated
+                })
+            }
+        }
+    })
+}
+
 module.exports = {
     save,
-    getSongs
+    getSongs,
+    uploadFile,
+    getFile,
+    getSong,
+    update
 }

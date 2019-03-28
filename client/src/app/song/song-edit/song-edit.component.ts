@@ -10,18 +10,18 @@ import { SongService } from "../song.service";
 import { GLOBAL } from 'src/global';
 
 @Component({
-    selector :'song-create',
-    templateUrl:'./song-create.component.html',
+    selector :'song-edit',
+    templateUrl:'../song-create/song-create.component.html',
     providers: [UploadService, MessageService, UserService, SongService]
 })
 
-export class SongCreateComponent implements OnInit{
+export class SongEditComponent implements OnInit{
     public title: string;
     public song: Song;
     public token: string;
-    public albumId: string;
     public url: string;
     public filesToUpload: Array<File>;
+    public albumId: string;
 
     constructor(
         private _userService: UserService,
@@ -31,7 +31,7 @@ export class SongCreateComponent implements OnInit{
         private _route: ActivatedRoute,
         private _router: Router
     ){
-        this.title = 'Create Song';
+        this.title = 'Edit Song';
         this.song = new Song('','',0,'','','','');
         this.token = this._userService.getTokenInLocalStorage();
         this.albumId =  this._route.snapshot.params.albumId;
@@ -39,13 +39,32 @@ export class SongCreateComponent implements OnInit{
     }
 
     ngOnInit(){
+        this.getSong();
+    }
 
+    getSong(){
+        this._route.params.forEach((param : Params) => {
+            let id = param['songId'];
+            console.log(id);
+
+            this._songService.getSong(this.token,id).subscribe(
+                response => {
+                    if(!response.song){
+                        this._messageService.sendMessage(response.message, 'danger');
+                    }else{
+                        this.song = response.song;
+                    }
+                },
+                error => {
+                    console.log(error);
+                }
+            )
+        })
     }
 
     onSubmit(){
-        this.song.album = this.albumId;
         console.log(this.song);
-        this._songService.save(this.token,this.song).subscribe(
+        this._songService.upload(this.token,this.song, this.song._id).subscribe(
             response => {
                 if(!response.song){
                     this._messageService.sendMessage(response.message,'danger');

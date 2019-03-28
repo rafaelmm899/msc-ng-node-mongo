@@ -15,6 +15,7 @@ import { AlbumCreateComponent } from '../album/album-create/album-create.compone
 import { AlbumEditComponent } from '../album/album-edit/album-edit.component';
 import { SongListComponent } from '../song/song-list/song-list.component';
 import { SongCreateComponent } from '../song/song-create/song-create.component';
+import { SongEditComponent } from '../song/song-edit/song-edit.component';
 
 
 const dashboardRoutes : Routes = [{
@@ -33,7 +34,8 @@ const dashboardRoutes : Routes = [{
 		{ path: 'album-create/:idArtist', component: AlbumCreateComponent },
 		{ path: 'album-edit/:id', component: AlbumEditComponent },
 		{ path: 'songs/:id', component: SongListComponent },
-		{ path:'song-create/:albumId', component: SongCreateComponent }
+		{ path:'song-create/:albumId', component: SongCreateComponent },
+		{ path: 'song-edit/:albumId/:songId', component:SongEditComponent }
 	]
 	
 }]
