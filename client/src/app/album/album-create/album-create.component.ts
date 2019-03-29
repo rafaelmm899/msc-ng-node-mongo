@@ -56,14 +56,14 @@ export class AlbumCreateComponent implements OnInit {
                     this.album = response.album;
                     this._uploadService.makeFileRequest(this.url+'album_upload_image/'+this.album._id,[],this.filesToUpload,this.token,'image').then(
                         (result) => {
-                            this._router.navigate(['dashboard/albums/'+this.artistId]);        
+                                
                         },
                         (error) => {
                             console.log(error);
                         }
                         
                     )
-
+                    this._router.navigate(['dashboard/albums/'+this.artistId]);    
                     
                 }
             },

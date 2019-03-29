@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const Artist = require('../models/artist');
 const Album = require('../models/album');
+const Song = require('../models/song');
 const fs = require('fs');
 const path = require('path');
 
@@ -160,23 +161,30 @@ function updateAlbum(req, res) {
 
 function deleteAlbum(req, res) {
     let albumId = req.params.id;
-    Album.findByIdAndRemove(albumId,(error, albumRemoved) => {
-        if(error){
-            res.status(500).send({
-                message : 'Error in the request'
-            })
-        }else{
-            if(!albumRemoved){
-                res.status(404).send({
-                    message : 'The album could not be removed'
+    let songRemoved = Song.removeSongs({ album : albumId });
+    if(songRemoved){
+        Album.findByIdAndRemove(albumId,(error, albumRemoved) => {
+            if(error){
+                res.status(500).send({
+                    message : 'Error in the request'
                 })
             }else{
-                res.status(200).send({
-                    album : albumRemoved
-                })
+                if(!albumRemoved){
+                    res.status(404).send({
+                        message : 'The album could not be removed'
+                    })
+                }else{
+                    res.status(200).send({
+                        album : albumRemoved
+                    })
+                }
             }
-        }
-    })
+        })
+    }else{
+        res.status(500).send({
+            message : 'Error in the request deleting the songs from the album'
+        })
+    }
 }
 
 module.exports = {
