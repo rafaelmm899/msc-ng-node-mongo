@@ -15,23 +15,4 @@ var SongSchema = Schema({
 
 SongSchema.plugin(paginate);
 
-var Song = mongoose.model('Song',SongSchema);
-
-Song.removeSongs = async function(condition) {
-    var result = await Song.findOneAndDelete(condition,(fail, songsRemoved) => {
-        if(!fail){
-            return false;
-        }else{
-            if(!songsRemoved){
-                return 404;
-            }else{
-                return 200;
-            }
-        }
-    })
-    return result;
-}
-
-
-
-module.exports = Song;
+module.exports = mongoose.model('Song',SongSchema);

@@ -161,30 +161,23 @@ function updateAlbum(req, res) {
 
 function deleteAlbum(req, res) {
     let albumId = req.params.id;
-    let songRemoved = Song.removeSongs({ album : albumId });
-    if(songRemoved){
-        Album.findByIdAndRemove(albumId,(error, albumRemoved) => {
-            if(error){
-                res.status(500).send({
-                    message : 'Error in the request'
+    Album.findOne({ _id : albumId},function(error, album){
+        album.remove().then(function(albumRemoved){
+            if(!albumRemoved){
+                res.status(404).send({
+                    message : 'The album could not be removed'
                 })
             }else{
-                if(!albumRemoved){
-                    res.status(404).send({
-                        message : 'The album could not be removed'
-                    })
-                }else{
-                    res.status(200).send({
-                        album : albumRemoved
-                    })
-                }
+                res.status(200).send({
+                    album : albumRemoved
+                })
             }
+        }).catch(function(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
         })
-    }else{
-        res.status(500).send({
-            message : 'Error in the request deleting the songs from the album'
-        })
-    }
+    })
 }
 
 module.exports = {
