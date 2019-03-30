@@ -21,6 +21,11 @@ export class UserService {
         this.url = GLOBAL.url;
     }
 
+    logout(){
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
+    }
+
     login(user: User):Observable<any>{
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');

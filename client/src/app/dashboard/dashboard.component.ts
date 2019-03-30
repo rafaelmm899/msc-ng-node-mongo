@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../user/user.service';
 import { GLOBAL } from 'src/global';
-
+import { Router,ActivatedRoute } from "@angular/router";
 
  
 
@@ -21,7 +21,9 @@ export class DashboardComponent implements OnInit {
 	public profileImage;
 
 	constructor(
-		private _userService: UserService
+		private _userService: UserService,
+		private _route: ActivatedRoute,
+		private _router: Router
 	) {  
 		this.userLogged = _userService.getUserLogged();
 		this.url = GLOBAL.url;
@@ -48,6 +50,11 @@ export class DashboardComponent implements OnInit {
 
 	isOpenChange(): void {
 		console.log('Dropdown state is changed');
+	}
+
+	logout(){
+		this._userService.logout();
+		this._router.navigate(['']);
 	}
 
 }

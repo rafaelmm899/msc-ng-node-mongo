@@ -59,6 +59,7 @@
 				<div *dropdownMenu class="dropdown-menu dropdown-menu-right profile-notification show" role="menu" aria-labelledby="basic-link">
 					<ul class="pro-body">
 						<li><a [routerLink]="['/dashboard/profile']" class="dropdown-item"><i class="fa fa-user"></i> Profile</a></li>
+						<li><a (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> Sign off</a></li>
 					</ul>
 				</div>
 			</div>
