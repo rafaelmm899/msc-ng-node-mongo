@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../user/user.service';
 import { GLOBAL } from 'src/global';
@@ -13,12 +13,13 @@ import { Router,ActivatedRoute } from "@angular/router";
 	providers: [UserService]
 
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, DoCheck {
 
 	public items: string[];
 	public userLogged;
 	public url;
 	public profileImage;
+	public token: string;
 
 	constructor(
 		private _userService: UserService,
@@ -26,8 +27,19 @@ export class DashboardComponent implements OnInit {
 		private _router: Router
 	) {  
 		this.userLogged = _userService.getUserLogged();
+		this.token = _userService.getTokenInLocalStorage();
 		this.url = GLOBAL.url;
 		this.profileImage = 'assets/images/default-user-image.png'
+	}
+
+	ngDoCheck(){
+		let currentUser = this._userService.getUserLogged();
+		let token = this._userService.getTokenInLocalStorage();
+
+		if(token != this.token){
+			this.logout();
+		}
+		
 	}
 
 	ngOnInit() {
