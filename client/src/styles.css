@@ -41,7 +41,8 @@ body {
 
 /* APP COMPONENT STYLE */
 .app-wrapper{
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-left: 2%;
 }
 
 .app-form-segment{
@@ -56,6 +57,20 @@ body {
 .btn-login, .btn-create-account{
     width: 100%;
 }
+
+.login-header{
+    height: 100px;
+    margin-bottom: 3%;
+    border-bottom: 1px solid #ddd;
+}
+
+.login-header title {
+    font-size: 24px;
+    display: block;
+    margin-left: 0%;
+    margin-top: 8%;
+}
+
 
 /* FIN LOGIN COMPONENT STYLE */
 
