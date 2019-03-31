@@ -42,13 +42,13 @@ body {
 /* APP COMPONENT STYLE */
 .app-wrapper{
     margin-top: 5%;
-    margin-left: 2%;
 }
 
 .app-form-segment{
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 14px;
+    border-left: 1px solid #ddd;
+    /*border-radius: 14px;*/
+    height: 100vh;
 }
 
 /* */
