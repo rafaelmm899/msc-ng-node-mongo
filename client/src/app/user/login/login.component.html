@@ -36,14 +36,15 @@
 							<p>
 								<button type="submit" class="btn btn-success btn-login" [disabled]="!loginForm.valid">Log In</button>
 							</p>
-							<div *ngIf="message">
-								<div class="alert alert-danger" role="alert">
-									<strong>Alert!</strong> {{ message }} 
-								</div>
-							</div>
+							<app-messages></app-messages>
 						</form>
 					</div>
 					<div *ngIf="!loginForm">
+						<div class="row">
+							<div class="col-md-12" >
+								<app-messages></app-messages>
+							</div>
+						</div>
 						<form #createUser="ngForm" (ngSubmit)="addUser()">
 							<p>
 								<input placeholder="Name:" type="text" #name="ngModel" [(ngModel)]="userToCreate.name" name="name" class="form-control" required>
@@ -73,13 +74,9 @@
 							<p>
 								<button type="submit" class="btn btn-success btn-create-account" [disabled]="!createUser.valid">Create account</button>
 								<a (click)="showLoginForm()">I already have an account</a>
-
 							</p>
-							<div *ngIf="message">
-								<div class="alert alert-danger" role="alert">
-									<strong>Alert!</strong> {{ message }} 
-								</div>
-							</div>
+							
+							
 						</form>
 					</div>
 				</div>

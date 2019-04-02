@@ -4,12 +4,13 @@ import { FormControl } from '@angular/forms';
 
 import { User } from '../../models/user';
 import { UserService } from '../user.service';
+import { MessageService } from "../../messages/message.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers : [UserService]
+  providers : [UserService,MessageService]
 })
 export class LoginComponent implements OnInit {
 	public user: User;
@@ -23,8 +24,8 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private _userService : UserService,
 		private _route : ActivatedRoute,
-		private _router : Router
-
+		private _router : Router,
+		private _messageService: MessageService
 	) { 
 		this.user = new User('','','','','','','');
 		this.userToCreate = new User('','','','','','','ROLE_USER');
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
 			response =>{
 			
 				if(response.message){
-					this.message = response.message;
+					this._messageService.sendMessage(response.message,'danger');
 				}else{
 					
 					this._userService.getToken(this.user).subscribe(
@@ -58,13 +59,13 @@ export class LoginComponent implements OnInit {
 							}
 						},
 						err => {
-							this.message = 'Error in the request, try again';
+							this._messageService.sendMessage('Error in the request, try again','danger');;
 						}
 					)
 				}
 			},
 			error => {
-				this.message = 'Error in the request, try again';
+				this._messageService.sendMessage('Error in the request, try again','danger');;
 			}
       	)
 	}
@@ -83,14 +84,14 @@ export class LoginComponent implements OnInit {
 		this._userService.newUser(this.userToCreate).subscribe(
 			response => {
 				if(!response.user){
-					this.message = response.message;
+					this._messageService.sendMessage(response.message,'danger');
 				}else{
 					this.userToCreate = response.user;
-					this.message = 'The user has been created successfully, please log in';
+					this._messageService.sendMessage('The user has been created successfully, please log in','success');
 				}
 			},
 			error => {
-				this.message = 'Error in the request, try again';
+				this._messageService.sendMessage('Error in the request, try again','danger');
 			}
 		)	
 	}
