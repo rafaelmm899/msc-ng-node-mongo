@@ -3,64 +3,83 @@
 		<div class="col-md-offset-8 col-md-4 app-form-segment">
 			<div class="row login-header">
 				<div class="col-md-12">
-					
 					<title>Music!</title>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12 login-title">
+					{{ title }}
+				</div>
+			</div>
+			
 			<div class="row login-container">
 				<div class="col-md-12">
 					<div *ngIf="loginForm">
+						<div class="row">
+							<div class="col-md-12 login-description" [innerHTML]="">
+								Don´t have an account? <a class="link-create" (click)="showCreateForm()">Creat your account</a>, it takes less then a minute
+							</div>
+						</div>
 						<form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
 							<p>
-								<label for="email">Email</label>
-								<input type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" required />
+								<input placeholder="Email:" type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" required />
+								<span class="login-error" *ngIf="!email.valid && email.touched">
+									Email is required.
+								</span>
 							</p>
 							<p>
-								<label for="password">Password</label>
-								<input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" required />
+								<input placeholder="Password:" type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" required />
+								<span class="login-error" *ngIf="!password.valid && password.touched">
+									Password is required.
+								</span>
 							</p>
 							<p>
-								<input type="submit" class="btn btn-success btn-login" value="Log In" >
+								<button type="submit" class="btn btn-success btn-login" [disabled]="!loginForm.valid">Log In</button>
 							</p>
 							<div *ngIf="message">
 								<div class="alert alert-danger" role="alert">
 									<strong>Alert!</strong> {{ message }} 
 								</div>
 							</div>
-							<p>
-								<a (click)="showCreateForm()">Create new account</a>
-							</p>
 						</form>
 					</div>
 					<div *ngIf="!loginForm">
 						<form #createUser="ngForm" (ngSubmit)="addUser()">
 							<p>
-								<label for="name">Name</label>
-								<input type="text" #name="ngModel" [(ngModel)]="userToCreate.name" name="name" class="form-control" />
+								<input placeholder="Name:" type="text" #name="ngModel" [(ngModel)]="userToCreate.name" name="name" class="form-control" required>
+								<span class="login-error" *ngIf="!name.valid && name.touched">
+									Name is required.
+								</span>
+							</p>
+							
+							<p>
+								<input placeholder="Lastname:" type="text" #lastname="ngModel" [(ngModel)]="userToCreate.lastname" name="lastname" class="form-control" required>
+								<span class="login-error" *ngIf="!lastname.valid && lastname.touched">
+									Lastname is required.
+								</span>
 							</p>
 							<p>
-								<label for="lastname">Lastname</label>
-								<input type="text" #lastname="ngModel" [(ngModel)]="userToCreate.lastname" name="lastname" class="form-control" />
+								<input placeholder="Email:" type="text" #email="ngModel" [(ngModel)]="userToCreate.email" name="email" class="form-control" required>
+								<span class="login-error" *ngIf="!email.valid && email.touched">
+									Email is required.
+								</span>
 							</p>
 							<p>
-								<label for="email">Email</label>
-								<input type="text" #email="ngModel" [(ngModel)]="userToCreate.email" name="email" class="form-control" />
+								<input placeholder="Password:" type="password" #password="ngModel" [(ngModel)]="userToCreate.password" name="password" class="form-control" required>
+								<span class="login-error" *ngIf="!password.valid && password.touched">
+									Password is required.
+								</span>
 							</p>
 							<p>
-								<label for="password">Password</label>
-								<input type="password" #password="ngModel" [(ngModel)]="userToCreate.password" name="password" class="form-control" />
-							</p>
-							<p>
-								<input type="submit" class="btn btn-success btn-create-account" value="Create account">
+								<button type="submit" class="btn btn-success btn-create-account" [disabled]="!createUser.valid">Create account</button>
+								<a (click)="showLoginForm()">I already have an account</a>
+
 							</p>
 							<div *ngIf="message">
 								<div class="alert alert-danger" role="alert">
 									<strong>Alert!</strong> {{ message }} 
 								</div>
 							</div>
-							<p>
-								<a (click)="showLoginForm()">I already have an account</a>
-							</p>
 						</form>
 					</div>
 				</div>

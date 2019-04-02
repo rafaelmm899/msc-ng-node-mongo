@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 import { User } from '../../models/user';
 import { UserService } from '../user.service';
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
 	public message: String;
 	public token;
 	public loginForm: boolean;
+	public title: string;
+	public description: string;
 
 	constructor(
 		private _userService : UserService,
@@ -26,6 +29,8 @@ export class LoginComponent implements OnInit {
 		this.user = new User('','','','','','','');
 		this.userToCreate = new User('','','','','','','ROLE_USER');
 		this.loginForm = false;
+		this.title = 'New user';
+		this.description = '';
 	}
 
 	ngOnInit() {
@@ -65,10 +70,12 @@ export class LoginComponent implements OnInit {
 	}
 	  
 	showCreateForm(){
+		this.title = 'New user';
 		this.loginForm = false;
 	}
 
 	showLoginForm(){
+		this.title = 'Log in';
 		this.loginForm = true;
 	}
 

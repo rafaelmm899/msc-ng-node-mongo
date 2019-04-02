@@ -45,7 +45,7 @@ body {
 }
 
 .app-form-segment{
-    background-color: #fff;
+    background-color: #3f4d67;
     border-left: 1px solid #ddd;
     /*border-radius: 14px;*/
     height: 100vh;
@@ -53,26 +53,7 @@ body {
 
 /* */
 
-/* LOGIN COMPONENT STYLE */
-.btn-login, .btn-create-account{
-    width: 100%;
-}
 
-.login-header{
-    height: 100px;
-    margin-bottom: 3%;
-    border-bottom: 1px solid #ddd;
-}
-
-.login-header title {
-    font-size: 24px;
-    display: block;
-    margin-left: 0%;
-    margin-top: 8%;
-}
-
-
-/* FIN LOGIN COMPONENT STYLE */
 
 /* DASHBOARD COMPONENT STYLE */
 @media(min-width:768px) {
