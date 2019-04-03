@@ -25,6 +25,14 @@
     margin-top: 10%;
 }
 
+.wrapper-logo .icon-logo .fa-icon-logo::before{
+    margin-left: 10%;
+}
+
+.wrapper-logo .icon-logo{
+    padding-top: 1%;
+}
+
 .login-title{
     font-size: 24px;
     color: #ddd;
