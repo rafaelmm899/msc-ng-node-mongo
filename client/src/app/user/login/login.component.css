@@ -1,4 +1,8 @@
 /* LOGIN COMPONENT STYLE */
+.login-background{
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12) !important;
+}
+
 .btn-login, .btn-create-account{
     width: 100%;
 }
@@ -6,14 +10,19 @@
 .login-header{
     height: 100px;
     margin-bottom: 3%;
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
 }
 
-.login-header title {
-    font-size: 24px;
+.login-header span.title {
+    font-size: 40px;
     display: block;
-    margin-left: 0%;
-    margin-top: 8%;
+    margin-left: 2%;
+    /*margin-top: 8%;*/
+}
+
+.wrapper-logo{
+    display: flex;
+    margin-top: 10%;
 }
 
 .login-title{
@@ -38,7 +47,7 @@ form p input[type="text"], form p input[type="password"] {
     border-radius: 0px;
     height: 50px;
     border-bottom: 2px solid #6c757d;
-    background: #3f4d67;
+    background: #343a40;
     color: #ddd;
     font-size: 18px;
 }
@@ -61,5 +70,13 @@ form p a:hover {
 .login-error {
     color: red;
 }
+
+.btn-login, .btn-create-account{
+    background-color: #343a40;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    color: #ddd;
+}
+
 
 /* FIN LOGIN COMPONENT STYLE */

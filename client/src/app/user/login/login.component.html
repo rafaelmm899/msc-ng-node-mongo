@@ -1,9 +1,14 @@
 <div class="container-fluid">
-	<div class="row justify-content-end" *ngIf="!identity">
-		<div class="col-md-offset-8 col-md-4 app-form-segment">
+	<div class="row" *ngIf="!identity">
+		<div class="col-md-4 offset-7 app-form-segment">
 			<div class="row login-header">
 				<div class="col-md-12">
-					<title>Music!</title>
+					<div class="wrapper-logo">
+						<div class="icon-logo">
+							<i class="fa fa-music fa-3x fa-icon-logo"></i>
+						</div>
+						<span class="title">Music!</span>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -21,6 +26,9 @@
 							</div>
 						</div>
 						<form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
+							
+							<app-messages></app-messages>
+						
 							<p>
 								<input placeholder="Email:" type="text" #email="ngModel" [(ngModel)]="user.email" name="email" class="form-control" required />
 								<span class="login-error" *ngIf="!email.valid && email.touched">
@@ -34,9 +42,9 @@
 								</span>
 							</p>
 							<p>
-								<button type="submit" class="btn btn-success btn-login" [disabled]="!loginForm.valid">Log In</button>
+								<button type="submit" class="btn btn-login" [disabled]="!loginForm.valid">Log In</button>
 							</p>
-							<app-messages></app-messages>
+							
 						</form>
 					</div>
 					<div *ngIf="!loginForm">
@@ -72,7 +80,7 @@
 								</span>
 							</p>
 							<p>
-								<button type="submit" class="btn btn-success btn-create-account" [disabled]="!createUser.valid">Create account</button>
+								<button type="submit" class="btn btn-create-account" [disabled]="!createUser.valid">Create account</button>
 								<a (click)="showLoginForm()">I already have an account</a>
 							</p>
 							

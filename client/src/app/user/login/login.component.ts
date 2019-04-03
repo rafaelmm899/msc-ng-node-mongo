@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { MessageService } from "../../messages/message.service";
   styleUrls: ['./login.component.css'],
   providers : [UserService,MessageService]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
 	public user: User;
 	public userToCreate: User;
 	public message: String;
@@ -35,6 +35,13 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		const body = document.getElementsByTagName('body')[0];
+    	body.classList.add('login-background');
+	}
+
+	ngOnDestroy(){
+		const body = document.getElementsByTagName('body')[0];
+    	body.classList.remove('login-background');
 	}
 
   	onSubmit(){
