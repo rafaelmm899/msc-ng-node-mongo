@@ -1,3 +1,55 @@
-<p>
-  home works!
-</p>
+<div class="row">
+	<div class="col-md-4 artist-section">
+		Artist
+	</div>
+	<div class="col-md-2 offset-md-6">
+		pagination
+	</div>
+</div>
+<div class="row">
+  	<ul class="col-sm-6 col-md-3" *ngFor="let artist of artists">
+		<div class="thumbnail">
+			<div class="artist-image">
+				<img src="{{ url+'getImageArtist/'+artist.image }}" alt="...">
+			</div>
+			<div class="artist-name">
+				<h5>{{ artist.name }}</h5>
+			</div>
+		</div>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-md-12 explore-section">
+		Explore
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<a href="">
+			<div class="box-gender rock-gender">
+				<span>ROCK</span>
+			</div>
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a href="">
+			<div class="box-gender pop-gender">
+				<span>POP</span>
+			</div>
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a href="">
+			<div class="box-gender jazz-gender">
+				<span>JAZZ</span>
+			</div>
+		</a>
+	</div>
+	<div class="col-md-3">
+		<a href="">
+			<div class="box-gender electronic-gender">
+				<span>ELECTRONIC</span>
+			</div>
+		</a>
+	</div>
+</div>

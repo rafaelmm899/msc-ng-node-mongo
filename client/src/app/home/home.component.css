@@ -1,0 +1,47 @@
+.thumbnail .artist-image {
+    display: block;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+.thumbnail .artist-image img {
+    width: 100%;
+}
+
+.artist-name{
+    text-align: center;
+}
+
+.thumbnail:hover {
+    box-shadow: 1px 1px 1px 3px #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.box-gender{
+    height: 42px;
+    width: 200px;
+    color: #fff;
+    border-radius: 20px;
+    padding: 4%;
+    text-align: center;
+    box-shadow: 1px 2px 1px 2px #ddd;
+    background-color: #6c757d;
+    border: 1px solid #ddd;   
+}
+
+.explore-section, .artist-section{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.box-gender span {
+    font-size: 18px;
+    margin-top: 50%;
+}
