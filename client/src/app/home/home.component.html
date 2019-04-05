@@ -53,3 +53,27 @@
 		</a>
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-8 albums-section">
+		Last Albums
+	</div>
+	<div class="col-md-4 top-songs-section">
+		Top Songs
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="row">
+			<ul class="col-sm-6 col-md-6" *ngFor="let album of lastAlbums">
+				<div class="thumbnail">
+					<div class="album-image">
+						<img src="{{ url+'album_get_image/'+album.image }}" alt="...">
+					</div>
+					<div class="album-title">
+						<h5>{{ album.title }}</h5>
+					</div>
+				</div>
+			</ul>
+		</div>
+	</div>
+</div>

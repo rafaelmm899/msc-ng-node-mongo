@@ -15,6 +15,11 @@
     height: 224px;
 }
 
+.thumbnail .album-image img {
+    width: 100%;
+    height: 224px;
+}
+
 .artist-name{
     text-align: center;
 }
@@ -40,6 +45,15 @@
 .explore-section, .artist-section{
     font-size: 18px;
     font-weight: bold;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.albums-section, .top-songs-section {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 3%;
 }
 
 .box-gender span {

@@ -24,6 +24,14 @@ export class AlbumService {
         return this._http.get(this.url+'albums/'+artistId+'/'+page,{ headers: headers });
     }
 
+    getLastAlbums(token: string, limit: any):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+        return this._http.get(this.url+'last_albums/'+limit,{ headers: headers });
+    }
+
     saveAlbum(token: string, albumParams: Album):Observable<any>{
         let album = JSON.stringify(albumParams);
         

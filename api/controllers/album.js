@@ -89,6 +89,35 @@ function getAlbums(req, res) {
     })
 }
 
+function getLastAlbums(req, res){
+    let limit = req.params.limit;
+    let findAlbum;
+
+    if(limit){
+        findAlbum = Album.find().sort({_id:-1}).limit(4);
+    }else{
+        findAlbum = Album.find();
+    }
+
+    findAlbum.exec((error, albums) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request'
+            })
+        }else{
+            if(!albums){
+                res.status(200).send({
+                    message : 'There are no albums'
+                })
+            }else{
+                res.status(200).send({
+                    album:albums
+                })
+            }
+        }
+    })
+}
+
 function uploadImage(req, res){
     var albumId = req.params.id;
     var filename = 'file not uploaded';
@@ -187,5 +216,6 @@ module.exports = {
     getImage,
     getAlbum,
     updateAlbum,
-    deleteAlbum
+    deleteAlbum,
+    getLastAlbums
 }
