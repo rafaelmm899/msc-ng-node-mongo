@@ -36,6 +36,7 @@ import { MessagesComponent } from './messages/messages.component';
 /* ngx-bootstrap */
 import { ModalModule, AlertModule, ButtonsModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
 
 
 
@@ -56,7 +57,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     AlbumEditComponent,
     SongCreateComponent,
     SongListComponent,
-    SongEditComponent
+    SongEditComponent,
+    ArtistDetailComponent
   ],
   imports: [
     BrowserModule,
