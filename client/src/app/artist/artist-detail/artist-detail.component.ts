@@ -21,6 +21,7 @@ export class ArtistDetailComponent implements OnInit {
 	public songs: Song[];
 	public token: string;
 	public url: string;
+	public songSectionShow: boolean;
 
   	constructor(
 		private _artistService: ArtistService,
@@ -37,6 +38,7 @@ export class ArtistDetailComponent implements OnInit {
   	ngOnInit() {
 		let idArtist = this._route.snapshot.paramMap.get("idArtist");
 		this.getArtist(idArtist);
+		
 	}
 
 	getSongs(idAlbum:string){
@@ -58,7 +60,10 @@ export class ArtistDetailComponent implements OnInit {
 				if(res.album){
 					this.albums = res.album.docs;
 					if(this.albums.length > 0){
+						this.songSectionShow = true;
 						this.getSongs(this.albums[0]._id);
+					}else{
+						this.songSectionShow = false;
 					}
 				}
 			},

@@ -4,8 +4,14 @@
     border-radius: 50%;
 }
 
+.thumbnail-image-artist{
+    display: flex;
+}
+
 .thumbnail-image-artist .artist-name{
     margin-top: 5%;
+    text-align: left;
+    margin-left: 5%;
     /*float: left;*/
 }
 

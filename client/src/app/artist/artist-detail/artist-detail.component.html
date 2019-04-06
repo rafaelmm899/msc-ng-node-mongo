@@ -1,10 +1,10 @@
 <div class="row artist-section">
 	<div class="col-md-4">
 		<div class="thumbnail-image-artist" *ngIf="artist">
-			<div class="artist-image pull-left">
+			<div class="artist-image">
 				<img src="{{ url+'getImageArtist/'+artist.image }}" alt="...">
 			</div>
-			<div class="artist-name pull-right">
+			<div class="artist-name">
 				<h5>{{ artist.name }}</h5>
 				<h6>{{ artist.description }}</h6>
 			</div>
@@ -25,13 +25,19 @@
 			</div>
 		</div>
 	</ul>
+
+	<p *ngIf="!albums || albums.length == 0">
+		<alert type="danger">
+			<strong>Oh snap!</strong> There are no album for this artist
+		</alert>
+	</p>
 </div>
-<div class="row song-section">
+<div class="row song-section" [class.hidden]="!songSectionShow">
 	<div class="col-md-12">
 		<h3>Songs</h3>
 	</div>
 	<div class="col-md-12">
-		<table class="table table-striped">
+		<table class="table table-striped" *ngIf="songs && songs.length > 0">
 			<thead>
 				<th>#</th>
 				<th>Song</th>
@@ -45,7 +51,11 @@
 				</tr>
 			</tbody>
 		</table>
-		
+		<p *ngIf="!songs || songs.length == 0">
+			<alert type="danger">
+				<strong>Oh snap!</strong> There are no songs for this album
+			</alert>
+		</p>
 	</div>
 	
 </div>
