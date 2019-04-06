@@ -38,34 +38,42 @@ export class ArtistDetailComponent implements OnInit {
 		let idArtist = this._route.snapshot.paramMap.get("idArtist");
 		this.getArtist(idArtist);
 	}
+
+	getSongs(idAlbum:string){
+		this._songService.getSongs(this.token,idAlbum).subscribe(
+			songResponse => {
+				if(songResponse.song){
+					this.songs = songResponse.song;
+				}
+			},
+			songError => {
+				console.log(songError);
+			}
+		)
+	}
+
+	getAlbums(idArtist: string){
+		this._albumService.getAlbums(this.token,idArtist,"1").subscribe(
+			res => {
+				if(res.album){
+					this.albums = res.album.docs;
+					if(this.albums.length > 0){
+						this.getSongs(this.albums[0]._id);
+					}
+				}
+			},
+			err => {
+				console.log(err);
+			}
+		)
+	}
 	  
 	getArtist(idArtist: string){
 		this._artistService.getArtist(this.token,idArtist).subscribe(
 			response => {
 				if(response.artist){
 					this.artist = response.artist;
-					this._albumService.getAlbums(this.token,this.artist._id,"1").subscribe(
-						res => {
-							if(res.album){
-								this.albums = res.album.docs;
-								if(this.albums.length > 0){
-									this._songService.getSongs(this.token,this.albums[0]._id).subscribe(
-										songResponse => {
-											if(songResponse.song){
-												this.songs = songResponse.song;
-											}
-										},
-										songError => {
-											console.log(songError);
-										}
-									)
-								}
-							}
-						},
-						err => {
-							console.log(err);
-						}
-					)
+					this.getAlbums(this.artist._id);
 				}
 			},
 			error => {
