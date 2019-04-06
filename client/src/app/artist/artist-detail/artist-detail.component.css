@@ -28,3 +28,13 @@
     margin-top: 1%;
     margin-top: 1%;
 }
+
+.thumbnail-album {
+    padding: 5%;
+    border: 1px solid #ddd;
+}
+
+.thumbnail-album:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 1px #ddd;
+}

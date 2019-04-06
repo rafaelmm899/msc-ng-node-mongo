@@ -6,6 +6,7 @@
 			</div>
 			<div class="artist-name pull-right">
 				<h5>{{ artist.name }}</h5>
+				<h6>{{ artist.description }}</h6>
 			</div>
 		</div>
 	</div>
@@ -14,8 +15,8 @@
 	<div class="col-md-12">
 		<h3>Albums</h3>
 	</div>
-	<ul class="col-sm-6 col-md-3" *ngFor="let album of albums">
-		<div class="thumbnail-album">
+	<ul class="col-sm-6 col-md-3 album-wrapper" *ngFor="let album of albums">
+		<div class="thumbnail-album" (click)="getSongs(album._id)">
 			<div class="album-image">
 				<img src="{{ url+'album_get_image/'+album.image }}" alt="...">
 			</div>
