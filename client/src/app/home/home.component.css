@@ -22,6 +22,12 @@
 
 .artist-name{
     text-align: center;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.artist-name:hover, .link-artist-name:hover{
+    text-decoration: none;
 }
 
 .thumbnail:hover {

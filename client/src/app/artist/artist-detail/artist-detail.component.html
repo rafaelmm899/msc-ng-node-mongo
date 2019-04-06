@@ -1,3 +1,50 @@
-<p>
-  artist-detail works!
-</p>
+<div class="row artist-section">
+	<div class="col-md-4">
+		<div class="thumbnail-image-artist" *ngIf="artist">
+			<div class="artist-image pull-left">
+				<img src="{{ url+'getImageArtist/'+artist.image }}" alt="...">
+			</div>
+			<div class="artist-name pull-right">
+				<h5>{{ artist.name }}</h5>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row album-section">
+	<div class="col-md-12">
+		<h3>Albums</h3>
+	</div>
+	<ul class="col-sm-6 col-md-3" *ngFor="let album of albums">
+		<div class="thumbnail-album">
+			<div class="album-image">
+				<img src="{{ url+'album_get_image/'+album.image }}" alt="...">
+			</div>
+			<div class="album-name">
+				<h5>{{ album.name }}</h5>
+			</div>
+		</div>
+	</ul>
+</div>
+<div class="row song-section">
+	<div class="col-md-12">
+		<h3>Songs</h3>
+	</div>
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+				<th>#</th>
+				<th>Song</th>
+				<th>Duration</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let song of songs">
+					<td>{{ song.number }}</td>
+					<td>{{ song.name }}</td>
+					<td>{{ song.duration }}</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	
+</div>

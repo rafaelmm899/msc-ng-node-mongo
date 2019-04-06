@@ -324,7 +324,10 @@ body {
     .content {
         position: relative;
         display: block;
-        padding: 30px;
+        padding-top: 0px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 30px;
     }
 }
 /* FIN DASHBOARD COMPONENT STYLE */

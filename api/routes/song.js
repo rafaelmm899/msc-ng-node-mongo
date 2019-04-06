@@ -9,7 +9,7 @@ var songController = require('../controllers/song');
 var api = express.Router();
 
 api.post('/song',authenticated.ensureAuth,songController.save);
-api.get('/songs/:id/:page?', authenticated.ensureAuth,songController.getSongs);
+api.get('/songs/:id', authenticated.ensureAuth,songController.getSongs);
 api.post('/upload_song/:id', [authenticated.ensureAuth, md_upload], songController.uploadFile);
 api.get('/get_song/:id', authenticated.ensureAuth, songController.getFile);
 api.get('/song/:id',authenticated.ensureAuth,songController.getSong);

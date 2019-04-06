@@ -44,10 +44,8 @@ function save(req, res) {
 
 function getSongs(req, res) {
     let albumId = req.params.id;
-    var page = (req.params.page)?req.params.page:1;
-    var items = 10;
 
-    Song.paginate(Song.find({album: albumId}).populate({path:'Album'}),{ page: page, limit:items },function (error, songs) {
+    Song.find({album: albumId}).populate({path:'Album'}).exec((error, songs)=> {
         if(error){
             res.status(500).send({
                 message : 'Error in the request'

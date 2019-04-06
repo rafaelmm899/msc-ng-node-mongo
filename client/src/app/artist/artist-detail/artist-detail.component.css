@@ -1,0 +1,30 @@
+.thumbnail-image-artist .artist-image img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.thumbnail-image-artist .artist-name{
+    margin-top: 5%;
+    /*float: left;*/
+}
+
+.artist-section, .album-section{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #ddd;
+}
+
+.thumbnail-album .album-image img {
+    height: 224px;
+    width: 100%;
+}
+
+.album-section, .song-section {
+    margin-top: 2%;
+}
+
+.song-list li{
+    margin-top: 1%;
+    margin-top: 1%;
+}

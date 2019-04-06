@@ -44,24 +44,15 @@ export class SongListComponent implements OnInit{
 
     getSongs(){
         this._route.params.forEach((param : Params) => {
-            let page = param['page'];
+            
             this.albumId = param['id'];
-			if(!page){
-				page = 1;
-			}else{
-				this.nextPage = page + 1;
-				this.prePage = page - 1;
-			}
-
-			if(this.prePage == 0){
-				this.prePage = 1;
-            }
-            this._songService.getSongs(this.token, this.albumId, page).subscribe(
+			
+            this._songService.getSongs(this.token, this.albumId).subscribe(
                 response => {
                     if(!response.song){
                         this._messageService.sendMessage(response.message, 'danger');
                     }else{
-                        this.songs = response.song.docs;
+                        this.songs = response.song;
                     }
                 },
                 error => {

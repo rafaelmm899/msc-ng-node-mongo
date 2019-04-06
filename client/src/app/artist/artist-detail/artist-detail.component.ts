@@ -7,6 +7,7 @@ import { Artist } from 'src/app/models/artist';
 import { Album } from 'src/app/models/album';
 import { Song } from 'src/app/models/song';
 import { UserService } from 'src/app/user/user.service';
+import { GLOBAL } from 'src/global';
 
 @Component({
   	selector: 'app-artist-detail',
@@ -18,6 +19,8 @@ export class ArtistDetailComponent implements OnInit {
 	public artist: Artist;
 	public albums: Album[];
 	public songs: Song[];
+	public token: string;
+	public url: string;
 
   	constructor(
 		private _artistService: ArtistService,
@@ -27,13 +30,49 @@ export class ArtistDetailComponent implements OnInit {
 		private _route: ActivatedRoute,
 		private _userService: UserService
 	) { 
-
+		this.token = this._userService.getTokenInLocalStorage();
+		this.url = GLOBAL.url;
 	}
 
   	ngOnInit() {
+		let idArtist = this._route.snapshot.paramMap.get("idArtist");
+		this.getArtist(idArtist);
 	}
 	  
-
+	getArtist(idArtist: string){
+		this._artistService.getArtist(this.token,idArtist).subscribe(
+			response => {
+				if(response.artist){
+					this.artist = response.artist;
+					this._albumService.getAlbums(this.token,this.artist._id,"1").subscribe(
+						res => {
+							if(res.album){
+								this.albums = res.album.docs;
+								if(this.albums.length > 0){
+									this._songService.getSongs(this.token,this.albums[0]._id).subscribe(
+										songResponse => {
+											if(songResponse.song){
+												this.songs = songResponse.song;
+											}
+										},
+										songError => {
+											console.log(songError);
+										}
+									)
+								}
+							}
+						},
+						err => {
+							console.log(err);
+						}
+					)
+				}
+			},
+			error => {
+				console.log(error);
+			}
+		)
+	}
 
 
 }

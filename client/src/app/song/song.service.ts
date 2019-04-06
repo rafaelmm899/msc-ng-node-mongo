@@ -25,12 +25,12 @@ export class SongService {
         return this._http.post(this.url+'song',param,{headers : headers});
     }
 
-    getSongs(token: string,albumId: string, page:string):Observable<any>{
+    getSongs(token: string,albumId: string):Observable<any>{
         let headers = new HttpHeaders({
             'Content-Type' : 'application/json',
             'Authorization' : token
         })
-        return this._http.get(this.url+'songs/'+albumId+'/'+page, { headers: headers });
+        return this._http.get(this.url+'songs/'+albumId, { headers: headers });
     }
 
     getSong(token:string, songId: string):Observable<any>{
