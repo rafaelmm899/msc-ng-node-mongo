@@ -16,7 +16,7 @@
 		<h3>Albums</h3>
 	</div>
 	<ul class="col-sm-6 col-md-3 album-wrapper" *ngFor="let album of albums">
-		<div class="thumbnail-album" (click)="getSongs(album._id)">
+		<div class="thumbnail-album" (click)="getSongs(album._id)" [class.selected]="albumSelected === album._id">
 			<div class="album-image">
 				<img src="{{ url+'album_get_image/'+album.image }}" alt="...">
 			</div>

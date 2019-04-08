@@ -37,7 +37,8 @@ const dashboardRoutes : Routes = [{
 		{ path: 'songs/:id', component: SongListComponent },
 		{ path:'song-create/:albumId', component: SongCreateComponent },
 		{ path: 'song-edit/:albumId/:songId', component:SongEditComponent },
-		{ path: 'artist-detail/:idArtist', component : ArtistDetailComponent }
+		{ path: 'artist-detail/:idArtist', component : ArtistDetailComponent },
+		{ path: 'artist-detail/:idArtist/:idAlbum', component : ArtistDetailComponent }
 	]
 	
 }]

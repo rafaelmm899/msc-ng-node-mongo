@@ -67,14 +67,16 @@
 	<div class="col-md-6">
 		<div class="row">
 			<ul class="col-sm-6 col-md-6" *ngFor="let album of lastAlbums">
-				<div class="thumbnail">
-					<div class="album-image">
-						<img src="{{ url+'album_get_image/'+album.image }}" alt="...">
+				<a [routerLink]="['/dashboard/artist-detail/'+album.artist+'/'+album._id]">
+					<div class="thumbnail">
+						<div class="album-image">
+							<img src="{{ url+'album_get_image/'+album.image }}" alt="...">
+						</div>
+						<div class="album-title">
+							<h5>{{ album.title }}</h5>
+						</div>
 					</div>
-					<div class="album-title">
-						<h5>{{ album.title }}</h5>
-					</div>
-				</div>
+				</a>
 			</ul>
 		</div>
 	</div>

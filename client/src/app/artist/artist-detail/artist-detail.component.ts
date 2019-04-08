@@ -22,6 +22,7 @@ export class ArtistDetailComponent implements OnInit {
 	public token: string;
 	public url: string;
 	public songSectionShow: boolean;
+	public albumSelected: string;
 
   	constructor(
 		private _artistService: ArtistService,
@@ -37,11 +38,13 @@ export class ArtistDetailComponent implements OnInit {
 
   	ngOnInit() {
 		let idArtist = this._route.snapshot.paramMap.get("idArtist");
+		
 		this.getArtist(idArtist);
 		
 	}
 
 	getSongs(idAlbum:string){
+		this.albumSelected = idAlbum;
 		this._songService.getSongs(this.token,idAlbum).subscribe(
 			songResponse => {
 				if(songResponse.song){
@@ -60,8 +63,15 @@ export class ArtistDetailComponent implements OnInit {
 				if(res.album){
 					this.albums = res.album.docs;
 					if(this.albums.length > 0){
+						this.albumSelected = this._route.snapshot.paramMap.get("idAlbum");
+						
+						if(!this.albumSelected){
+							this.albumSelected = this.albums[0]._id;
+						}
+
+						this.getSongs(this.albumSelected);
 						this.songSectionShow = true;
-						this.getSongs(this.albums[0]._id);
+						
 					}else{
 						this.songSectionShow = false;
 					}
