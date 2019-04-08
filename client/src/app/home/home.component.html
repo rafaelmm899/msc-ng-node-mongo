@@ -67,7 +67,7 @@
 	<div class="col-md-6">
 		<div class="row">
 			<ul class="col-sm-6 col-md-6" *ngFor="let album of lastAlbums">
-				<a [routerLink]="['/dashboard/artist-detail/'+album.artist+'/'+album._id]">
+				<a class="link-album" [routerLink]="['/dashboard/artist-detail/'+album.artist+'/'+album._id]">
 					<div class="thumbnail">
 						<div class="album-image">
 							<img src="{{ url+'album_get_image/'+album.image }}" alt="...">

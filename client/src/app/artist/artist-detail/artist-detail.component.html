@@ -42,12 +42,14 @@
 				<th>#</th>
 				<th>Song</th>
 				<th>Duration</th>
+				<th></th>
 			</thead>
 			<tbody>
 				<tr *ngFor="let song of songs">
 					<td>{{ song.number }}</td>
 					<td>{{ song.name }}</td>
 					<td>{{ song.duration }}</td>
+					<td class="column-play"><button class="btn"><i class="fa fa-play-circle fa-2x"></i></button></td>
 				</tr>
 			</tbody>
 		</table>

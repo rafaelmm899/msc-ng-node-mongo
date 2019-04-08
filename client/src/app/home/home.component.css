@@ -64,9 +64,19 @@
 
 .album-title {
     text-align: center;
+    color: #6c757d;
+}
+
+.link-album:hover {
+    text-decoration: none;
 }
 
 .box-gender span {
     font-size: 18px;
     margin-top: 50%;
 }
+
+.link-album .thumbnail {
+    padding: 2%;
+}
+
