@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { ArtistService } from '../artist.service';
 import { AlbumService } from 'src/app/album/album.service';
@@ -8,12 +8,13 @@ import { Album } from 'src/app/models/album';
 import { Song } from 'src/app/models/song';
 import { UserService } from 'src/app/user/user.service';
 import { GLOBAL } from 'src/global';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   	selector: 'app-artist-detail',
   	templateUrl: './artist-detail.component.html',
 	styleUrls: ['./artist-detail.component.css'],
-	providers: [ ArtistService, AlbumService, SongService, UserService ]  
+	providers: [ ArtistService, AlbumService, SongService, UserService,SharedService ]  
 })
 export class ArtistDetailComponent implements OnInit {
 	public artist: Artist;
@@ -30,7 +31,8 @@ export class ArtistDetailComponent implements OnInit {
 		private _songService: SongService,
 		private _router: Router,
 		private _route: ActivatedRoute,
-		private _userService: UserService
+		private _userService: UserService,
+		private _sharedService: SharedService
 	) { 
 		this.token = this._userService.getTokenInLocalStorage();
 		this.url = GLOBAL.url;
@@ -97,5 +99,24 @@ export class ArtistDetailComponent implements OnInit {
 		)
 	}
 
+
+	playSong(song){
+		/*let songPlayer = JSON.stringify(song);
+        let filePath = this.url+'get_song/'+song.file;
+        let imagePath = this.url+'album_get_image/'+song.album.image;
+
+        localStorage.setItem("sound_song", songPlayer);
+        document.getElementById("mp3-source").setAttribute("src", filePath);
+
+        let reproductor = document.getElementById("mp3-source");
+        (document.getElementById("player") as any).load();
+        (document.getElementById("player") as any).play();
+
+        document.getElementById("play-song-title").innerHTML = song.name;
+        document.getElementById("play-song-artist").innerHTML = song.album.artist.name;
+		document.getElementById("play-image-album").setAttribute("src", imagePath);*/
+		this._sharedService.emitChange('Data from child');
+		
+	}
 
 }

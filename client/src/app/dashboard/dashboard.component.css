@@ -1,0 +1,21 @@
+.player-album{
+    height: 150px;
+}
+
+.player-song{
+    width: 100%;
+    height: 30px;
+}
+
+.player-bottons .btn-group{
+    width: 100%;
+}
+
+.main-player{
+    padding: 5%;
+    margin-top: 2%;
+}
+
+.player-box{
+    border: 1px solid #ddd;
+}

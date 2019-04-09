@@ -3,18 +3,19 @@ import { User } from '../models/user';
 import { UserService } from '../user/user.service';
 import { GLOBAL } from 'src/global';
 import { Router,ActivatedRoute } from "@angular/router";
-
+import { SharedService } from '../services/shared.service';
+import { Subscription } from "rxjs";
  
 
 @Component({
   	selector: 'app-dashboard',
   	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.css'],
-	providers: [UserService]
+	providers: [UserService, SharedService]
 
 })
 export class DashboardComponent implements OnInit, DoCheck {
-
+	public subscription: Subscription;
 	public items: string[];
 	public userLogged;
 	public url;
@@ -24,12 +25,14 @@ export class DashboardComponent implements OnInit, DoCheck {
 	constructor(
 		private _userService: UserService,
 		private _route: ActivatedRoute,
-		private _router: Router
+		private _router: Router,
+		private _sharedService: SharedService
 	) {  
 		this.userLogged = _userService.getUserLogged();
 		this.token = _userService.getTokenInLocalStorage();
 		this.url = GLOBAL.url;
 		this.profileImage = 'assets/images/default-user-image.png'
+		
 	}
 
 	ngDoCheck(){
@@ -39,7 +42,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 		if(token != this.token){
 			this.logout();
 		}
-		
+		this.subscription = this._sharedService.getChange().subscribe(song => { console.log(song) });
 	}
 
 	ngOnInit() {

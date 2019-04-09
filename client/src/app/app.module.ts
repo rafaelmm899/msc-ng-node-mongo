@@ -40,6 +40,7 @@ import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.comp
 
 
 
+
 @NgModule({
   declarations: [
     LoginComponent,
