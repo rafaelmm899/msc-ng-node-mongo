@@ -3,7 +3,7 @@ import { User } from '../models/user';
 import { UserService } from '../user/user.service';
 import { GLOBAL } from 'src/global';
 import { Router,ActivatedRoute } from "@angular/router";
-import { SharedService } from '../services/shared.service';
+
 import { Subscription } from "rxjs";
  
 
@@ -11,7 +11,7 @@ import { Subscription } from "rxjs";
   	selector: 'app-dashboard',
   	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.css'],
-	providers: [UserService, SharedService]
+	providers: [UserService]
 
 })
 export class DashboardComponent implements OnInit, DoCheck {
@@ -25,8 +25,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 	constructor(
 		private _userService: UserService,
 		private _route: ActivatedRoute,
-		private _router: Router,
-		private _sharedService: SharedService
+		private _router: Router
 	) {  
 		this.userLogged = _userService.getUserLogged();
 		this.token = _userService.getTokenInLocalStorage();
@@ -42,7 +41,6 @@ export class DashboardComponent implements OnInit, DoCheck {
 		if(token != this.token){
 			this.logout();
 		}
-		this.subscription = this._sharedService.getChange().subscribe(song => { console.log(song) });
 	}
 
 	ngOnInit() {
@@ -70,6 +68,18 @@ export class DashboardComponent implements OnInit, DoCheck {
 	logout(){
 		this._userService.logout();
 		this._router.navigate(['']);
+	}
+
+	onActivate(componentReference) {
+		console.log(componentReference)
+		//componentReference.anyFunction();
+		//Below will subscribe to the searchItem emitter
+		if(componentReference.play){
+			componentReference.play.subscribe((song) => {
+			// Will receive the data from child here 
+			console.log(song);
+			})
+		}
 	}
 
 }

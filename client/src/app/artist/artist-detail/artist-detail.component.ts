@@ -8,13 +8,12 @@ import { Album } from 'src/app/models/album';
 import { Song } from 'src/app/models/song';
 import { UserService } from 'src/app/user/user.service';
 import { GLOBAL } from 'src/global';
-import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   	selector: 'app-artist-detail',
   	templateUrl: './artist-detail.component.html',
 	styleUrls: ['./artist-detail.component.css'],
-	providers: [ ArtistService, AlbumService, SongService, UserService,SharedService ]  
+	providers: [ ArtistService, AlbumService, SongService, UserService ]  
 })
 export class ArtistDetailComponent implements OnInit {
 	public artist: Artist;
@@ -24,6 +23,7 @@ export class ArtistDetailComponent implements OnInit {
 	public url: string;
 	public songSectionShow: boolean;
 	public albumSelected: string;
+	@Output() play: EventEmitter<Song> = new EventEmitter();
 
   	constructor(
 		private _artistService: ArtistService,
@@ -31,8 +31,7 @@ export class ArtistDetailComponent implements OnInit {
 		private _songService: SongService,
 		private _router: Router,
 		private _route: ActivatedRoute,
-		private _userService: UserService,
-		private _sharedService: SharedService
+		private _userService: UserService
 	) { 
 		this.token = this._userService.getTokenInLocalStorage();
 		this.url = GLOBAL.url;
@@ -115,7 +114,8 @@ export class ArtistDetailComponent implements OnInit {
         document.getElementById("play-song-title").innerHTML = song.name;
         document.getElementById("play-song-artist").innerHTML = song.album.artist.name;
 		document.getElementById("play-image-album").setAttribute("src", imagePath);*/
-		this._sharedService.emitChange('Data from child');
+		//this._sharedService.emitChange('Data from child');
+		this.play.emit(song);
 		
 	}
 
