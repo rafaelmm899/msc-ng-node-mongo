@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit, DoCheck {
   	}
 
 	updatePlayer(song: any){
-		let filePath = this.url+'get-song/'+song.file;
+		let filePath = this.url+'get_song/'+song.file;
 		
 		this.renderer.setAttribute(this.el.nativeElement.querySelector("source"),"src",filePath);
 		this.el.nativeElement.querySelector("audio").load();
