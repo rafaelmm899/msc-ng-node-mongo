@@ -43,7 +43,7 @@ function saveAlbum(req, res){
 
 function getAlbum(req, res) {
     let albumId = req.params.id;
-    Album.findById(albumId,(error, album)=> {
+    Album.findById(albumId).populate('artist').exec((error, album)=> {
         if(error){
             res.status(500).send({
                 message : 'Error in the request'
@@ -54,6 +54,7 @@ function getAlbum(req, res) {
                     message : 'Album not found'
                 })
             }else{
+                console.log(album);
                 res.status(200).send({
                     album
                 })

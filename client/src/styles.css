@@ -64,8 +64,8 @@ body {
         position: fixed;
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
-        -webkit-box-shadow: 1px 0 20px 0 #d3d3d3;
-        box-shadow: 1px 0 20px 0 #d3d3d3;
+        /*-webkit-box-shadow: 1px 0 20px 0 #d3d3d3;*/
+        /*box-shadow: 1px 0 20px 0 #d3d3d3;*/
         width: 264px;
         /*height: 100vh;*/
         top: 0;
@@ -80,6 +80,11 @@ body {
     .navbar-wrapper{
         height: 100%;
         width: 100%;
+    }
+
+    .container-wrapper {
+        overflow-y: scroll;
+        height: calc(80vh - 70px);
     }
 
     .navbar-wrapper .navbar-header {

@@ -6,13 +6,14 @@ import { Router,ActivatedRoute } from "@angular/router";
 
 import { Subscription } from "rxjs";
 import { Song } from '../models/song';
+import { AlbumService } from '../album/album.service';
  
 
 @Component({
   	selector: 'app-dashboard',
   	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.css'],
-	providers: [UserService]
+	providers: [UserService, AlbumService]
 
 })
 export class DashboardComponent implements OnInit, DoCheck {
@@ -31,7 +32,8 @@ export class DashboardComponent implements OnInit, DoCheck {
 		private _route: ActivatedRoute,
 		private _router: Router,
 		private el: ElementRef,
-		private renderer: Renderer2
+		private renderer: Renderer2,
+		private _albumService: AlbumService
 	) {  
 		this.userLogged = _userService.getUserLogged();
 		this.token = _userService.getTokenInLocalStorage();
@@ -78,15 +80,31 @@ export class DashboardComponent implements OnInit, DoCheck {
 	}
 
 	ngAfterViewInit() {
-		console.log(this.el.nativeElement.querySelector("audio"));
+		
   	}
 
 	updatePlayer(song: any){
-		let filePath = this.url+'get_song/'+song.file;
+		this._albumService.getAlbum(this.token,song.album).subscribe(
+			response => {
+				if(response.album){
+					this.song.album = response.album;
+					let filePath = this.url+'get_song/'+song.file;
+					let imagePath = this.url+'album_get_image/'+response.album.image;
+					console.log(imagePath);
+					this.renderer.setAttribute(this.el.nativeElement.querySelector("source"),"src",filePath);
+					
+					this.renderer.setAttribute(this.el.nativeElement.querySelector("#play-image-album"),"src",imagePath);
+					this.el.nativeElement.querySelector("audio").load();
+					this.el.nativeElement.querySelector("audio").play();
+				}
+			},
+			error => {
+				console.log(error);
+			}
+		)
+
+
 		
-		this.renderer.setAttribute(this.el.nativeElement.querySelector("source"),"src",filePath);
-		this.el.nativeElement.querySelector("audio").load();
-		this.el.nativeElement.querySelector("audio").play();
 
 		//let reproductor = document.getElementById("source");
 		//(document.getElementById("player") as any).load();

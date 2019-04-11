@@ -40,33 +40,6 @@
 					</a>
 				</li>
 			</ul>
-			<div class="main-player">
-				<div class="player-box">
-					<div class="player-album">
-
-					</div>
-					<div class="player-song">
-						
-					</div>
-					<div class="player-bottons">
-						<audio controls #player>
-							<source #source src="" type="audio/mpeg">
-							Tu navegador no es compatible
-						</audio>
-						<!--<div class="btn-group btn-group-lg" role="group" aria-label="...">
-							<button type="button" class="btn btn-default">
-								<i class="fa fa-step-backward"></i>
-							</button>
-							<button type="button" class="btn btn-default">
-								<i class="fa fa-play-circle"></i>
-							</button>
-							<button type="button" class="btn btn-default">
-								<i class="fa fa-step-forward"></i>
-							</button>
-						</div>-->
-					</div>
-				</div>
-			</div>
 		</div>
 		
 	</div>
@@ -105,6 +78,32 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="player-wrapper">
+		<div class="album-image">
+			<span *ngIf="song.album" >
+				<img id="play-image-album" src="" />
+			</span>
+			<span *ngIf="!song.album">
+				<img id="play-image-album" src="" />
+			</span>
+		</div>
+		<div class="audio-file">
+			<p class="song-description">
+				<span id="play-song-artist">
+					{{ song.album.artist.name }}
+				</span>
+				|
+				<span id="play-song-title" *ngIf="song">
+					{{ song.name }}
+				</span>
+			</p>
+			
+			<audio controls id="player">
+				<source id="mp3-source" src="" type="audio/mpeg">
+				Tu navegador no es compatible
+			</audio>
 		</div>
 	</div>
 </div>	
