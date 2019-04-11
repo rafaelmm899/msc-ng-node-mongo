@@ -40,6 +40,14 @@
 					</a>
 				</li>
 			</ul>
+			<div class="album-image">
+				<span *ngIf="song.album" >
+					<img id="play-image-album" src="" />
+				</span>
+				<span *ngIf="!song.album">
+					<img id="play-image-album" src="" />
+				</span>
+			</div>
 		</div>
 		
 	</div>
@@ -81,14 +89,7 @@
 		</div>
 	</div>
 	<div class="player-wrapper">
-		<div class="album-image">
-			<span *ngIf="song.album" >
-				<img id="play-image-album" src="" />
-			</span>
-			<span *ngIf="!song.album">
-				<img id="play-image-album" src="" />
-			</span>
-		</div>
+		
 		<div class="audio-file">
 			<p class="song-description">
 				<span id="play-song-artist">
