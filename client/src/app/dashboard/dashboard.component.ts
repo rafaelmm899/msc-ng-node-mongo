@@ -7,13 +7,14 @@ import { Router,ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { Song } from '../models/song';
 import { AlbumService } from '../album/album.service';
+import { SongService } from '../song/song.service';
  
 
 @Component({
   	selector: 'app-dashboard',
   	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.css'],
-	providers: [UserService, AlbumService]
+	providers: [UserService, AlbumService, SongService]
 
 })
 export class DashboardComponent implements OnInit, DoCheck {
@@ -33,7 +34,8 @@ export class DashboardComponent implements OnInit, DoCheck {
 		private _router: Router,
 		private el: ElementRef,
 		private renderer: Renderer2,
-		private _albumService: AlbumService
+		private _albumService: AlbumService,
+		private _songService: SongService
 	) {  
 		this.userLogged = _userService.getUserLogged();
 		this.token = _userService.getTokenInLocalStorage();
@@ -82,6 +84,21 @@ export class DashboardComponent implements OnInit, DoCheck {
 	ngAfterViewInit() {
 		
   	}
+
+
+	songFinished(): void{
+		if(this.song && this.userLogged){
+			this._songService.playback(this.token,this.userLogged,this.song).subscribe(
+				response => {
+						
+				},
+				error => {
+					console.log(error);
+				}
+			)
+		}
+		
+	}
 
 	updatePlayer(song: any){
 		this._albumService.getAlbum(this.token,song.album).subscribe(

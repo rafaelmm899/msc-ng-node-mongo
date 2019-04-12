@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { GLOBAL } from 'src/global';
 import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { Song } from '../models/song';
+import { User } from '../models/user';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -56,6 +57,15 @@ export class SongService {
             'Authorization' : token
         })
         return this._http.delete(this.url+'delete_song/'+songId,{headers : headers });
+    }
+
+    playback(token: string, user: User, song: Song):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+        let param = JSON.stringify({ user : user._id, song: song._id });
+        return this._http.post(this.url+'playback',param,{headers : headers});
     }
 
 }

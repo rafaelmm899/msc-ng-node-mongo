@@ -1,4 +1,4 @@
-<nav class="side-navbar sidebar">
+<nav class="side-navbar sidebar" *ngIf="userLogged">
 	<div class="navbar-wrapper">
 		<div class="navbar-header">	
 			<a [routerLink]="['dashboard/home']" class="project-logo-link">
@@ -52,7 +52,7 @@
 		
 	</div>
 </nav>
-<header class="navbar top-header navbar-expand-lg navbar-light">
+<header class="navbar top-header navbar-expand-lg navbar-light" *ngIf="userLogged">
 	<div class="collapse navbar-collapse">
 		<div class="mr-auto">
 			
@@ -76,7 +76,7 @@
 	</div>
 </header>
 		
-<div class="main-container">
+<div class="main-container" *ngIf="userLogged">
 	<div class="container-wrapper">
 		<div class="content">
 			<div class="container-inner">
@@ -92,7 +92,7 @@
 		
 		<div class="audio-file">
 			<p class="song-description">
-				<span id="play-song-artist">
+				<span id="play-song-artist" *ngIf="song.album.artist">
 					{{ song.album.artist.name }}
 				</span>
 				|
@@ -101,7 +101,7 @@
 				</span>
 			</p>
 			
-			<audio controls id="player">
+			<audio controls="controls" (ended)="songFinished()" id="player">
 				<source id="mp3-source" src="" type="audio/mpeg">
 				Tu navegador no es compatible
 			</audio>
