@@ -54,7 +54,6 @@ function getAlbum(req, res) {
                     message : 'Album not found'
                 })
             }else{
-                console.log(album);
                 res.status(200).send({
                     album
                 })
