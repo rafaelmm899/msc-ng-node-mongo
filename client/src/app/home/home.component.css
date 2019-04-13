@@ -80,3 +80,6 @@
     padding: 2%;
 }
 
+.song-top-card p, .song-top-card h6{
+    margin-bottom: 0px;
+}

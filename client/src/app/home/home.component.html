@@ -86,13 +86,14 @@
 				<div class="card" style="max-width:260px;">
 					<div class="row ">
 						  <div class="col-md-4">
-							<img src="http://via.placeholder.com/200" class="w-100">
+							<img src="{{ url+'album_get_image/'+song.album.image }}" class="w-100">
 						</div>
 						<div class="col-md-8 px-1">
-							  <div class="card-block px-1" style="padding-top:3%;">
+							<div class="card-block px-1 song-top-card" style="padding-top:3%;">
 								<h6 class="card-title">{{ song.name }}</h6>
-								<p class="card-text">Album</p>
-							  </div>
+								<p class="card-text">{{ song.album.title }}</p>
+								<p class="card-text">{{ song.album.artist.name }}</p>
+							</div>
 						</div>		  
 					</div>
 				</div>

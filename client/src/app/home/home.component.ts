@@ -74,10 +74,16 @@ export class HomeComponent implements OnInit {
 					
 					let array = [];
 					for (let i = 0; i < response.count.length; i++) {
-						let sg = response.count[i].sg[0];
+						let sg = response.count[i].song;
+						if(response.count[i].artist){
+							sg.album = response.count[i].album;
+							sg.album.artist = response.count[i].artist;
+						}
+						
 						array.push(new Song(sg._id,sg.name,sg.number,sg.gender,sg.file,sg.duration,sg.album));	
 					}
 					this.topSongs = array;
+					console.log(this.topSongs);
 				}
 			},
 			error => {
