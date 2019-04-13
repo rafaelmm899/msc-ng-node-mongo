@@ -9,5 +9,6 @@ var playbackController = require('../controllers/playback');
 var api = express.Router();
 
 api.post('/playback',authenticated.ensureAuth,playbackController.save);
+api.get('/playcounter',authenticated.ensureAuth,playbackController.getPlayCounter);
 
 module.exports = api;

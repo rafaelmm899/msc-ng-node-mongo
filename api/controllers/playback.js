@@ -31,6 +31,32 @@ function save(req, res) {
     }
 }
 
+function getPlayCounter(req, res){
+    Playback.aggregate([
+        { $group: { _id: '$song', count: {$sum: 1} } },
+        { $unwind: { "path" : "$_id" }},
+        { $lookup : { from:"songs",localField:"_id", foreignField:"_id",as:"sg"} }
+    ]).exec((error, count) => {
+        if(error){
+            res.status(500).send({
+                message : 'Error in the request',
+                error : error
+            })
+        }else{
+            if(!count){
+                res.status(404).send({
+                    message : 'There are no data'
+                })
+            }else{
+                res.status(200).send({
+                    count
+                })
+            }
+        }
+    })
+}
+
 module.exports = {
-    save
+    save,
+    getPlayCounter
 }
