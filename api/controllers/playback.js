@@ -3,6 +3,7 @@
 const mongoose =  require('mongoose');
 const Song = require('../models/song');
 const User = require('../models/user');
+const Album = require('../models/album');
 const Playback = require('../models/playback');
 
 function save(req, res) {
@@ -35,9 +36,12 @@ function getPlayCounter(req, res){
     Playback.aggregate([
         { $group: { _id: '$song', count: {$sum: 1} } },
         { $unwind: { "path" : "$_id" }},
-        { $lookup : { from:"songs",localField:"_id", foreignField:"_id",as:"sg"} },
-        { $unwind: { "path" : "$sg" }},
-        { $lookup : { from:"albums",localField:"_id", foreignField:"sg.album",as:"lb"} }
+        { $lookup : { from:"songs",localField:"_id", foreignField:"_id",as:"song"} },
+        { $unwind: { "path" : "$song" }},
+        { $lookup : { from:"albums",localField:"song.album", foreignField:"_id",as:"album"} },
+        { $unwind: { "path" : "$album" }},
+        { $lookup : { from:"artists",localField:"album.artist", foreignField:"_id",as:"artist"} },
+        { $unwind: { "path" : "$artist" }},
     ]).exec((error, count) => {
         if(error){
             res.status(500).send({
