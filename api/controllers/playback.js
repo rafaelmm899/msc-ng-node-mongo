@@ -35,7 +35,9 @@ function getPlayCounter(req, res){
     Playback.aggregate([
         { $group: { _id: '$song', count: {$sum: 1} } },
         { $unwind: { "path" : "$_id" }},
-        { $lookup : { from:"songs",localField:"_id", foreignField:"_id",as:"sg"} }
+        { $lookup : { from:"songs",localField:"_id", foreignField:"_id",as:"sg"} },
+        { $unwind: { "path" : "$sg" }},
+        { $lookup : { from:"albums",localField:"_id", foreignField:"sg.album",as:"lb"} }
     ]).exec((error, count) => {
         if(error){
             res.status(500).send({
