@@ -37,6 +37,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ModalModule, AlertModule, ButtonsModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
+import { ExploreComponent } from './explore/explore.component';
 
 
 
@@ -59,7 +60,8 @@ import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.comp
     SongCreateComponent,
     SongListComponent,
     SongEditComponent,
-    ArtistDetailComponent
+    ArtistDetailComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,
