@@ -83,7 +83,7 @@ body {
     }
 
     .container-wrapper {
-        overflow-y: scroll;
+        overflow-y: auto;
         height: calc(90vh - 70px);
     }
 

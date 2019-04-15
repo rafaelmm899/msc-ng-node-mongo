@@ -94,15 +94,16 @@ function getLastAlbums(req, res){
     let findAlbum;
 
     if(limit){
-        findAlbum = Album.find().sort({_id:-1}).limit(4);
+        findAlbum = Album.find({}).populate({ path : 'artist' }).sort({_id:-1}).limit(parseInt(limit));
     }else{
-        findAlbum = Album.find();
+        findAlbum = Album.find({}).populate('artist');
     }
 
     findAlbum.exec((error, albums) => {
         if(error){
             res.status(500).send({
-                message : 'Error in the request'
+                message : 'Error in the request',
+                error: error
             })
         }else{
             if(!albums){

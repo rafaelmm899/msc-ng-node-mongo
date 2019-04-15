@@ -40,7 +40,8 @@ const dashboardRoutes : Routes = [{
 		{ path: 'song-edit/:albumId/:songId', component:SongEditComponent },
 		{ path: 'artist-detail/:idArtist', component : ArtistDetailComponent },
 		{ path: 'artist-detail/:idArtist/:idAlbum', component : ArtistDetailComponent },
-		{ path: 'explore', component: ExploreComponent }
+		{ path: 'explore', component: ExploreComponent },
+		{ path : 'explore/:gender',component : HomeComponent }
 	]
 	
 }]

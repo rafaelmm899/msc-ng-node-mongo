@@ -42,6 +42,7 @@ function getPlayCounter(req, res){
         { $unwind: { "path" : "$album" }},
         { $lookup : { from:"artists",localField:"album.artist", foreignField:"_id",as:"artist"} },
         { $unwind: { "path" : "$artist" }},
+        { $limit : 5 }
     ]).exec((error, count) => {
         if(error){
             res.status(500).send({

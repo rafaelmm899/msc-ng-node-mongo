@@ -80,6 +80,32 @@
     padding: 2%;
 }
 
-.song-top-card p, .song-top-card h6{
+.song-top-card .card-title, .song-top-card .card-text{
     margin-bottom: 0px;
+    font-size: 1vw;
+}
+
+.artist-card img {
+    width: 232px;
+    height: 200px;
+}
+
+.row-artist-section div span {
+    font-size: 18px;
+}
+
+.row-album-section{
+    margin-top: 20px;
+}
+
+.row-album-section div span{
+    font-size: 18px;
+}
+
+.top-songs span{
+    padding-inline-start: 40px;
+}
+
+.album-wrapper .col-md-4 {
+    padding-top: 15px;
 }

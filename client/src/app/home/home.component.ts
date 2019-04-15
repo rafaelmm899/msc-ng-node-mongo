@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	getLastAlbums(){
-		this._albumService.getLastAlbums(this.token,"4").subscribe(
+		this._albumService.getLastAlbums(this.token,"6").subscribe(
 			response => {
 				if(response.album){
 					this.lastAlbums = response.album;
