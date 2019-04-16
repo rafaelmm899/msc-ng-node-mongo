@@ -15,5 +15,6 @@ api.get('/get_song/:file', songController.getFile);
 api.get('/song/:id',authenticated.ensureAuth,songController.getSong);
 api.put('/update_song/:id', authenticated.ensureAuth,songController.update);
 api.delete('/delete_song/:id', authenticated.ensureAuth,songController.deleteSong);
+api.get('/filter/:gender/:page?', songController.getByGender);
 
 module.exports = api;

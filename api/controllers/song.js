@@ -177,6 +177,32 @@ function deleteSong(req, res) {
     })
 }
 
+function getByGender(req, res){
+    var page = (req.params.page)?req.params.page:1;
+    var items = 10;
+    let gender = req.params.gender;
+    Song.paginate(Song.find({ gender: gender }).populate({path: 'album', populate: {path:'artist'}}),{ 
+        page : page, limit: items }, 
+            function(error, songs){
+
+                if(error){
+                    res.status(500).send({
+                        message : 'Error in the request'
+                    })
+                }else{
+                    if(!songs){
+                        res.status(404).send({
+                            message : 'No records found'
+                        })
+                    }else{
+                        res.status(200).send({
+                            songs
+                        })
+                    }
+                }
+    })
+}
+
 
 module.exports = {
     save,
@@ -185,5 +211,6 @@ module.exports = {
     getFile,
     getSong,
     update,
-    deleteSong
+    deleteSong,
+    getByGender
 }
