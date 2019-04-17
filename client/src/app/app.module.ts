@@ -39,7 +39,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
 import { ExploreComponent } from './explore/explore.component';
 
-
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({
@@ -61,7 +61,9 @@ import { ExploreComponent } from './explore/explore.component';
     SongListComponent,
     SongEditComponent,
     ArtistDetailComponent,
-    ExploreComponent
+    ExploreComponent,
+    FilterComponent
+    
   ],
   imports: [
     BrowserModule,

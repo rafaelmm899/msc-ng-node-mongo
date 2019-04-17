@@ -179,7 +179,7 @@ function deleteSong(req, res) {
 
 function getByGender(req, res){
     var page = (req.params.page)?req.params.page:1;
-    var items = 10;
+    var items = 8;
     let gender = req.params.gender;
     Song.paginate(Song.find({ gender: gender }).populate({path: 'album', populate: {path:'artist'}}),{ 
         page : page, limit: items }, 

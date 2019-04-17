@@ -7,6 +7,7 @@ import { Album } from '../models/album';
 import { AlbumService } from '../album/album.service';
 import { Song } from "../models/song";
 import { SongService } from '../song/song.service';
+import { Route, Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -23,22 +24,26 @@ export class HomeComponent implements OnInit {
 	public prePage : string;
 	public pageDefault: string;
 	public url: string;
+	public gender: string;
 
   	constructor(
 		private _artistService: ArtistService,
 		private _userService: UserService,
 		private _albumService: AlbumService,
-		private _songService: SongService
+		private _songService: SongService,
+		private _route: ActivatedRoute
 	) { 
 		this.pageDefault = "1";
 		this.token = this._userService.getTokenInLocalStorage();
 		this.url = GLOBAL.url;
+		this.gender =  this._route.snapshot.params.gender;
 	}
 
 	ngOnInit() {
 		this.getArtists(this.pageDefault);
 		this.getLastAlbums();
 		this.getTopSongs();
+		
 	}
 
 	getArtists(page:string){

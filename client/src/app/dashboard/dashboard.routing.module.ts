@@ -18,6 +18,8 @@ import { SongCreateComponent } from '../song/song-create/song-create.component';
 import { SongEditComponent } from '../song/song-edit/song-edit.component';
 import { ArtistDetailComponent } from '../artist/artist-detail/artist-detail.component';
 import { ExploreComponent } from '../explore/explore.component';
+import { FilterComponent } from '../filter/filter.component';
+
 
 
 const dashboardRoutes : Routes = [{
@@ -41,7 +43,7 @@ const dashboardRoutes : Routes = [{
 		{ path: 'artist-detail/:idArtist', component : ArtistDetailComponent },
 		{ path: 'artist-detail/:idArtist/:idAlbum', component : ArtistDetailComponent },
 		{ path: 'explore', component: ExploreComponent },
-		{ path : 'explore/:gender',component : HomeComponent }
+		{ path : 'explore/:gender',component : FilterComponent }
 	]
 	
 }]

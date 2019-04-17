@@ -76,4 +76,11 @@ export class SongService {
         return this._http.get(this.url+'playcounter/',{headers : headers });
     }
 
+    getSongsByGenre(token: string, genre: string, page: string):Observable<any>{
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : token
+        })
+        return this._http.get(this.url+'filter/'+genre.toUpperCase()+'/'+page,{headers: headers});
+    }
 }
