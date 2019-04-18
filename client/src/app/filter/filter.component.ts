@@ -20,7 +20,8 @@ export class FilterComponent implements OnInit {
 	public songs: Song[];
 	public token: string;
 	public nextPage;
-  	public prePage;
+	public prePage;
+	public totalPage;  
 	public url: string;
 
 	constructor(
@@ -29,7 +30,7 @@ export class FilterComponent implements OnInit {
 		private _songService: SongService,
 		private _userService: UserService
 	) { 
-		this.genre =  this._route.snapshot.params.gender.toUpperCase();
+		this.genre =  this._route.snapshot.params.gender;
 		this.token = this._userService.getTokenInLocalStorage();
 		this.url = GLOBAL.url;
 	}
@@ -44,11 +45,11 @@ export class FilterComponent implements OnInit {
 			let page = param['page'];
 			if(!page){
 				page = 1;
-			}else{
-				this.nextPage = page + 1;
-				this.prePage = page - 1;
 			}
 
+			this.nextPage = parseInt(page) + 1;
+			this.prePage = parseInt(page) - 1;
+			
 			if(this.prePage == 0){
 				this.prePage = 1;
 			}
@@ -57,6 +58,11 @@ export class FilterComponent implements OnInit {
 				response => {
 					if(response.songs){
 						this.songs = response.songs.docs;
+						if(response.songs.pages){
+							if(parseInt(response.songs.pages) == parseInt(response.songs.page)){
+								this.nextPage = false;
+							}
+						}
 					}
 				},
 				error => {

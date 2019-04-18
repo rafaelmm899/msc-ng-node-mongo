@@ -1,11 +1,16 @@
 <div class="row">
 	<div class="col-md-12">
 		<div>
-			<h1><span class="badge badge-dark">{{ genre }}</span></h1>
+			<h1><span class="badge badge-dark">{{ genre.toUpperCase() }}</span></h1>
 		</div>
-		<div class="btn-group pull-right" role="group" aria-label="Basic example">
-			<button type="button" class="btn btn-secondary"><i class="fa fa-angle-left"></i></button>
-			<button type="button" class="btn btn-secondary"><i class="fa fa-angle-right"></i></button>
+		<div class="btn-group pull-right pagination-btn" role="group" aria-label="Basic example">
+			<a class="btn" [routerLink]="['/dashboard/explore/'+genre+'/'+prePage]"><i class="fa fa-angle-left"></i></a>
+			<a class="btn" *ngIf="nextPage"  [routerLink]="['/dashboard/explore/'+genre+'/'+nextPage]">
+				<i class="fa fa-angle-right"></i>
+			</a>
+			<a class="btn" *ngIf="!nextPage">
+				<i class="fa fa-angle-right"></i>
+			</a>
 		</div>
 	</div>
 </div>

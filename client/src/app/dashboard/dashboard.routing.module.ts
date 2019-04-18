@@ -43,7 +43,8 @@ const dashboardRoutes : Routes = [{
 		{ path: 'artist-detail/:idArtist', component : ArtistDetailComponent },
 		{ path: 'artist-detail/:idArtist/:idAlbum', component : ArtistDetailComponent },
 		{ path: 'explore', component: ExploreComponent },
-		{ path : 'explore/:gender',component : FilterComponent }
+		{ path : 'explore/:gender',component : FilterComponent },
+		{ path : 'explore/:gender/:page',component : FilterComponent }
 	]
 	
 }]
