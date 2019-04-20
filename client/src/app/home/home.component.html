@@ -4,8 +4,9 @@
 	</div>
 	<div class="col-md-2 offset-md-6">
 		<div class="btn-group pull-right" role="group" aria-label="Basic example">
-			<button type="button" class="btn btn-secondary"><i class="fa fa-angle-left"></i></button>
-			<button type="button" class="btn btn-secondary"><i class="fa fa-angle-right"></i></button>
+			<a [routerLink]="['/dashboard/home/'+prePage]" class="btn"><i class="fa fa-angle-left"></i></a>
+			<a [routerLink]="['/dashboard/home/'+nextPage]" *ngIf="nextPage" class="btn"><i class="fa fa-angle-right"></i></a>
+			<a *ngIf="!nextPage" class="btn"><i class="fa fa-angle-right"></i></a>
 		</div>
 	</div>
 </div>
@@ -27,10 +28,6 @@
 <div class="row row-album-section">
 	<div class="col-md-8">
 		<span>Albums</span>
-		<div class="btn-group pull-right" role="group" aria-label="Basic example">
-			<button type="button" class="btn btn-secondary"><i class="fa fa-angle-left"></i></button>
-			<button type="button" class="btn btn-secondary"><i class="fa fa-angle-right"></i></button>
-		</div>
 	</div>
 	<div class="col-md-4 top-songs">
 		<span>Top Songs</span>

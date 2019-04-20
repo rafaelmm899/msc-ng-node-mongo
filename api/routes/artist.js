@@ -9,7 +9,7 @@ var md_upload = multipart({ uploadDir : './uploads/artists' });
 var artistController = require('../controllers/artist');
 var api = express.Router();
 
-api.get('/artists/:page?', authenticated.ensureAuth ,artistController.getArtists);
+api.get('/artists/:page?/:limit?', authenticated.ensureAuth ,artistController.getArtists);
 api.get('/artist/:id', authenticated.ensureAuth, artistController.getArtist);
 api.get('/getImageArtist/:imageFile',artistController.getImage);
 api.post('/saveArtist', authenticated.ensureAuth, artistController.saveArtist );

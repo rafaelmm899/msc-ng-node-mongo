@@ -27,6 +27,7 @@ const dashboardRoutes : Routes = [{
 	component : DashboardComponent,
 	children : [
 		{ path : 'home',component : HomeComponent },
+		{ path : 'home/:page',component : HomeComponent },
 		{ path: 'user-list', component : UserListComponent },
 		{ path: 'user-edit/:id', component: UserEditComponent },
 		{ path: 'profile', component: UserDetailComponent },

@@ -26,13 +26,13 @@ export class ArtistService {
         return this._http.delete(this.url+'deleteArtist/'+id,{ headers: headers });
     }
 
-    getArtists(token: string, page: string) :Observable<any>{ 
+    getArtists(token: string, page: string, limit:string) :Observable<any>{ 
         let headers = new HttpHeaders({
             'Content-Type' : 'application/json',
             'Authorization' : token
         })
 
-        return this._http.get(this.url+'artists/'+page, { headers: headers });
+        return this._http.get(this.url+'artists/'+page+'/'+limit, { headers: headers });
     }
 
     updateArtist(token:string, id:string, artist:Artist):Observable<any>{

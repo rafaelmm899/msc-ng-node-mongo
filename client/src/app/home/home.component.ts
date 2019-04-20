@@ -7,7 +7,7 @@ import { Album } from '../models/album';
 import { AlbumService } from '../album/album.service';
 import { Song } from "../models/song";
 import { SongService } from '../song/song.service';
-import { Route, Router, ActivatedRoute } from "@angular/router";
+import { Route, Router, ActivatedRoute, Params } from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
 	public lastAlbums : Album[];
 	public topSongs : Song[];
 	public token: string;
-	public nextPage :string;
-	public prePage : string;
+	public nextPage;
+	public prePage;
 	public pageDefault: string;
 	public url: string;
 	public gender: string;
@@ -40,23 +40,42 @@ export class HomeComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getArtists(this.pageDefault);
+		this.getArtists();
 		this.getLastAlbums();
 		this.getTopSongs();
 		
 	}
 
-	getArtists(page:string){
-		this._artistService.getArtists(this.token,page).subscribe(
-			response => {
-				if(response.artists){
-					this.artists = response.artists.docs;
-				}
-			},
-			error => {
-				console.log(error);
+	getArtists(){
+		this._route.params.forEach((param : Params) => {
+			let page  = param['page'];
+			if(!page){
+				page = "1";
 			}
-		)
+			
+			this.prePage = parseInt(page) - 1;
+			this.nextPage = parseInt(page) + 1;
+			
+			if(this.prePage == 0){
+				this.prePage = 1;
+			}
+
+			this._artistService.getArtists(this.token,page,"4").subscribe(
+				response => {
+					if(response.artists){
+						this.artists = response.artists.docs;
+						if(response.artists.pages){
+							if(parseInt(response.artists.pages) == parseInt(response.artists.page)){
+								this.nextPage = false;
+							}
+						}
+					}
+				},
+				error => {
+					console.log(error);
+				}
+			)
+		})
 	}
 
 	getLastAlbums(){

@@ -82,7 +82,7 @@ export class ArtistListComponent implements OnInit {
 				this.prePage = 1;
             }
 
-            this._artistService.getArtists(this.token, page).subscribe(
+            this._artistService.getArtists(this.token, page,"10").subscribe(
                 response => {
                     if(response.artists){
                         this.artists = response.artists.docs;

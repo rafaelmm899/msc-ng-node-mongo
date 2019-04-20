@@ -61,12 +61,13 @@ function getArtist(req, res) {
 
 function getArtists(req, res) {
     var page = (req.params.page) ? req.params.page :1;
-    var items = 10;
+    var items = (req.params.limit) ? parseInt(req.params.limit) :10;
     
     Artist.paginate(Artist.find().sort('name'),{ page: page, limit: items }, function(error, artists, total) {
         if(error){
             res.status(500).send({
-                message : 'Error in the request'
+                message : 'Error in the request',
+                error: error
             })
         }else{
             if(!artists){
