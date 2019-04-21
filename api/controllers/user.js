@@ -135,11 +135,15 @@ function getUsers(req, res){
         idUser = req.body._id;
     }
 
-    //User.find({ _id: { $ne: idUser } }, (error, users) => {
-    User.paginate(User.find({ _id: { $ne: idUser } }), { page: 1, limit: 10 }, function(err, users, total) {
+    console.log(currentPage);
+    
+    User.paginate(User.find({ _id: { $ne: idUser } }), { page: parseInt(currentPage), limit: 10 }, function(err, users, total) {
 
         if (!users) {
-            res.status(500).send({ message : "Error in the request" });
+            res.status(500).send({ 
+                message : "Error in the request",
+                error: err
+            });
         } else {
             res.status(200).send({
                 items : 0,

@@ -17,8 +17,9 @@ export class UserListComponent implements OnInit {
 	public nextPage;
 	public prePage;
 	public idUserToDelete: string;
-	
 	public modalRef: BsModalRef;
+	public page: number;
+    public totalRows: number;
 
   	constructor(
 		private _userService: UserService,
@@ -28,7 +29,8 @@ export class UserListComponent implements OnInit {
 		private _messageService: MessageService
 	) {
 		this.idUserToDelete = null;
-		
+		this.page = 1;
+		this.totalRows = 0;
 	}
 
 	ngOnInit() {
@@ -36,31 +38,17 @@ export class UserListComponent implements OnInit {
 	}
 
 	getUsers(){
-		this._route.params.forEach((param : Params) => {
-			let page = param['page'];
-			if(!page){
-				page = 1;
-			}else{
-				this.nextPage = page + 1;
-				this.prePage = page - 1;
-			}
-
-			if(this.prePage == 0){
-				this.prePage = 1;
-			}
-
-			this._userService.getUsers(page).subscribe(
-				response => {
-					if(response.users){
-						this.users = response.users.docs
-					}
-				},
-				error => {
-					console.log(error);	
+		this._userService.getUsers(this.page).subscribe(
+			response => {
+				if(response.users){
+					this.users = response.users.docs;
+					this.totalRows = response.users.total;
 				}
-			)
-
-		})
+			},
+			error => {
+				console.log(error);	
+			}
+		)
 	}
 
 	openModal(template: TemplateRef<any>, idUser: string) {
@@ -92,6 +80,10 @@ export class UserListComponent implements OnInit {
 		this.modalRef.hide();
 	}
 
-	
+	pageChanged(event: any): void {
+		console.log(event.page);
+        this.page = event.page;
+        this.getUsers();
+    }
 
 }

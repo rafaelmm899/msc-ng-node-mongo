@@ -108,7 +108,6 @@ export class ArtistListComponent implements OnInit {
 
     pageChanged(event: any): void {
         this.page = event.page;
-        console.log(this.page);
         this.getArtist();
     }
 }
