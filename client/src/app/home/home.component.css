@@ -109,3 +109,14 @@
 .album-wrapper .col-md-4 {
     padding-top: 15px;
 }
+
+.image-album-wrapper{
+    min-height:201px; 
+    background-color:black;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
+
+.card-img-top{
+    max-height: 201px;
+}

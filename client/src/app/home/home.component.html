@@ -40,9 +40,11 @@
 				<a class="link-album" [routerLink]="['/dashboard/artist-detail/'+album.artist+'/'+album._id]">
 					<div class="card-deck album-card-deck">
 						<div class="card album-card">
-							<img class="card-img-top" src="{{ url+'album_get_image/'+album.image }}" alt="Card image cap">
+							<div class="image-album-wrapper">
+								<img class="card-img-top" src="{{ url+'album_get_image/'+album.image }}" alt="Card image cap">
+							</div>
 							<div class="card-body">
-								<h6 class="card-title">{{ album.title }}</h6>
+								<div class="card-title">{{ album.title }}</div>
 								<p class="card-text"><small class="text-muted">{{ album.artist.name }}</small></p>
 							</div>
 						</div>
