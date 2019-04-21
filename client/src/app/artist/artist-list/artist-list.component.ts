@@ -76,34 +76,19 @@ export class ArtistListComponent implements OnInit {
 	}
 
     getArtist(){
-        /*this._route.params.forEach((param : Params) => {
-			let page = param['page'];
-			if(!page){
-				page = 1;
-			}else{
-				this.nextPage = page + 1;
-				this.prePage = page - 1;
-			}
-
-			if(this.prePage == 0){
-				this.prePage = 1;
-            }*/
-
-            this._artistService.getArtists(this.token, this.page.toString(),"10").subscribe(
-                response => {
-                    if(response.artists){
-                        this.artists = response.artists.docs;
-                        this.totalRows = response.artists.total;
-                    }else{
-                        this._messageService.sendMessage(response.message,'danger');
-                    }
-                },
-                error => {
-                    console.log(error);
+        this._artistService.getArtists(this.token, this.page.toString(),"10").subscribe(
+            response => {
+                if(response.artists){
+                    this.artists = response.artists.docs;
+                    this.totalRows = response.artists.total;
+                }else{
+                    this._messageService.sendMessage(response.message,'danger');
                 }
-            )
-
-        //})
+            },
+            error => {
+                console.log(error);
+            }
+        )
     }
 
     pageChanged(event: any): void {

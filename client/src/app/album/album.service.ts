@@ -16,12 +16,15 @@ export class AlbumService {
         this.url = GLOBAL.url;
     }
 
-    getAlbums(token: string, artistId: string, page: string):Observable<any>{
+    getAlbums(token: string, artistId: string, page: string, limit):Observable<any>{
+        if(!limit){
+            limit = 10;
+        }
         let headers = new HttpHeaders({
             'Content-Type' : 'application/json',
             'Authorization' : token
         })
-        return this._http.get(this.url+'albums/'+artistId+'/'+page,{ headers: headers });
+        return this._http.get(this.url+'albums/'+artistId+'/'+page+'/'+limit,{ headers: headers });
     }
 
     getLastAlbums(token: string, limit: any):Observable<any>{

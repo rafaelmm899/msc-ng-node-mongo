@@ -24,6 +24,9 @@ export class ArtistDetailComponent implements OnInit {
 	public songSectionShow: boolean;
 	public albumSelected: string;
 	@Output() play: EventEmitter<Song> = new EventEmitter();
+	public page: number;
+	public totalItems:number;
+	public idArtist: string;
 
   	constructor(
 		private _artistService: ArtistService,
@@ -35,12 +38,14 @@ export class ArtistDetailComponent implements OnInit {
 	) { 
 		this.token = this._userService.getTokenInLocalStorage();
 		this.url = GLOBAL.url;
+		this.page = 1;
+		this.totalItems = 0;
 	}
 
   	ngOnInit() {
-		let idArtist = this._route.snapshot.paramMap.get("idArtist");
+		this.idArtist = this._route.snapshot.paramMap.get("idArtist");
 		
-		this.getArtist(idArtist);
+		this.getArtist(this.idArtist);
 		
 	}
 
@@ -59,10 +64,11 @@ export class ArtistDetailComponent implements OnInit {
 	}
 
 	getAlbums(idArtist: string){
-		this._albumService.getAlbums(this.token,idArtist,"1").subscribe(
+		this._albumService.getAlbums(this.token,idArtist,this.page.toString(),4).subscribe(
 			res => {
 				if(res.album){
 					this.albums = res.album.docs;
+					this.totalItems = res.album.total;
 					if(this.albums.length > 0){
 						this.albumSelected = this._route.snapshot.paramMap.get("idAlbum");
 						
@@ -100,23 +106,12 @@ export class ArtistDetailComponent implements OnInit {
 
 
 	playSong(song){
-		/*let songPlayer = JSON.stringify(song);
-        let filePath = this.url+'get_song/'+song.file;
-        let imagePath = this.url+'album_get_image/'+song.album.image;
-
-        localStorage.setItem("sound_song", songPlayer);
-        document.getElementById("mp3-source").setAttribute("src", filePath);
-
-        let reproductor = document.getElementById("mp3-source");
-        (document.getElementById("player") as any).load();
-        (document.getElementById("player") as any).play();
-
-        document.getElementById("play-song-title").innerHTML = song.name;
-        document.getElementById("play-song-artist").innerHTML = song.album.artist.name;
-		document.getElementById("play-image-album").setAttribute("src", imagePath);*/
-		//this._sharedService.emitChange('Data from child');
 		this.play.emit(song);
-		
+	}
+
+	pageChanged(event: any): void {
+		this.page = event.page;
+		this.getAlbums(this.idArtist);
 	}
 
 }

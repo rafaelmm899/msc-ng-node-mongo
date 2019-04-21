@@ -47,35 +47,19 @@ export class AlbumListComponent implements OnInit {
     }
 
     getAlbums(){
-        /*this._route.params.forEach((param : Params) => {
-            let page = param['page'];
-            this.artistId = param['id'];
-			if(!page){
-				page = 1;
-			}else{
-				this.nextPage = page + 1;
-				this.prePage = page - 1;
-			}
-
-			if(this.prePage == 0){
-				this.prePage = 1;
-            }*/
-        
-            this._albumService.getAlbums(this.token, this.artistId,this.page.toString()).subscribe(
-                response => {
-                    if(!response.album){
-                        this._messageService.sendMessage(response.message,'danger');
-                    }else{
-                        this.totalRows = response.album.total;
-                        this.albums = response.album.docs;
-                    }
-                },
-                error => {
-                    console.log(error);
+        this._albumService.getAlbums(this.token, this.artistId,this.page.toString(),null).subscribe(
+            response => {
+                if(!response.album){
+                    this._messageService.sendMessage(response.message,'danger');
+                }else{
+                    this.totalRows = response.album.total;
+                    this.albums = response.album.docs;
                 }
-            )
-
-        //})
+            },
+            error => {
+                console.log(error);
+            }
+        )
     }
 
     openModal(template: TemplateRef<any>, idAlbum: string) {

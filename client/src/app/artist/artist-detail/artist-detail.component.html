@@ -14,6 +14,18 @@
 <div class="row album-section">
 	<div class="col-md-12">
 		<h3>Albums</h3>
+		<div class="row">
+	<div class="col-xs-12 col-12">
+		<pager
+		[totalItems]="totalItems"
+		[(ngModel)]="page"
+		(pageChanged)="pageChanged($event)"
+		pageBtnClass="btn"
+		[itemsPerPage]="4"
+		class="pull-right">
+		</pager>
+	</div>
+</div>
 	</div>
 	<ul class="col-sm-6 col-md-3 album-wrapper" *ngFor="let album of albums">
 		<div class="thumbnail-album" (click)="getSongs(album._id)" [class.selected]="albumSelected === album._id">

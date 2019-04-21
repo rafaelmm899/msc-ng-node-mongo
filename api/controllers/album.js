@@ -65,10 +65,10 @@ function getAlbum(req, res) {
 function getAlbums(req, res) {
     var page = (req.params.page)?req.params.page:1;
     var artistId = req.params.id;
-    var items = 10;
+    var items = (req.params.limit)?req.params.limit:10;
 
     
-    Album.paginate(Album.find({ artist : artistId }).populate({ path : 'Artist' }),{page : page, limit: items}, function (error , albums) { 
+    Album.paginate(Album.find({ artist : artistId }).populate({ path : 'Artist' }),{page : page, limit: parseInt(items)}, function (error , albums) { 
 
         if(error){
             res.status(500).send({

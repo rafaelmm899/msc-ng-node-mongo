@@ -9,7 +9,7 @@ var albumController = require('../controllers/album');
 var api = express.Router();
 
 api.post('/album', authenticated.ensureAuth, albumController.saveAlbum);
-api.get('/albums/:id/:page?', authenticated.ensureAuth, albumController.getAlbums);
+api.get('/albums/:id/:page?/:limit?', authenticated.ensureAuth, albumController.getAlbums);
 api.get('/last_albums/:limit?', authenticated.ensureAuth, albumController.getLastAlbums);
 api.get('/album/:id',authenticated.ensureAuth, albumController.getAlbum);
 api.post('/album_upload_image/:id', [authenticated.ensureAuth, md_upload], albumController.uploadImage);
