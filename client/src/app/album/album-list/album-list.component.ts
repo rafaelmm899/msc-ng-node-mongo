@@ -11,6 +11,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
     selector: 'album-list',
     templateUrl: './album-list.component.html',
+    styleUrls: ['./album-list.component.css'],
     providers : [ UserService,AlbumService,MessageService ]
 })
 
@@ -23,6 +24,8 @@ export class AlbumListComponent implements OnInit {
     public artistId: string;
     public idAlbumToDelete: string;
     public modalRef: BsModalRef;
+    public page: number;
+    public totalRows: number;
 
     constructor(
         private _userService: UserService,
@@ -34,6 +37,9 @@ export class AlbumListComponent implements OnInit {
     ){
         this.token = _userService.getTokenInLocalStorage();
         this.idAlbumToDelete = null;
+        this.totalRows = 0;
+        this.page = 1;
+        this.artistId = this._route.snapshot.params.id;
     }
 
     ngOnInit(){
@@ -41,7 +47,7 @@ export class AlbumListComponent implements OnInit {
     }
 
     getAlbums(){
-        this._route.params.forEach((param : Params) => {
+        /*this._route.params.forEach((param : Params) => {
             let page = param['page'];
             this.artistId = param['id'];
 			if(!page){
@@ -53,13 +59,14 @@ export class AlbumListComponent implements OnInit {
 
 			if(this.prePage == 0){
 				this.prePage = 1;
-            }
+            }*/
         
-            this._albumService.getAlbums(this.token, this.artistId,page).subscribe(
+            this._albumService.getAlbums(this.token, this.artistId,this.page.toString()).subscribe(
                 response => {
                     if(!response.album){
                         this._messageService.sendMessage(response.message,'danger');
                     }else{
+                        this.totalRows = response.album.total;
                         this.albums = response.album.docs;
                     }
                 },
@@ -68,7 +75,7 @@ export class AlbumListComponent implements OnInit {
                 }
             )
 
-        })
+        //})
     }
 
     openModal(template: TemplateRef<any>, idAlbum: string) {
@@ -98,6 +105,11 @@ export class AlbumListComponent implements OnInit {
     decline(){
         this.idAlbumToDelete = null;
         this.modalRef.hide();
+    }
+
+    pageChanged(event: any): void {
+        this.page = event.page;
+        this.getAlbums();
     }
 
 }
