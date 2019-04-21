@@ -7,10 +7,12 @@ import { UserService } from '../../user/user.service';
 import { MessageService } from "../../messages/message.service";
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @Component({
     selector : 'artist-list',
     templateUrl : './artist-list.component.html',
+    styleUrls: ['./artist-list.component.css'],
     providers: [ArtistService, UserService, MessageService]
 })
 
@@ -21,6 +23,9 @@ export class ArtistListComponent implements OnInit {
     public prePage;
     public idArtistToDelete:string;
     public modalRef: BsModalRef;
+    public currentPage = 4;
+    public page: number;
+    public totalRows: number;
 
     constructor(
         private _artistService: ArtistService,
@@ -32,6 +37,8 @@ export class ArtistListComponent implements OnInit {
     ){
         this.idArtistToDelete = null;
         this.token = this._userService.getTokenInLocalStorage();
+        this.totalRows = 0;
+        this.page = 1;
     }
 
     ngOnInit(){
@@ -69,7 +76,7 @@ export class ArtistListComponent implements OnInit {
 	}
 
     getArtist(){
-        this._route.params.forEach((param : Params) => {
+        /*this._route.params.forEach((param : Params) => {
 			let page = param['page'];
 			if(!page){
 				page = 1;
@@ -80,12 +87,13 @@ export class ArtistListComponent implements OnInit {
 
 			if(this.prePage == 0){
 				this.prePage = 1;
-            }
+            }*/
 
-            this._artistService.getArtists(this.token, page,"10").subscribe(
+            this._artistService.getArtists(this.token, this.page,"10").subscribe(
                 response => {
                     if(response.artists){
                         this.artists = response.artists.docs;
+                        this.totalRows = response.artists.total;
                     }else{
                         this._messageService.sendMessage(response.message,'danger');
                     }
@@ -95,6 +103,12 @@ export class ArtistListComponent implements OnInit {
                 }
             )
 
-        })
+        //})
+    }
+
+    pageChanged(event: any): void {
+        this.page = event.page;
+        console.log(this.page);
+        this.getArtist();
     }
 }

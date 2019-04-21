@@ -1,8 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<div>
-			<h1><span class="badge badge-dark">{{ genre.toUpperCase() }}</span></h1>
-		</div>
+		<h1><span class="badge badge-dark">{{ genre.toUpperCase() }}</span></h1>
 		<div class="btn-group pull-right pagination-btn" role="group" aria-label="Basic example">
 			<a class="btn" [routerLink]="['/dashboard/explore/'+genre+'/'+prePage]"><i class="fa fa-angle-left"></i></a>
 			<a class="btn" *ngIf="nextPage"  [routerLink]="['/dashboard/explore/'+genre+'/'+nextPage]">

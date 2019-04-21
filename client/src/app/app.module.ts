@@ -34,7 +34,7 @@ import { SongEditComponent } from "./song/song-edit/song-edit.component";
 import { MessagesComponent } from './messages/messages.component';
 
 /* ngx-bootstrap */
-import { ModalModule, AlertModule, ButtonsModule } from 'ngx-bootstrap';
+import { ModalModule, AlertModule, ButtonsModule,PaginationModule  } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
 import { ExploreComponent } from './explore/explore.component';
@@ -74,7 +74,8 @@ import { FilterComponent } from './filter/filter.component';
     ModalModule.forRoot(),
     AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
