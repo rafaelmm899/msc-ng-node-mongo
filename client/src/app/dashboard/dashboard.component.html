@@ -14,12 +14,14 @@
 					<label>Navigation</label>
 				</li>
 				<li class="nav-item item-menu">
-					<a [routerLink]="['/dashboard/home']" class="nav-link">
+					<a [routerLink]="['/dashboard/home']" [routerLinkActive]="['active']" class="nav-link">
+						<i class="fa fa-home"></i>
 						<span class="nav-item-text">Home</span>
 					</a>
 				</li>
 				<li class="nav-item item-menu">
-					<a [routerLink]="['/dashboard/explore']" class="nav-link">
+					<a [routerLink]="['/dashboard/explore']" [routerLinkActive]="['active']" class="nav-link">
+						<i class="fa fa-search"></i>
 						<span class="nav-item-text">Explore</span>
 					</a>
 				</li>
@@ -27,11 +29,13 @@
 					<label>Admin Panel</label>
 				</li>
 				<li class="nav-item item-menu">
-					<a class="nav-link" [routerLink]="['/dashboard/user-list']">
-						Users
+					<a class="nav-link" [routerLink]="['/dashboard/user-list']" [routerLinkActive]="['active']">
+						<i class="fa fa-users"></i>
+						<span class="nav-item-text">Users</span>
 					</a>
-					<a class="nav-link" [routerLink]="['/dashboard/artists']">
-						Artist
+					<a class="nav-link" [routerLink]="['/dashboard/artists']" [routerLinkActive]="['active']">
+						<i class="fa fa-headphones"></i>
+						<span class="nav-item-text">Artist</span>
 					</a>
 				</li>
 			</ul>
@@ -48,6 +52,9 @@
 	</div>
 </nav>
 <header class="navbar top-header navbar-expand-lg navbar-light" *ngIf="userLogged">
+	<a class="mobile-menu" id="mobile-header" href="javascript:">
+		<i class="feather icon-more-horizontal"></i>
+	</a>
 	<div class="collapse navbar-collapse">
 		<div class="mr-auto">
 			
@@ -70,6 +77,7 @@
 		</div>
 	</div>
 </header>
+
 		
 <div class="main-container" *ngIf="userLogged">
 	<div class="container-wrapper">
