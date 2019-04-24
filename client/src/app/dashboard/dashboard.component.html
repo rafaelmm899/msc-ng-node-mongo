@@ -1,4 +1,93 @@
-<nav class="side-navbar sidebar" *ngIf="userLogged">
+<div class="wrapper">
+	<div class="col-md-2 nav-content">
+		<ul class="nav sidebar flex-column">
+			<li class="nav-header">
+				<a [routerLink]="['dashboard/home']" class="project-logo-link">
+					<div class="icon-logo">
+						<i class="fa fa-music fa-3x fa-icon-logo"></i>
+					</div>
+					<span class="project-title">Music</span>
+				</a>
+			</li>
+			<li class="nav-item menu-caption">
+				<label>Navigation</label>
+			</li>
+			<li class="nav-item item-menu">
+				<a [routerLink]="['/dashboard/home']" [routerLinkActive]="['active']" class="nav-link">
+					<i class="fa fa-home"></i>
+					<span class="nav-item-text">Home</span>
+				</a>
+			</li>
+			<li class="nav-item item-menu">
+				<a [routerLink]="['/dashboard/explore']" [routerLinkActive]="['active']" class="nav-link">
+					<i class="fa fa-search"></i>
+					<span class="nav-item-text">Explore</span>
+				</a>
+			</li>
+			<li class="nav-item menu-caption">
+				<label>Admin Panel</label>
+			</li>
+			<li class="nav-item item-menu">
+				<a class="nav-link" [routerLink]="['/dashboard/user-list']" [routerLinkActive]="['active']">
+					<i class="fa fa-users"></i>
+					<span class="nav-item-text">Users</span>
+				</a>
+				<a class="nav-link" [routerLink]="['/dashboard/artists']" [routerLinkActive]="['active']">
+					<i class="fa fa-headphones"></i>
+					<span class="nav-item-text">Artist</span>
+				</a>
+			</li>
+		</ul>	
+	</div>
+	<div class="col-md-10">
+		<div class="container" *ngIf="userLogged">
+			<ul class="nav justify-content-end">
+				<li class="ml-auto">
+					<div dropdown class="dropdown">
+						<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">
+							<img src="{{ profileImage }}" class="img-radius" alt="User-Profile-Image">
+							<span>{{ userLogged.name +' '+userLogged.lastname }}</span>
+							<i class="fa fa-cog"></i>
+						</a>
+		
+						<div *dropdownMenu class="dropdown-menu dropdown-menu-right profile-notification show" role="menu" aria-labelledby="basic-link">
+							<ul class="pro-body">
+								<li><a [routerLink]="['/dashboard/profile']" class="dropdown-item"><i class="fa fa-user"></i> Profile</a></li>
+								<li><a (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> Sign off</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="page-wrapper">
+				<router-outlet (activate)="onActivate($event)"></router-outlet>
+			</div>
+			<!--<div class="player-wrapper">
+				
+				<div class="audio-file">
+					<p class="song-description">
+						<span id="play-song-artist" *ngIf="song.album.artist">
+							{{ song.album.artist.name }}
+		
+						</span>
+						|
+						<span id="play-song-title" *ngIf="song">
+							{{ song.name }}
+						</span>
+					</p>
+					
+					<audio controls="controls" (ended)="songFinished()" id="player">
+						<source id="mp3-source" src="" type="audio/mpeg">
+						Tu navegador no es compatible
+					</audio>
+				</div>
+			</div>-->
+		</div>	
+	</div>
+</div>
+
+
+<!--<nav class="side-navbar sidebar" *ngIf="userLogged">
 	<div class="navbar-wrapper">
 		<div class="navbar-header">	
 			<a [routerLink]="['dashboard/home']" class="project-logo-link">
@@ -76,39 +165,7 @@
 			</div>
 		</div>
 	</div>
-</header>
+</header>-->
 
 		
-<div class="main-container" *ngIf="userLogged">
-	<div class="container-wrapper">
-		<div class="content">
-			<div class="container-inner">
-				<div class="main-body">
-					<div class="page-wrapper">
-						<router-outlet (activate)="onActivate($event)"></router-outlet>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="player-wrapper">
-		
-		<div class="audio-file">
-			<p class="song-description">
-				<span id="play-song-artist" *ngIf="song.album.artist">
-					{{ song.album.artist.name }}
-				</span>
-				|
-				<span id="play-song-title" *ngIf="song">
-					{{ song.name }}
-				</span>
-			</p>
-			
-			<audio controls="controls" (ended)="songFinished()" id="player">
-				<source id="mp3-source" src="" type="audio/mpeg">
-				Tu navegador no es compatible
-			</audio>
-		</div>
-	</div>
-</div>	
 

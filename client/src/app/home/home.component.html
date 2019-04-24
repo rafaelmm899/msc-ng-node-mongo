@@ -34,7 +34,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-8 col-lg-6">
 		<div class="row album-wrapper">
 			<div class="col-md-4" *ngFor="let album of lastAlbums">
 				<a class="link-album" [routerLink]="['/dashboard/artist-detail/'+album.artist+'/'+album._id]">
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 col-lg-6">
 		<div class="row">
 			<ul *ngFor="let song of topSongs">
 				<div class="card" style="max-width:300px;">
