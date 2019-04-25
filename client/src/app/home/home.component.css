@@ -134,6 +134,10 @@
     padding-inline-start: 0px;
 }
 
+.album-card-deck{
+    padding-bottom: 5%;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 575.98px) { 
     .artist-card img {
