@@ -82,11 +82,16 @@
 
 .song-top-card .card-title, .song-top-card .card-text{
     margin-bottom: 0px;
-    font-size: 1vw;
+    font-size: 1em;
+}
+
+.song-top-card{
+    padding-top: 10%;
 }
 
 .artist-card img {
-    width: 232px;
+    /*width: 232px;*/
+    width: 100%;
     height: 200px;
 }
 
@@ -119,4 +124,65 @@
 
 .card-img-top{
     max-height: 201px;
+}
+
+.song-wrapper{
+    padding: 0px;
+}
+
+.song-wrapper ul{
+    padding-inline-start: 0px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) { 
+    .artist-card img {
+        width: 100%;
+        height: 200px;
+    }
+    .song-top-card{
+        margin-left: 5%;
+        padding-top: 5%;
+    }
+    
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 767.98px) { 
+    
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 991.98px) { 
+    .song-wrapper{
+        padding: 0px;
+    }
+
+    .song-top-card{
+        margin-left: 10%;
+        padding-top: 0px;
+    }
+
+    .artist-card-wrapper{
+        padding-bottom: 2%;
+    }
+
+    .album-card-deck{
+        padding-bottom: 2%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1199.98px) {
+    .song-wrapper{
+        padding: 0px;
+    }
+
+    .song-top-card{
+        padding-top: 0px;
+    }
+
+    .album-card-deck{
+        padding-bottom: 5%;
+    }
 }

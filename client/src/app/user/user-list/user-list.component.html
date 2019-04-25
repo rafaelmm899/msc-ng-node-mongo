@@ -22,20 +22,20 @@
 			</ng-template>
 			
 			<div class="row">
-				<div class="col-md-12 col-sm-8">
+				<div class="col-md-12 col-12 table-wrapper">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>lastname</th>
-								<th>email</th>
-								<th>role</th>
-								<th colspan="2"></th>
+								<th scope="col">Name</th>
+								<th scope="col">lastname</th>
+								<th scope="col">email</th>
+								<th scope="col">role</th>
+								<th scope="col" colspan="2"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr *ngFor="let user of users">
-								<td>{{ user.name }}</td>
+								<td scope="row">{{ user.name }}</td>
 								<td>{{ user.lastname }}</td>
 								<td>{{ user.email }}</td>
 								<td>{{ user.role }}</td>

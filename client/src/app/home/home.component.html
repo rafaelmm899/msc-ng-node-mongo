@@ -11,7 +11,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-3" *ngFor="let artist of artists">
+	<div class="col-md-6 col-lg-3 artist-card-wrapper" *ngFor="let artist of artists">
 		<a [routerLink]="['/dashboard/artist-detail/'+artist._id]" class="link-artist-name">
 			<div class="card-deck artist-card-deck">
 				<div class="card artist-card">
@@ -25,18 +25,16 @@
 		</a>
 	</div>
 </div>
-<div class="row row-album-section">
-	<div class="col-md-8">
-		<span>Albums</span>
-	</div>
-	<div class="col-md-4 top-songs">
-		<span>Top Songs</span>
-	</div>
-</div>
+
 <div class="row">
-	<div class="col-md-8 col-lg-6">
+	<div class="col-md-8 col-lg-8">
+		<div class="row row-album-section">
+			<div class="col-md-12">
+				<span>Albums</span>
+			</div>
+		</div>
 		<div class="row album-wrapper">
-			<div class="col-md-4" *ngFor="let album of lastAlbums">
+			<div class="col-md-12 col-lg-6 col-xl-4" *ngFor="let album of lastAlbums">
 				<a class="link-album" [routerLink]="['/dashboard/artist-detail/'+album.artist+'/'+album._id]">
 					<div class="card-deck album-card-deck">
 						<div class="card album-card">
@@ -53,24 +51,31 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4 col-lg-6">
+	<div class="col-md-4 col-lg-4">
+		<div class="row row-album-section">
+			<div class="col-md-12 top-songs">
+				<span>Top Songs</span>
+			</div>
+		</div>
 		<div class="row">
-			<ul *ngFor="let song of topSongs">
-				<div class="card" style="max-width:300px;">
-					<div class="row ">
-						  <div class="col-md-4">
-							<img src="{{ url+'album_get_image/'+song.album.image }}" class="w-100">
-						</div>
-						<div class="col-md-8 px-1">
-							<div class="card-block px-1 song-top-card" style="padding-top:3%;">
-								<h6 class="card-title">{{ song.name }}</h6>
-								<div class="card-text"><small class="text-muted">{{ song.album.title }}</small></div>
-								<div class="card-text"><small class="text-muted">{{ song.album.artist.name }}</small></div>
+			<div class="col-md-12 song-wrapper">
+				<ul *ngFor="let song of topSongs">
+					<div class="card">
+						<div class="row ">
+							<div class="col-md-12 col-lg-4">
+								<img src="{{ url+'album_get_image/'+song.album.image }}" class="w-100">
 							</div>
-						</div>		  
+							<div class="col-md-8 px-1">
+								<div class="card-block px-1 song-top-card">
+									<h6 class="card-title">{{ song.name }}</h6>
+									<div class="card-text"><small class="text-muted">{{ song.album.title }}</small></div>
+									<div class="card-text"><small class="text-muted">{{ song.album.artist.name }}</small></div>
+								</div>
+							</div>		  
+						</div>
 					</div>
-				</div>
-			</ul>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,6 +1,6 @@
 <div class="wrapper">
-	<div class="col-md-2 nav-content">
-		<ul class="nav sidebar flex-column">
+	<div class="col-6 col-md-4 col-lg-2 nav-content" [ngClass]="{'hidden' : !fullSideBar}">
+		<ul class="nav sidebar flex-column" > 
 			<li class="nav-header">
 				<a [routerLink]="['dashboard/home']" class="project-logo-link">
 					<div class="icon-logo">
@@ -39,9 +39,12 @@
 			</li>
 		</ul>	
 	</div>
-	<div class="col-md-10">
+	<div class="col-12 col-md-8 col-lg-10">
 		<div class="container" *ngIf="userLogged">
-			<ul class="nav justify-content-end">
+			<ul class="nav">
+				<li class="nav-item show-menu-item">
+					<a class="nav-link" (click)="showMenu()"><i class="fa fa-align-justify"></i></a>
+				</li>
 				<li class="ml-auto">
 					<div dropdown class="dropdown">
 						<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">

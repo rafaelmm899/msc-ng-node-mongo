@@ -26,7 +26,8 @@ export class DashboardComponent implements OnInit, DoCheck {
 	public profileImage;
 	public token: string;
 	public song: Song;
-	
+	public fullSideBar: boolean;
+
 
 	constructor(
 		private _userService: UserService,
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 		this.url = GLOBAL.url;
 		this.profileImage = 'assets/images/default-user-image.png'
 		this.song = new Song("","",1,"","","","");
+		this.fullSideBar = true;
 	}
 
 	ngDoCheck(){
@@ -119,31 +121,28 @@ export class DashboardComponent implements OnInit, DoCheck {
 				console.log(error);
 			}
 		)
-
-
-		
-
-		//let reproductor = document.getElementById("source");
-		//(document.getElementById("player") as any).load();
-		//(document.getElementById("player") as any).play();
-
-		//document.getElementById("play-song-title").innerHTML = song.name;
-		//document.getElementById("play-song-artist").innerHTML = song.album.artist.name;
 	}
 
 	onActivate(componentReference) {
 		console.log(componentReference)
-		//componentReference.anyFunction();
-		//Below will subscribe to the searchItem emitter
 		if(componentReference.play){
 			componentReference.play.subscribe((song) => {
 			
 				this.song = song;
 				this.updatePlayer(song);
-				//document.getElementById("play-image-album").setAttribute("src", imagePath);
 				console.log(song);
 			})
 		}
+	}
+
+	showMenu(){
+		if(this.fullSideBar){
+			this.fullSideBar = false;
+		}else{
+			this.fullSideBar = true;
+		}
+		
+		console.log(this.fullSideBar);
 	}
 
 }

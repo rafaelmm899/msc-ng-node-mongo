@@ -104,3 +104,7 @@ body {
 .fa-icon-logo::before{
     margin-left: 0%;
 }
+
+.table-wrapper{
+    overflow: scroll;
+}

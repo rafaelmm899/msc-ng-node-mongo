@@ -3,9 +3,9 @@
     <div class="page-header">
         <h1>{{ title }}</h1>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <form #createSong="ngForm" (ngSubmit)="onSubmit()" *ngIf="song">
+    <form #createSong="ngForm" (ngSubmit)="onSubmit()" *ngIf="song">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
                 <p>
                     <label for="name">Name</label>
                     <input type="text" title="ngModel" [(ngModel)]="song.name" name="name" class="form-control" />
@@ -33,12 +33,16 @@
                     <label for="inputImage">File</label>
                     <input type="file" id="inputImage" class="form-control-file" (change)="uploadFile($event)" />
                 </p>
-                <p>
-                    <input type="submit" class="btn btn-success" value="{{ title }}">
-                    <a class="btn btn-warning" [routerLink]="['/dashboard/songs/'+albumId]">Cancel</a>
-                </p>
-            </form>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+                <input type="submit" class="btn btn-lg btn-block btn-success pull-right" value="{{ title }}">
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="btn btn-lg btn-block btn-warning" [routerLink]="['/dashboard/songs/'+albumId]">Cancel</a>
+            </div>
+        </div>
+    </form>
 </div>
         
