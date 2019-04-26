@@ -108,3 +108,8 @@ body {
 .table-wrapper{
     overflow: scroll;
 }
+
+.card{
+    box-shadow: -1px 2px 7px 1px rgba(163,163,168,1);
+    border: none;
+}
