@@ -37,6 +37,36 @@
 					<span class="nav-item-text">Artist</span>
 				</a>
 			</li>
+			<li>
+				<div class="col-4 col-lg-12 player-wrapper">
+					<div class="album-image">
+						<span *ngIf="song.album" >
+							<img id="play-image-album" src="assets/images/music-default.png" />
+						</span>
+						<span *ngIf="!song.album">
+							<img id="play-image-album" src="assets/images/music-default.png" />
+						</span>
+					</div>
+					<p class="song-description">
+						<span id="play-song-artist" *ngIf="song.album.artist">
+							{{ song.album.artist.name }}
+						</span>
+						<span id="play-song-title" *ngIf="song">
+							{{ song.name }}
+						</span>
+					</p>
+					<audio  (ended)="songFinished()" id="player">
+						<source id="mp3-source" src="" type="audio/mpeg">
+						Tu navegador no es compatible
+					</audio>
+					<button type="button" class="btn btn-lg btn-block btn-play" (click)="playSong()" *ngIf="!playing">
+						<i class="fa fa-play"></i>
+					</button>
+					<button type="button" class="btn btn-lg btn-block btn-pause" (click)="stopSong()" *ngIf="playing">
+						<i class="fa fa-pause"></i>
+					</button>
+				</div>
+			</li>
 		</ul>	
 	</div>
 	<div class="col-12 col-md-8 col-lg-10">
@@ -65,110 +95,9 @@
 			<div class="page-wrapper">
 				<router-outlet (activate)="onActivate($event)"></router-outlet>
 			</div>
-			<!--<div class="player-wrapper">
-				
-				<div class="audio-file">
-					<p class="song-description">
-						<span id="play-song-artist" *ngIf="song.album.artist">
-							{{ song.album.artist.name }}
-		
-						</span>
-						|
-						<span id="play-song-title" *ngIf="song">
-							{{ song.name }}
-						</span>
-					</p>
-					
-					<audio controls="controls" (ended)="songFinished()" id="player">
-						<source id="mp3-source" src="" type="audio/mpeg">
-						Tu navegador no es compatible
-					</audio>
-				</div>
-			</div>-->
 		</div>	
 	</div>
 </div>
-
-
-<!--<nav class="side-navbar sidebar" *ngIf="userLogged">
-	<div class="navbar-wrapper">
-		<div class="navbar-header">	
-			<a [routerLink]="['dashboard/home']" class="project-logo-link">
-				<div class="icon-logo">
-					<i class="fa fa-music fa-3x fa-icon-logo"></i>
-				</div>
-				<span class="project-title">Music</span>
-			</a>
-		</div>
-		<div class="navbar-content">
-			<ul class="nav inner-nav">
-				<li class="nav-item menu-caption">
-					<label>Navigation</label>
-				</li>
-				<li class="nav-item item-menu">
-					<a [routerLink]="['/dashboard/home']" [routerLinkActive]="['active']" class="nav-link">
-						<i class="fa fa-home"></i>
-						<span class="nav-item-text">Home</span>
-					</a>
-				</li>
-				<li class="nav-item item-menu">
-					<a [routerLink]="['/dashboard/explore']" [routerLinkActive]="['active']" class="nav-link">
-						<i class="fa fa-search"></i>
-						<span class="nav-item-text">Explore</span>
-					</a>
-				</li>
-				<li class="nav-item menu-caption">
-					<label>Admin Panel</label>
-				</li>
-				<li class="nav-item item-menu">
-					<a class="nav-link" [routerLink]="['/dashboard/user-list']" [routerLinkActive]="['active']">
-						<i class="fa fa-users"></i>
-						<span class="nav-item-text">Users</span>
-					</a>
-					<a class="nav-link" [routerLink]="['/dashboard/artists']" [routerLinkActive]="['active']">
-						<i class="fa fa-headphones"></i>
-						<span class="nav-item-text">Artist</span>
-					</a>
-				</li>
-			</ul>
-			<div class="album-image">
-				<span *ngIf="song.album" >
-					<img id="play-image-album" src="" />
-				</span>
-				<span *ngIf="!song.album">
-					<img id="play-image-album" src="" />
-				</span>
-			</div>
-		</div>
-		
-	</div>
-</nav>
-<header class="navbar top-header navbar-expand-lg navbar-light" *ngIf="userLogged">
-	<a class="mobile-menu" id="mobile-header" href="javascript:">
-		<i class="feather icon-more-horizontal"></i>
-	</a>
-	<div class="collapse navbar-collapse">
-		<div class="mr-auto">
-			
-		</div>
-		<div class="ml-auto">
-			<div dropdown class="dropdown">
-				<a href id="basic-link" class="dropdown-toggle" dropdownToggle (click)="false" aria-controls="basic-link-dropdown">
-					<img src="{{ profileImage }}" class="img-radius" alt="User-Profile-Image">
-					<span>{{ userLogged.name +' '+userLogged.lastname }}</span>
-					<i class="fa fa-cog"></i>
-				</a>
-
-				<div *dropdownMenu class="dropdown-menu dropdown-menu-right profile-notification show" role="menu" aria-labelledby="basic-link">
-					<ul class="pro-body">
-						<li><a [routerLink]="['/dashboard/profile']" class="dropdown-item"><i class="fa fa-user"></i> Profile</a></li>
-						<li><a (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> Sign off</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>-->
 
 		
 

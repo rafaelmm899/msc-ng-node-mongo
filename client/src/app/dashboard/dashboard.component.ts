@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 	public token: string;
 	public song: Song;
 	public fullSideBar: boolean;
-
+	public playing: boolean;
 
 	constructor(
 		private _userService: UserService,
@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 		this.profileImage = 'assets/images/default-user-image.png'
 		this.song = new Song("","",1,"","","","");
 		this.fullSideBar = true;
+		this.playing = false;
 	}
 
 	ngDoCheck(){
@@ -89,6 +90,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 
 
 	songFinished(): void{
+		this.playing = false;
 		if(this.song && this.userLogged){
 			this._songService.playback(this.token,this.userLogged,this.song).subscribe(
 				response => {
@@ -127,7 +129,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 		console.log(componentReference)
 		if(componentReference.play){
 			componentReference.play.subscribe((song) => {
-			
+				this.playing = true;
 				this.song = song;
 				this.updatePlayer(song);
 				console.log(song);
@@ -143,6 +145,16 @@ export class DashboardComponent implements OnInit, DoCheck {
 		}
 		
 		console.log(this.fullSideBar);
+	}
+
+	playSong(){
+		this.playing = true;
+		this.el.nativeElement.querySelector("audio").play();
+	}
+
+	stopSong(){
+		this.playing = false;
+		this.el.nativeElement.querySelector("audio").pause();
 	}
 
 }
