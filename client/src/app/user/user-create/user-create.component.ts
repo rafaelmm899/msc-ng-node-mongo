@@ -75,6 +75,7 @@ export class UserCreateComponent implements OnInit {
 			response => {
 				if(!response.user){
 					this.message = response.message;
+					this._messageService.sendMessage(response.message, "danger");
 				}else{
 					this.user = response.user;
 					this._messageService.sendMessage("User created successfullys", "success");
