@@ -24,10 +24,10 @@
 					<span class="nav-item-text">Explore</span>
 				</a>
 			</li>
-			<li class="nav-item menu-caption">
+			<li class="nav-item menu-caption" *ngIf="currentUser && currentUser.role == 'ROLE_ADMIN'">
 				<label>Admin Panel</label>
 			</li>
-			<li class="nav-item item-menu">
+			<li class="nav-item item-menu" *ngIf="currentUser && currentUser.role == 'ROLE_ADMIN'">
 				<a class="nav-link" [routerLink]="['/dashboard/user-list']" [routerLinkActive]="['active']">
 					<i class="fa fa-users"></i>
 					<span class="nav-item-text">Users</span>

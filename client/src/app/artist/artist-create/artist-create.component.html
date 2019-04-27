@@ -6,14 +6,16 @@
     <form #createArtist="ngForm" (ngSubmit)="onSubmit()" *ngIf="artist">
         <div class="row">
             <div class="col-12 col-md-12 col-lg-8">
-                <p>
+                <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" #name="ngModel" [(ngModel)]="artist.name" name="name" class="form-control" />
-                </p>
-                <p>
+                    <input type="text" #name="ngModel" [(ngModel)]="artist.name" name="name" class="form-control" required/>
+                    <div *ngIf="!name.valid && name.touched" class="alert alert-danger">Name is required </div>
+                </div>
+                <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" #description="ngModel" [(ngModel)]="artist.description" name="description" class="form-control" />
-                </p>
+                    <input type="text" #description="ngModel" [(ngModel)]="artist.description" name="description" class="form-control" required />
+                    <div *ngIf="!description.valid && description.touched" class="alert alert-danger">Description is required </div>
+                </div>
                 
                 <p class="hidden">
                     <input type="file" id="inputImage" (change)="fileChangeEvent($event)" />
@@ -32,7 +34,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4">
-                <input type="submit" class="btn btn-lg btn-block btn-success pull-right" value="{{ title }}">
+                <input [disabled]="!createArtist.form.valid" type="submit" class="btn btn-lg btn-block btn-success pull-right" value="{{ title }}">
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <a class="btn btn-lg btn-block btn-warning" [routerLink]="['/dashboard/artists']">Cancel</a>

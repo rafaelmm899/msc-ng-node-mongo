@@ -5,12 +5,12 @@ import { UserService } from '../user.service';
 import { Route, Router, Params, ActivatedRoute } from '@angular/router';
 import { UploadService } from 'src/app/services/upload.service';
 import { GLOBAL } from 'src/global';
-
+import { MessageService } from 'src/app/messages/message.service';
 
 @Component({
     selector: 'user-detail',
     templateUrl: '../user-edit/user-edit.component.html',
-    providers: [UserService, UploadService]
+    providers: [UserService, UploadService, MessageService]
 })
 
 export class UserDetailComponent implements OnInit{
@@ -25,13 +25,15 @@ export class UserDetailComponent implements OnInit{
     public userImg: any;
     public buttonTitle: string;
     public title:string;
+    public detailProfile: boolean;
 
     constructor(
         private _userService: UserService,
         private _uploadService: UploadService,
         private _route: ActivatedRoute,
         private _router: Router,
-        sanitizer: DomSanitizer
+        sanitizer: DomSanitizer,
+        private _messageService: MessageService
     ){
         this.url = GLOBAL.url;
         this.token = this._userService.getTokenInLocalStorage();
@@ -39,6 +41,7 @@ export class UserDetailComponent implements OnInit{
         this.userImg = 'assets/images/default-user-image.png';
         this.buttonTitle = 'Edit';
         this.title = 'User';
+        this.detailProfile = true;
     }
     
     ngOnInit(){
@@ -82,7 +85,8 @@ export class UserDetailComponent implements OnInit{
      
         var mimeType = files[0].type;
         if (mimeType.match(/image\/*/) == null) {
-          this.message = "Only images are supported.";
+          
+          this._messageService.sendMessage("Only images are supported.", "danger");
           return;
         }
      
@@ -97,57 +101,32 @@ export class UserDetailComponent implements OnInit{
     fileChangeEvent(fileInput: any){
         this.filesToUpload = <Array<File>>fileInput.target.files;
         this.preview(fileInput.target.files);
-        /*this._uploadService.makeFileRequest(this.url+'user/upload_tmp/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
-            (result) => {
-                this.changeImg(result);
-            },
-            (error) =>{
-                console.log(error);
-            }
-        )*/
     }
 
     onSubmit(){
         this._userService.updateUser(this.user._id, this.user).subscribe(
             response => {
                 if(!response.user){
-                    this.message = response.message;
+                    this._messageService.sendMessage("Error", "danger");
                 }else{
-                    //this._router.navigate(['dashboard/user-list']);
                     if(this.filesToUpload){
                         this._uploadService.makeFileRequest(this.url+'user/upload_image/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
                             (result) => {
-                                this.alerts = [
-                                    {
-                                        type: 'success',
-                                        msg: `<strong>Well done!</strong> Profile successfully edited`
-                                    }
-                                ];
-
-                                //this.message = 'Profile successfully edited';
+                                //this._messageService.sendMessage("Profile successfully edited", "success");
+                                
                             },
                             (error) =>{
                                 console.log(error);
-                                this.alerts = [
-                                    {
-                                        type: 'danger',
-                                        msg: `<strong>Error!</strong> Error uploading the file`
-                                    }
-                                ];
+                                this._messageService.sendMessage("Error uploading the file", "danger");
                             }
                         )
                     }
+                    this._messageService.sendMessage("Profile successfully edited", "success");
                 }
             },
             error =>{
                 console.log(error);
-                //this.message = 'Error uploading the file';
-                this.alerts = [
-                    {
-                        type: 'danger',
-                        msg: `<strong>Error!</strong> Error uploading the file`
-                    }
-                ];
+                this._messageService.sendMessage("Error uploading the file", "danger");
             }
         )
     }

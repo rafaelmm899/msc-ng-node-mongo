@@ -89,7 +89,7 @@ export class AlbumEditComponent implements OnInit {
                             
                         )
                     }
-                    this._router.navigate(['dashboard/albums/'+this.artistId]); 
+                    this._router.navigate(['dashboard/albums/'+ this.artistId._id]); 
                 }
             },
             error => {

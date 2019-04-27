@@ -3,22 +3,25 @@
     <div class="page-header">
         <h1>{{ title }}</h1>
     </div>
-    <form #createArtist="ngForm" (ngSubmit)="onSubmit()" *ngIf="album">
+    <form #createAlbum="ngForm" (ngSubmit)="onSubmit()" *ngIf="album">
         <div class="row">
             <div class="col-12 col-md-12 col-lg-8">
                 
-                <p>
+                <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" title="ngModel" [(ngModel)]="album.title" name="title" class="form-control" />
-                </p>
-                <p>
+                    <input type="text" title="ngModel" [(ngModel)]="album.title" name="title" class="form-control" required />
+                    <div *ngIf="!title.valid && title.touched" class="alert alert-danger">Title is required </div>
+                </div>
+                <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" #description="ngModel" [(ngModel)]="album.description" name="description" class="form-control" />
-                </p>
-                <p>
+                    <input type="text" #description="ngModel" [(ngModel)]="album.description" name="description" class="form-control" required />
+                    <div *ngIf="!description.valid && description.touched" class="alert alert-danger">Description is required </div>
+                </div>
+                <div class="form-group">
                     <label for="year">Year</label>
                     <input type="number" #year="ngModel" [(ngModel)]="album.year" name="year" class="form-control" />
-                </p>
+                    <div *ngIf="!year.valid && year.touched" class="alert alert-danger">Year is required </div>
+                </div>
                 
                 <p class="hidden">
                     <input type="file" id="inputImage" (change)="fileChangeEvent($event)" />
@@ -37,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4">
-                <input type="submit" class="btn btn-lg btn-block btn-success pull-right" value="{{ title }}">
+                <input [disabled]="!createAlbum.form.valid" type="submit" class="btn btn-lg btn-block btn-success pull-right" value="{{ title }}">
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <a class="btn btn-lg btn-block btn-warning" [routerLink]="['/dashboard/albums/'+artistId]">Cancel</a>
