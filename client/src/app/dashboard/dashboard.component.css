@@ -290,6 +290,21 @@
     color: white !important;
 }
 
+.nav-link.active::after {
+    content: "→";
+    float: right;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.profile-notification ul li .dropdown-item.active, .dropdown-item:hover {
+    color: #fff !important;
+    text-decoration: none;
+    background-color: #007bff;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 575.98px) { 
 

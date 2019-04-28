@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 	}
 
 	ngDoCheck(){
-		let currentUser = this._userService.getUserLogged();
+		this.userLogged = this._userService.getUserLogged();
 		let token = this._userService.getTokenInLocalStorage();
 
 		if(token != this.token){
