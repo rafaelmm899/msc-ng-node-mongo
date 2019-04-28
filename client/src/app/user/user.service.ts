@@ -30,10 +30,7 @@ export class UserService {
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        return this._http.post(this.url+'login', params ,{headers : headers}).pipe(map(user => {
-
-            return user;
-        }));
+        return this._http.post(this.url+'login', params ,{headers : headers});
     }
 
     getToken(user):Observable<any>{
@@ -41,7 +38,7 @@ export class UserService {
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        return this._http.post(this.url+'login', params ,{headers : headers}).pipe(map(res => res));
+        return this._http.post(this.url+'login', params ,{headers : headers});
     }
 
     getUserLogged(){
@@ -64,10 +61,7 @@ export class UserService {
         let params = JSON.stringify(user);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        return this._http.post(this.url+'user/create_user', params, { headers : headers }).pipe(map(user => {
-
-            return user;
-        }));
+        return this._http.post(this.url+'user/create_user', params, { headers : headers });
     }
 
     getUsers(page):Observable<any>{
@@ -77,10 +71,7 @@ export class UserService {
             'Authorization' : this.getTokenInLocalStorage()
         });
 
-        return this._http.post(this.url+'user/list/'+page, params, { headers :headers }).pipe(map(users => {
-
-            return users;
-        }));
+        return this._http.post(this.url+'user/list/'+page, params, { headers :headers });
     }
 
     getUser(idUser: string): Observable<any>{
@@ -89,9 +80,7 @@ export class UserService {
             'Authorization' : this.getTokenInLocalStorage()
         });
 
-        return this._http.get(this.url+'user/'+idUser,{ headers : headers } ).pipe(map(user => {
-            return user;
-        }));
+        return this._http.get(this.url+'user/'+idUser,{ headers : headers } );
     }
 
     updateUser(idUser: string, user : User): Observable<any>{
@@ -101,9 +90,7 @@ export class UserService {
             'Authorization' : this.getTokenInLocalStorage()
         });
 
-        return this._http.put(this.url+'user/update/'+idUser, params, { headers : headers }).pipe(map(user => {
-            return user;
-        }));
+        return this._http.put(this.url+'user/update/'+idUser, params, { headers : headers });
     }
 
     deleteUser(idUser: string): Observable<any>{
