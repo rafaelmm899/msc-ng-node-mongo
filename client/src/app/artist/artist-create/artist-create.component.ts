@@ -8,11 +8,12 @@ import { MessageService } from '../../messages/message.service';
 import { UserService } from "../../user/user.service";
 import { UploadService } from '../../services/upload.service';
 import { GLOBAL } from 'src/global';
+import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
 
 @Component({
     selector : 'artist-create',
     templateUrl : './artist-create.component.html',
-    providers: [ArtistService, MessageService, UserService, UploadService]
+    providers: [ArtistService, MessageService, UserService, UploadService, BreadcrumbService]
 })
 
 export class ArtistCreateComponent implements OnInit {
@@ -29,17 +30,19 @@ export class ArtistCreateComponent implements OnInit {
         private _messageService: MessageService,
         private _uploadService: UploadService,
         private _route: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private _breadcrumbService: BreadcrumbService
     ){
         this.title = 'Create Artist';
         this.artist = new Artist('','','','');
         this.token = this._userService.getTokenInLocalStorage();
         this.artistImg = 'assets/images/default-user-image.png';
         this.url = GLOBAL.url;
+        
     }
 
     ngOnInit(){
-
+        this._breadcrumbService.add('Create',this.url+'artist-create');
     }
 
     preview(files) {

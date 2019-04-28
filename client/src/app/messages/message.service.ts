@@ -10,7 +10,6 @@ export class MessageService {
 
     sendMessage(message: string, type:string) {
         this.subject.next({ text: message, type:type });
-        console.log(this.subject);
     }
 
     clear() {
