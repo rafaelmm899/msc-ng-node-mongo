@@ -32,15 +32,183 @@ const dashboardRoutes : Routes = [{
 		{ path: 'user-edit/:id', component: UserEditComponent },
 		{ path: 'profile', component: UserDetailComponent },
 		{ path: 'user-create', component : UserCreateComponent },
-		{ path: 'artists', component:ArtistListComponent  },
-		{ path: 'artist/:id', component:ArtistEditComponent  },
-		{ path: 'artist-create', component: ArtistCreateComponent },
-		{ path: 'albums/:id', component: AlbumListComponent },
-		{ path: 'album-create/:idArtist', component: AlbumCreateComponent },
-		{ path: 'album-edit/:id', component: AlbumEditComponent },
-		{ path: 'songs/:id', component: SongListComponent },
-		{ path:'song-create/:albumId', component: SongCreateComponent },
-		{ path: 'song-edit/:albumId/:songId', component:SongEditComponent },
+		{ 	
+			path: 'artists', 
+			component:ArtistListComponent,
+			data: {
+				title: 'artists',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: ''
+					}
+				]
+			} 
+		},
+		{ 
+			path: 'artist/:id', 
+			component:ArtistEditComponent,
+			data: {
+				title: 'artists',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Edit',
+						url: ''
+					}
+				]
+			}   
+		},
+		{ 
+			path: 'artist-create', 
+			component: ArtistCreateComponent,
+			data: {
+				title: 'artists',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Create',
+						url: ''
+					}
+				]
+			} 
+		},
+		{ 
+			path: 'albums/:id', 
+			component: AlbumListComponent,
+			data: {
+				title: 'album',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Albums',
+						url: ''
+					}
+				]
+			}  
+		},
+		{ 
+			path: 'album-create/:idArtist', 
+			component: AlbumCreateComponent,
+			data: {
+				title: 'album',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Albums',
+						url: 'albums/:idArtist'
+					},
+					{
+						label: 'Create',
+						url: ''
+					}
+				]
+			} 
+		},
+		{ 
+			path: 'album-edit/:idArtist/:id', 
+			component: AlbumEditComponent,
+			data: {
+				title: 'album',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Albums',
+						url: 'albums/:idArtist'
+					},
+					{
+						label: 'Edit',
+						url: ''
+					}
+				]
+			} 	
+		},
+		{ 
+			path: 'songs/:idArtist/:id', 
+			component: SongListComponent,
+			data: {
+				title: 'song',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Albums',
+						url: 'albums/:idArtist'
+					},
+					{
+						label: 'Songs',
+						url: ''
+					}
+				]
+			} 	 
+		},
+		{ 
+			path:'song-create/:idArtist/:albumId', 
+			component: SongCreateComponent,
+			data: {
+				title: 'song',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Albums',
+						url: 'albums/:idArtist'
+					},
+					{
+						label: 'Songs',
+						url: 'songs/:idArtist/:albumId'
+					},
+					{
+						label: 'Create',
+						url: ''
+					}
+				]
+			}  
+		},
+		{ 
+			path: 'song-edit/:idArtist/:albumId/:songId', 
+			component:SongEditComponent,
+			data: {
+				title: 'song',
+				breadcrumb: [
+					{
+						label: 'Artists',
+						url: 'artists'
+					},
+					{
+						label: 'Albums',
+						url: 'albums/:idArtist'
+					},
+					{
+						label: 'Songs',
+						url: 'songs/:idArtist/:albumId'
+					},
+					{
+						label: 'Edit',
+						url: ''
+					}
+				]
+			}
+		},
 		{ path: 'artist-detail/:idArtist', component : ArtistDetailComponent },
 		{ path: 'artist-detail/:idArtist/:idAlbum', component : ArtistDetailComponent },
 		{ path: 'explore', component: ExploreComponent },

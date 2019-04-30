@@ -23,6 +23,7 @@ export class SongListComponent implements OnInit{
     public songs: Song[];
     public modalRef: BsModalRef;
     public idSongToDelete:string;
+    public artistId: string;
 
     constructor(
         private _userService: UserService,
@@ -35,11 +36,13 @@ export class SongListComponent implements OnInit{
     ){
         this.token = this._userService.getTokenInLocalStorage()
         this.albumId = this._route.snapshot.params.albumId;
+        this.artistId = this._route.snapshot.params.idArtist;
     }
 
     ngOnInit(){
         this.getSongs();
         this.idSongToDelete = null;
+        console.log(this.artistId);
     }
 
     getSongs(){

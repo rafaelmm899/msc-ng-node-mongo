@@ -41,6 +41,7 @@ import { ExploreComponent } from './explore/explore.component';
 
 import { FilterComponent } from './filter/filter.component';
 
+import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,6 @@ import { FilterComponent } from './filter/filter.component';
     ArtistDetailComponent,
     ExploreComponent,
     FilterComponent
-    
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ export class SongEditComponent implements OnInit{
     public url: string;
     public filesToUpload: Array<File>;
     public albumId: string;
+    public idArtist:string;
 
     constructor(
         private _userService: UserService,
@@ -35,6 +36,7 @@ export class SongEditComponent implements OnInit{
         this.song = new Song('','',0,'','','','');
         this.token = this._userService.getTokenInLocalStorage();
         this.albumId =  this._route.snapshot.params.albumId;
+        this.idArtist =  this._route.snapshot.params.idArtist;
         this.url = GLOBAL.url;
     }
 
@@ -83,7 +85,7 @@ export class SongEditComponent implements OnInit{
                     }
                         
 
-                    this._router.navigate(['/dashboard/songs/'+this.albumId]);
+                    this._router.navigate(['/dashboard/songs/'+this.idArtist+'/'+this.albumId]);
                 }
             },
             error => {

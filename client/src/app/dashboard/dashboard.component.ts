@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
 import { Song } from '../models/song';
 import { AlbumService } from '../album/album.service';
 import { SongService } from '../song/song.service';
- 
+import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 @Component({
   	selector: 'app-dashboard',
@@ -36,7 +36,8 @@ export class DashboardComponent implements OnInit, DoCheck {
 		private el: ElementRef,
 		private renderer: Renderer2,
 		private _albumService: AlbumService,
-		private _songService: SongService
+		private _songService: SongService,
+		private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService
 	) {  
 		this.userLogged = _userService.getUserLogged();
 		this.token = _userService.getTokenInLocalStorage();
@@ -111,7 +112,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 					this.song.album = response.album;
 					let filePath = this.url+'get_song/'+song.file;
 					let imagePath = this.url+'album_get_image/'+response.album.image;
-					console.log(imagePath);
+
 					this.renderer.setAttribute(this.el.nativeElement.querySelector("source"),"src",filePath);
 					
 					this.renderer.setAttribute(this.el.nativeElement.querySelector("#play-image-album"),"src",imagePath);
@@ -156,5 +157,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 		this.playing = false;
 		this.el.nativeElement.querySelector("audio").pause();
 	}
+
+	
 
 }

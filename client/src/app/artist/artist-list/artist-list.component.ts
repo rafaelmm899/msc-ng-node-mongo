@@ -8,14 +8,15 @@ import { MessageService } from "../../messages/message.service";
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { BreadcrumbService } from 'src/app/breadcrumb/breadcrumb.service';
+
 import { GLOBAL } from 'src/global';
+import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 @Component({
     selector : 'artist-list',
     templateUrl : './artist-list.component.html',
     styleUrls: ['./artist-list.component.css'],
-    providers: [ArtistService, UserService, MessageService, BreadcrumbService]
+    providers: [ArtistService, UserService, MessageService]
 })
 
 export class ArtistListComponent implements OnInit {
@@ -37,7 +38,7 @@ export class ArtistListComponent implements OnInit {
         private _router: Router,
         private _messageService: MessageService,
         private modalService: BsModalService,
-        private _breadcrumbService: BreadcrumbService
+        private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService
     ){
         this.idArtistToDelete = null;
         this.token = this._userService.getTokenInLocalStorage();
@@ -48,12 +49,12 @@ export class ArtistListComponent implements OnInit {
 
     ngOnInit(){
         this.getArtist();
-        this._breadcrumbService.add('Artists',this.url+'artists');
     }
 
     openModal(template: TemplateRef<any>, idArtist: string) {
 		this.idArtistToDelete = idArtist;
-		this.modalRef = this.modalService.show(template);
+        this.modalRef = this.modalService.show(template);
+        
     }
 
     confirm(){

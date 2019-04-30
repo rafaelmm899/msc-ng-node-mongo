@@ -21,7 +21,7 @@ export class AlbumEditComponent implements OnInit {
     public user: string;
     public title: string;
     public albumImg: any;
-    public artistId: any;
+    public artistId;
     public filesToUpload: Array<File>;
     public url:string;
 
@@ -44,6 +44,7 @@ export class AlbumEditComponent implements OnInit {
 
     ngOnInit(){
         this.getAlbum();
+        console.log(this.artistId);
     }
 
     getAlbum(){
@@ -55,8 +56,6 @@ export class AlbumEditComponent implements OnInit {
                         this._messageService.sendMessage(response.message, 'danger');
                     }else{
                         this.album = response.album;
-                        this.artistId = this.album.artist;
-                        console.log(this.artistId);
                         if(this.album.image){
                             this.albumImg = this.url+'album_get_image/'+this.album.image; 
                         }

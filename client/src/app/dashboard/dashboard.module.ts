@@ -7,18 +7,19 @@ import { Dashboard } from './dashboard.routing.module';
 import { HomeComponent } from '../home/home.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MessagesComponent } from '../messages/messages.component';
-import { BreadcrumbComponent } from "../breadcrumb/breadcrumb.component";
+
+import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
 
 @NgModule({
     declarations : [
         DashboardComponent,
-        BreadcrumbComponent,
         HomeComponent
     ],
     imports : [
         Dashboard,
         BsDropdownModule.forRoot(),
-        BrowserModule
+        BrowserModule,
+        Ng7BootstrapBreadcrumbModule
     ],
     exports : [
 

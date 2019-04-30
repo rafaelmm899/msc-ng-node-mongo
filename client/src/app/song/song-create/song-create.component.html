@@ -40,7 +40,7 @@
                 <input [disabled]="!createSong.form.valid" type="submit" class="btn btn-lg btn-block btn-success pull-right" value="{{ title }}">
             </div>
             <div class="col-12 col-md-6 col-lg-4">
-                <a class="btn btn-lg btn-block btn-warning" [routerLink]="['/dashboard/songs/'+albumId]">Cancel</a>
+                <a class="btn btn-lg btn-block btn-warning" [routerLink]="['/dashboard/songs/'+idArtist+'/'+albumId]">Cancel</a>
             </div>
         </div>
     </form>
