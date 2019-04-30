@@ -7,6 +7,7 @@ import { UserService } from "../../user/user.service";
 import { AlbumService } from "../album.service";
 import { MessageService } from "../../messages/message.service";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 @Component({
     selector: 'album-list',
@@ -33,7 +34,8 @@ export class AlbumListComponent implements OnInit {
         private _router: Router,
         private _route : ActivatedRoute,
         private _messageService: MessageService,
-        private modalService: BsModalService
+        private modalService: BsModalService,
+        private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService
     ){
         this.token = _userService.getTokenInLocalStorage();
         this.idAlbumToDelete = null;
@@ -54,6 +56,8 @@ export class AlbumListComponent implements OnInit {
                 }else{
                     this.totalRows = response.album.total;
                     this.albums = response.album.docs;
+                    
+                    this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: this.albums[0].artist.name });
                 }
             },
             error => {

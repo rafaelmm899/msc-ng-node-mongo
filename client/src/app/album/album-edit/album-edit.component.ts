@@ -8,6 +8,7 @@ import { AlbumService } from "../album.service";
 import { MessageService } from "../../messages/message.service";
 import { UploadService } from "../../services/upload.service";
 import { GLOBAL } from 'src/global';
+import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 @Component({
     selector: 'album-edit',
@@ -31,7 +32,8 @@ export class AlbumEditComponent implements OnInit {
         private _messageService: MessageService,
         private _route: ActivatedRoute,
         private _router: Router,
-        private _uploadService: UploadService
+        private _uploadService: UploadService,
+        private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService
     ){
         this.token = _userService.getTokenInLocalStorage();
         this.user = _userService.getUserLogged();
@@ -56,6 +58,7 @@ export class AlbumEditComponent implements OnInit {
                         this._messageService.sendMessage(response.message, 'danger');
                     }else{
                         this.album = response.album;
+                        this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({album: response.album.title,artist: response.album.artist.name});
                         if(this.album.image){
                             this.albumImg = this.url+'album_get_image/'+this.album.image; 
                         }

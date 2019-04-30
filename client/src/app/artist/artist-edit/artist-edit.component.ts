@@ -7,6 +7,7 @@ import { MessageService } from '../../messages/message.service';
 import { UserService } from '../../user/user.service';
 import { UploadService } from '../../services/upload.service';
 import { GLOBAL } from 'src/global';
+import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 @Component({
     selector : 'artist-edit',
@@ -28,7 +29,8 @@ export class ArtistEditComponent implements OnInit{
         private _userService: UserService,
         private _route: ActivatedRoute,
         private _router: Router,
-        private _uploadService: UploadService
+        private _uploadService: UploadService,
+        private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService
     ){
         this.token = _userService.getTokenInLocalStorage();
         this.artist = new Artist('','','','');
@@ -75,6 +77,7 @@ export class ArtistEditComponent implements OnInit{
                 response => {
                     if(response.artist){
                         this.artist = response.artist;
+                        this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: response.artist.name});
                         if(this.artist.image){
                             this.artistImg = this.url+'getImageArtist/'+this.artist.image;
                         }

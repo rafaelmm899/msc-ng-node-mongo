@@ -4,6 +4,6 @@ export class Album {
         public title: String,
         public year: Number,
         public image: String,
-        public artist:  string
+        public artist:  any
     ){}
 }

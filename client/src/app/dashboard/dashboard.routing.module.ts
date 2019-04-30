@@ -52,7 +52,7 @@ const dashboardRoutes : Routes = [{
 				title: 'artists',
 				breadcrumb: [
 					{
-						label: 'Artists',
+						label: '{{artist}}',
 						url: 'artists'
 					},
 					{
@@ -86,7 +86,7 @@ const dashboardRoutes : Routes = [{
 				title: 'album',
 				breadcrumb: [
 					{
-						label: 'Artists',
+						label: '{{artist}}',
 						url: 'artists'
 					},
 					{
@@ -124,11 +124,11 @@ const dashboardRoutes : Routes = [{
 				title: 'album',
 				breadcrumb: [
 					{
-						label: 'Artists',
+						label: '{{artist}}',
 						url: 'artists'
 					},
 					{
-						label: 'Albums',
+						label: '{{album}}',
 						url: 'albums/:idArtist'
 					},
 					{
@@ -145,11 +145,11 @@ const dashboardRoutes : Routes = [{
 				title: 'song',
 				breadcrumb: [
 					{
-						label: 'Artists',
+						label: '{{artist}}',
 						url: 'artists'
 					},
 					{
-						label: 'Albums',
+						label: '{{album}}',
 						url: 'albums/:idArtist'
 					},
 					{
@@ -191,15 +191,15 @@ const dashboardRoutes : Routes = [{
 				title: 'song',
 				breadcrumb: [
 					{
-						label: 'Artists',
+						label: '{{artist}}',
 						url: 'artists'
 					},
 					{
-						label: 'Albums',
+						label: '{{album}}',
 						url: 'albums/:idArtist'
 					},
 					{
-						label: 'Songs',
+						label: '{{song}}',
 						url: 'songs/:idArtist/:albumId'
 					},
 					{

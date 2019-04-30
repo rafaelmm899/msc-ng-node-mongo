@@ -8,6 +8,7 @@ import { UploadService } from "../../services/upload.service";
 import { MessageService } from "../../messages/message.service";
 import { SongService } from "../song.service";
 import { GLOBAL } from 'src/global';
+import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 @Component({
     selector :'song-edit',
@@ -30,7 +31,8 @@ export class SongEditComponent implements OnInit{
         private _messageService: MessageService,
         private _songService: SongService,
         private _route: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService
     ){
         this.title = 'Edit Song';
         this.song = new Song('','',0,'','','','');
@@ -55,6 +57,11 @@ export class SongEditComponent implements OnInit{
                         this._messageService.sendMessage(response.message, 'danger');
                     }else{
                         this.song = response.song;
+                        this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({
+                            artist: response.song.album.artist.name,
+                            album:response.song.album.title,
+                            song:response.song.name,
+                        });
                     }
                 },
                 error => {
@@ -65,7 +72,7 @@ export class SongEditComponent implements OnInit{
     }
 
     onSubmit(){
-        console.log(this.song);
+        
         this._songService.upload(this.token,this.song, this.song._id).subscribe(
             response => {
                 if(!response.song){

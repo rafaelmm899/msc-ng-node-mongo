@@ -8,6 +8,7 @@ import { UploadService } from "../../services/upload.service";
 import { MessageService } from "../../messages/message.service";
 import { SongService } from "../song.service";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 @Component({
     selector :'song-list',
@@ -32,7 +33,8 @@ export class SongListComponent implements OnInit{
         private _songService: SongService,
         private _route: ActivatedRoute,
         private _router: Router,
-        private modalService: BsModalService
+        private modalService: BsModalService,
+        private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService
     ){
         this.token = this._userService.getTokenInLocalStorage()
         this.albumId = this._route.snapshot.params.albumId;
@@ -56,6 +58,8 @@ export class SongListComponent implements OnInit{
                         this._messageService.sendMessage(response.message, 'danger');
                     }else{
                         this.songs = response.song;
+                        
+                        this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: this.songs[0].album.artist.name,album: this.songs[0].album.title});
                     }
                 },
                 error => {

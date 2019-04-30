@@ -45,7 +45,7 @@ function save(req, res) {
 function getSongs(req, res) {
     let albumId = req.params.id;
 
-    Song.find({album: albumId}).populate({path:'Album'}).exec((error, songs)=> {
+    Song.find({album: albumId}).populate({path: 'album', populate: {path:'artist'}}).exec((error, songs)=> {
         if(error){
             res.status(500).send({
                 message : 'Error in the request'
@@ -114,7 +114,7 @@ function getFile(req, res){
 function getSong(req, res) {
     let songId = req.params.id;
     
-    Song.findById(songId,(error, song) => {
+    Song.findById(songId).populate({path: 'album', populate: {path:'artist'}}).exec((error, song)=> {
         if(error){
             res.status(500).send({
                 message : 'Error in the request'

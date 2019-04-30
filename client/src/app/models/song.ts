@@ -6,6 +6,6 @@ export class Song {
         public gender: String,
         public file: String,
         public duration: String,
-        public album: String
+        public album: any
     ){}
 }
