@@ -54,10 +54,14 @@ export class AlbumListComponent implements OnInit {
                 if(!response.album){
                     this._messageService.sendMessage(response.message,'danger');
                 }else{
-                    this.totalRows = response.album.total;
-                    this.albums = response.album.docs;
+                    if(response.album.docs.length > 0){
+                        this.totalRows = response.album.total;
+                        this.albums = response.album.docs;
+                        this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: this.albums[0].artist.name });
+                    }else{
+                        this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: 'Artists' });
+                    }
                     
-                    this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: this.albums[0].artist.name });
                 }
             },
             error => {

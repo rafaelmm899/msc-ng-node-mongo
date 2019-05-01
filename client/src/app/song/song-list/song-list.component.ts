@@ -57,9 +57,12 @@ export class SongListComponent implements OnInit{
                     if(!response.song){
                         this._messageService.sendMessage(response.message, 'danger');
                     }else{
-                        this.songs = response.song;
+                        if(response.song.length > 0){
+                            this.songs = response.song;
                         
-                        this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: this.songs[0].album.artist.name,album: this.songs[0].album.title});
+                            this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: this.songs[0].album.artist.name,album: this.songs[0].album.title});
+                        }
+                        
                     }
                 },
                 error => {

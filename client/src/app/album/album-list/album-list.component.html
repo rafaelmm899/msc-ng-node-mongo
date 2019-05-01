@@ -10,7 +10,14 @@
 			<a class="btn btn-success pull-left btn-create" [routerLink]="['/dashboard/album-create/'+artistId]">Create Album</a>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" *ngIf="!albums">
+		<div class="col-12">
+			<alert type="danger">
+				<strong>Oh snap!</strong> No albums stored
+			</alert>
+		</div>
+	</div>
+	<div class="row" *ngIf="albums">
 		<div class="col-12">
 			
 			<ng-template #template>

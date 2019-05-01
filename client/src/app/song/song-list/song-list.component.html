@@ -10,7 +10,14 @@
 			<a class="btn btn-success pull-left btn-create" [routerLink]="['/dashboard/song-create/'+artistId+'/'+albumId]">Create Song</a>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" *ngIf="!songs">
+		<div class="col-12">
+			<alert type="danger">
+				<strong>Oh snap!</strong> No songs stored
+			</alert>
+		</div>
+	</div>
+	<div class="row" *ngIf="songs">
 		<div class="col-12">
 			
 			<ng-template #template>
@@ -21,7 +28,7 @@
 				</div>
 			</ng-template>
 			
-			<div class="row">
+			<div class="row" >
 				<div class="col-12 table-wrapper">
 					<table class="table">
 						<thead>
