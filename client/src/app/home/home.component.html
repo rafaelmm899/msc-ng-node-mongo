@@ -35,7 +35,7 @@
 		</div>
 		<div class="row album-wrapper">
 			<div class="col-md-12 col-lg-6 col-xl-4" *ngFor="let album of lastAlbums">
-				<a class="link-album" [routerLink]="['/dashboard/artist-detail/'+album.artist+'/'+album._id]">
+				<a class="link-album" [routerLink]="['/dashboard/artist-detail/'+album.artist._id+'/'+album._id]">
 					<div class="card-deck album-card-deck">
 						<div class="card album-card">
 							<div class="image-album-wrapper">
