@@ -9,6 +9,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MessagesComponent } from '../messages/messages.component';
 
 import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
+import { AdminGuard } from '../services/admin.guard';
+import { UserService } from '../user/user.service';
+import { AuthGuard } from '../services/auth.guard';
 
 @NgModule({
     declarations : [
@@ -25,7 +28,9 @@ import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
 
     ],
     providers : [
-
+        AdminGuard,
+        AuthGuard,
+        UserService
     ]
 })
 

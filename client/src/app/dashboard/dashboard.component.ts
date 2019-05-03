@@ -127,13 +127,11 @@ export class DashboardComponent implements OnInit, DoCheck {
 	}
 
 	onActivate(componentReference) {
-		console.log(componentReference)
 		if(componentReference.play){
 			componentReference.play.subscribe((song) => {
 				this.playing = true;
 				this.song = song;
 				this.updatePlayer(song);
-				console.log(song);
 			})
 		}
 	}

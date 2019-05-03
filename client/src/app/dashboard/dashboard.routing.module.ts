@@ -19,19 +19,34 @@ import { SongEditComponent } from '../song/song-edit/song-edit.component';
 import { ArtistDetailComponent } from '../artist/artist-detail/artist-detail.component';
 import { ExploreComponent } from '../explore/explore.component';
 import { FilterComponent } from '../filter/filter.component';
+import { AdminGuard } from "../services/admin.guard";
+import { AuthGuard } from '../services/auth.guard';
 
 
 
 const dashboardRoutes : Routes = [{
 	path : 'dashboard',
 	component : DashboardComponent,
+	canActivate: [AuthGuard],
 	children : [
 		{ path : 'home',component : HomeComponent },
 		{ path : 'home/:page',component : HomeComponent },
-		{ path: 'user-list', component : UserListComponent },
-		{ path: 'user-edit/:id', component: UserEditComponent },
+		{ 
+			path: 'user-list', 
+			component : UserListComponent,
+			canActivate:[AdminGuard]
+		},
+		{ 
+			path: 'user-edit/:id', 
+			component: UserEditComponent,
+			canActivate:[AdminGuard]
+		},
 		{ path: 'profile', component: UserDetailComponent },
-		{ path: 'user-create', component : UserCreateComponent },
+		{ 
+			path: 'user-create', 
+			component : UserCreateComponent,
+			canActivate:[AdminGuard]
+		},
 		{ 	
 			path: 'artists', 
 			component:ArtistListComponent,
@@ -43,7 +58,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			} 
+			},
+			canActivate:[AdminGuard]
 		},
 		{ 
 			path: 'artist/:id', 
@@ -60,7 +76,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			}   
+			},
+			canActivate:[AdminGuard]   
 		},
 		{ 
 			path: 'artist-create', 
@@ -77,7 +94,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			} 
+			},
+			canActivate:[AdminGuard]
 		},
 		{ 
 			path: 'albums/:id', 
@@ -94,7 +112,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			}  
+			},
+			canActivate:[AdminGuard]
 		},
 		{ 
 			path: 'album-create/:idArtist', 
@@ -115,7 +134,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			} 
+			},
+			canActivate:[AdminGuard]
 		},
 		{ 
 			path: 'album-edit/:idArtist/:id', 
@@ -136,7 +156,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			} 	
+			},
+			canActivate:[AdminGuard]	
 		},
 		{ 
 			path: 'songs/:idArtist/:id', 
@@ -157,7 +178,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			} 	 
+			},
+			canActivate:[AdminGuard]	 
 		},
 		{ 
 			path:'song-create/:idArtist/:albumId', 
@@ -182,7 +204,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			}  
+			},
+			canActivate:[AdminGuard] 
 		},
 		{ 
 			path: 'song-edit/:idArtist/:albumId/:songId', 
@@ -207,7 +230,8 @@ const dashboardRoutes : Routes = [{
 						url: ''
 					}
 				]
-			}
+			},
+			canActivate:[AdminGuard]
 		},
 		{ path: 'artist-detail/:idArtist', component : ArtistDetailComponent },
 		{ path: 'artist-detail/:idArtist/:idAlbum', component : ArtistDetailComponent },
