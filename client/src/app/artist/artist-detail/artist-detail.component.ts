@@ -8,12 +8,14 @@ import { Album } from 'src/app/models/album';
 import { Song } from 'src/app/models/song';
 import { UserService } from 'src/app/user/user.service';
 import { GLOBAL } from 'src/global';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
   	selector: 'app-artist-detail',
   	templateUrl: './artist-detail.component.html',
 	styleUrls: ['./artist-detail.component.css'],
-	providers: [ ArtistService, AlbumService, SongService, UserService ]  
+	providers: [ ArtistService, AlbumService, SongService, UserService ]  ,
+	animations: [transAnimation]
 })
 export class ArtistDetailComponent implements OnInit {
 	public artist: Artist;

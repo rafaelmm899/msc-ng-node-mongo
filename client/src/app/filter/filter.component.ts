@@ -6,13 +6,14 @@ import { Song } from 'src/app/models/song';
 import { SongService } from 'src/app/song/song.service';
 import { UserService } from 'src/app/user/user.service';
 import { GLOBAL } from 'src/global';
-
+import { transAnimation } from "../animation/animation";
 
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css'],
-	providers: [SongService,UserService]
+  	selector: 'app-filter',
+  	templateUrl: './filter.component.html',
+  	styleUrls: ['./filter.component.css'],
+	providers: [SongService,UserService],
+	animations: [transAnimation]
 })
 export class FilterComponent implements OnInit {
 

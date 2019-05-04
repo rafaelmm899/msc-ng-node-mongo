@@ -9,11 +9,13 @@ import { MessageService } from "../../messages/message.service";
 import { UploadService } from "../../services/upload.service";
 import { GLOBAL } from 'src/global';
 import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
     selector: 'album-edit',
     templateUrl: '../album-create/album-create.component.html',
-    providers : [ UserService,AlbumService,MessageService,UploadService ]
+    providers : [ UserService,AlbumService,MessageService,UploadService ],
+    animations: [transAnimation]
 })
 
 export class AlbumEditComponent implements OnInit {

@@ -8,12 +8,14 @@ import { AlbumService } from "../album.service";
 import { MessageService } from "../../messages/message.service";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
     selector: 'album-list',
     templateUrl: './album-list.component.html',
     styleUrls: ['./album-list.component.css'],
-    providers : [ UserService,AlbumService,MessageService ]
+    providers : [ UserService,AlbumService,MessageService ],
+    animations: [transAnimation]
 })
 
 export class AlbumListComponent implements OnInit {

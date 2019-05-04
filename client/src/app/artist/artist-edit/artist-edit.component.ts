@@ -8,11 +8,13 @@ import { UserService } from '../../user/user.service';
 import { UploadService } from '../../services/upload.service';
 import { GLOBAL } from 'src/global';
 import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
     selector : 'artist-edit',
     templateUrl : '../artist-create/artist-create.component.html',
-    providers : [ ArtistService, MessageService, UserService, UploadService ]
+    providers : [ ArtistService, MessageService, UserService, UploadService ],
+    animations: [transAnimation]
 })
 
 export class ArtistEditComponent implements OnInit{

@@ -9,11 +9,13 @@ import { MessageService } from "../../messages/message.service";
 import { SongService } from "../song.service";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
     selector :'song-list',
     templateUrl:'./song-list.component.html',
-    providers: [UploadService, MessageService, UserService, SongService]
+    providers: [UploadService, MessageService, UserService, SongService],
+    animations: [transAnimation]
 })
 
 export class SongListComponent implements OnInit{
@@ -61,6 +63,8 @@ export class SongListComponent implements OnInit{
                             this.songs = response.song;
                         
                             this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: this.songs[0].album.artist.name,album: this.songs[0].album.title});
+                        }else{
+                            this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels({artist: 'artist',album: 'album'});
                         }
                         
                     }

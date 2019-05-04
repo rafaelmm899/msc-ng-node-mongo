@@ -42,6 +42,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { FilterComponent } from './filter/filter.component';
 
 import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
     AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
     ButtonsModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

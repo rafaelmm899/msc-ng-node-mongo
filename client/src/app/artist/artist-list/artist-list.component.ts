@@ -11,12 +11,14 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { GLOBAL } from 'src/global';
 import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
     selector : 'artist-list',
     templateUrl : './artist-list.component.html',
     styleUrls: ['./artist-list.component.css'],
-    providers: [ArtistService, UserService, MessageService]
+    providers: [ArtistService, UserService, MessageService],
+    animations: [transAnimation]
 })
 
 export class ArtistListComponent implements OnInit {

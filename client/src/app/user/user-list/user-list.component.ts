@@ -5,12 +5,14 @@ import { Route, Router, Params, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertComponent } from 'ngx-bootstrap/alert/alert.component'
 import { MessageService } from 'src/app/messages/message.service';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
-  providers : [UserService, MessageService]
+	providers : [UserService, MessageService],
+	animations: [ transAnimation]
 })
 export class UserListComponent implements OnInit {
 	public users : User[];

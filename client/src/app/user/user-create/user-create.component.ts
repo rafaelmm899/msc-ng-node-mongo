@@ -5,12 +5,14 @@ import { GLOBAL } from 'src/global';
 import { UploadService } from 'src/app/services/upload.service';
 import { Route, ActivatedRoute, Router } from "@angular/router";
 import { MessageService } from 'src/app/messages/message.service';
+import { transAnimation } from "../../animation/animation";
 
 
 @Component({
   selector: 'app-user-create',
   templateUrl: '../user-edit/user-edit.component.html',
-  providers: [UserService, UploadService, MessageService]
+	providers: [UserService, UploadService, MessageService],
+	animations: [transAnimation]
 })
 export class UserCreateComponent implements OnInit {
 	public message: String;

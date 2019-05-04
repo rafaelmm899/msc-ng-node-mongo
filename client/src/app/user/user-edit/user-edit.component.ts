@@ -5,11 +5,13 @@ import { Route, Router, ActivatedRoute, Params } from "@angular/router";
 import { GLOBAL } from 'src/global';
 import { UploadService } from 'src/app/services/upload.service';
 import { MessageService } from 'src/app/messages/message.service';
+import { transAnimation } from "../../animation/animation";
 
 @Component({
     selector :'user-edit',
     templateUrl: './user-edit.component.html',
-    providers: [UserService, UploadService]
+    providers: [UserService, UploadService],
+    animations: [transAnimation]
 })
 
 export class UserEditComponent implements OnInit {

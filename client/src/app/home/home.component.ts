@@ -8,12 +8,14 @@ import { AlbumService } from '../album/album.service';
 import { Song } from "../models/song";
 import { SongService } from '../song/song.service';
 import { Route, Router, ActivatedRoute, Params } from "@angular/router";
+import { transAnimation } from "../animation/animation";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [ArtistService,UserService,AlbumService, SongService]
+  providers: [ArtistService,UserService,AlbumService, SongService],
+  animations: [transAnimation]
 })
 export class HomeComponent implements OnInit {
 	public artists: Artist[];

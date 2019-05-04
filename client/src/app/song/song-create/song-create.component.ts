@@ -1,6 +1,6 @@
 import { Component,OnInit } from "@angular/core";
 import { Route, ActivatedRoute, Router,Params } from "@angular/router";
-
+import { transAnimation } from "../../animation/animation";
 import { Song } from "../../models/song";
 import { User } from "../../models/user";
 import { UserService } from "../../user/user.service";
@@ -12,7 +12,8 @@ import { GLOBAL } from 'src/global';
 @Component({
     selector :'song-create',
     templateUrl:'./song-create.component.html',
-    providers: [UploadService, MessageService, UserService, SongService]
+    providers: [UploadService, MessageService, UserService, SongService],
+    animations: [transAnimation]
 })
 
 export class SongCreateComponent implements OnInit{
