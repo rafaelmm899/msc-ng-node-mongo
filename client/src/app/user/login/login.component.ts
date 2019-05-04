@@ -5,12 +5,14 @@ import { FormControl } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from '../user.service';
 import { MessageService } from "../../messages/message.service";
+import { transAnimation } from "../../animation/animation";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers : [UserService,MessageService]
+  providers : [UserService,MessageService],
+  animations: [transAnimation]
 })
 export class LoginComponent implements OnInit,OnDestroy {
 	public user: User;
