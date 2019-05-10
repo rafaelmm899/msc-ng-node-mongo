@@ -28,7 +28,10 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-8 col-lg-8">
+		<div [ngClass]="{ 
+				'col-md-12 col-lg-12' : this.topSongs && this.topSongs.length == 0,
+				'col-md-8 col-lg-8' : this.topSongs && this.topSongs.length > 0
+			}">
 			<div class="row row-album-section">
 				<div class="col-md-12">
 					<span>Albums</span>
@@ -52,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 col-lg-4">
+		<div class="col-md-4 col-lg-4" *ngIf="this.topSongs && this.topSongs.length > 0">
 			<div class="row row-album-section">
 				<div class="col-md-12 top-songs">
 					<span>Top Songs</span>

@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 	}
 
 	updatePlayer(song: any){
-		this._albumService.getAlbum(this.token,song.album).subscribe(
+		this._albumService.getAlbum(this.token,song.album._id).subscribe(
 			response => {
 				if(response.album){
 					this.song.album = response.album;
@@ -143,7 +143,6 @@ export class DashboardComponent implements OnInit, DoCheck {
 			this.fullSideBar = true;
 		}
 		
-		console.log(this.fullSideBar);
 	}
 
 	playSong(){

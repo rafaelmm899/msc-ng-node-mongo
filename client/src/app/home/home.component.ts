@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
 						array.push(new Song(sg._id,sg.name,sg.number,sg.gender,sg.file,sg.duration,sg.album));	
 					}
 					this.topSongs = array;
-					console.log(this.topSongs);
+					
 				}
 			},
 			error => {
