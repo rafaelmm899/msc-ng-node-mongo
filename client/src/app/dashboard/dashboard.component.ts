@@ -18,7 +18,6 @@ import { Ng7BootstrapBreadcrumbService } from 'ng7-bootstrap-breadcrumb';
 
 })
 export class DashboardComponent implements OnInit, DoCheck {
-	//@ViewChild('#player') playerElement: ElementRef;
 	public subscription: Subscription;
 	public items: string[];
 	public userLogged;

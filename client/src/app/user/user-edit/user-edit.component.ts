@@ -70,7 +70,6 @@ export class UserEditComponent implements OnInit {
 
     changeImg(data: any){
         if(data.file){
-            
             this.userImg = this.url+'user/get_image_profile/'+data.file+'/true';
         }
     }
@@ -95,16 +94,7 @@ export class UserEditComponent implements OnInit {
 
     fileChangeEvent(fileInput: any){
         this.filesToUpload = <Array<File>>fileInput.target.files;
-        
         this.preview(fileInput.target.files);
-        /*this._uploadService.makeFileRequest(this.url+'user/upload_tmp/'+this.user._id,[],this.filesToUpload,this.token,'image').then(
-            (result) => {
-                this.changeImg(result);
-            },
-            (error) =>{
-                console.log(error);
-            }
-        )*/
     }
 
     onSubmit(){
